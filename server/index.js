@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import path from 'node:path'
+import { randomUUID } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import bcrypt from 'bcryptjs'
 import compression from 'compression'
@@ -15,7 +16,7 @@ const rootDir = path.join(__dirname, '..')
 const distDir = path.join(rootDir, 'dist')
 const port = process.env.PORT || 3000
 const jwtSecret = process.env.JWT_SECRET || 'local-development-secret'
-const mdInitialPassword = process.env.MD_INITIAL_PASSWORD || 'ChangeMe123!'
+const mdInitialPassword = process.env.MD_INITIAL_PASSWORD
 const assistantInitialPassword = process.env.ASSISTANT_INITIAL_PASSWORD || 'Assistant123!'
 
 const app = express()
@@ -32,6 +33,7 @@ const memory = {
   wallets: structuredClone(seedWallets),
   notifications: seedNotifications.map((notification, index) => ({ id: index + 1, ...notification })),
   audit: [],
+  setupComplete: Boolean(mdInitialPassword),
 }
 
 app.use(morgan('tiny'))
@@ -48,7 +50,27 @@ app.get('/api/health', (_request, response) => {
   response.json({ ok: true, database: pool ? 'postgres' : 'memory' })
 })
 
+app.get('/api/setup/status', async (_request, response) => {
+  response.json({ required: await isSetupRequired() })
+})
+
+app.post('/api/setup/complete', async (request, response) => {
+  if (!(await isSetupRequired())) {
+    return response.status(409).json({ message: 'Setup has already been completed' })
+  }
+  const password = String(request.body.password || '')
+  if (password.length < 10) {
+    return response.status(400).json({ message: 'Use at least 10 characters for the MD password' })
+  }
+  const user = await completeSetup(password)
+  const token = jwt.sign({ sub: user.id, role: user.role, name: user.name }, jwtSecret, { expiresIn: '12h' })
+  response.json({ token, user: publicUser(user) })
+})
+
 app.post('/api/auth/login', async (request, response) => {
+  if (await isSetupRequired()) {
+    return response.status(403).json({ message: 'Complete one-time MD setup first', setupRequired: true })
+  }
   const { userId, password } = request.body
   const user = await findUser(userId)
   if (!user || !(await bcrypt.compare(password || '', user.password_hash))) {
@@ -95,7 +117,7 @@ app.listen(port, () => {
 
 async function initializeStore() {
   if (!pool) {
-    const mdHash = await bcrypt.hash(mdInitialPassword, 10)
+    const mdHash = await bcrypt.hash(mdInitialPassword || randomUUID(), 10)
     const assistantHash = await bcrypt.hash(assistantInitialPassword, 10)
     memory.users = seedUsers.map((user) => ({ ...user, password_hash: user.role === 'md' ? mdHash : assistantHash }))
     memory.audit = buildSeedAudit(memory.payments)
@@ -162,12 +184,17 @@ async function initializeStore() {
       detail text not null,
       created_at timestamptz not null default now()
     );
+
+    create table if not exists app_settings (
+      key text primary key,
+      value text not null
+    );
   `)
 
   const count = Number((await pool.query('select count(*) from app_users')).rows[0].count)
   if (count > 0) return
 
-  const mdHash = await bcrypt.hash(mdInitialPassword, 10)
+  const mdHash = await bcrypt.hash(mdInitialPassword || randomUUID(), 10)
   const assistantHash = await bcrypt.hash(assistantInitialPassword, 10)
 
   for (const user of seedUsers) {
@@ -233,6 +260,42 @@ async function initializeStore() {
       event.detail,
     ])
   }
+
+  await pool.query(
+    `insert into app_settings (key, value) values ('setup_complete', $1)
+     on conflict (key) do nothing`,
+    [mdInitialPassword ? 'true' : 'false'],
+  )
+}
+
+async function isSetupRequired() {
+  if (!pool) return !memory.setupComplete
+  const result = await pool.query("select value from app_settings where key = 'setup_complete'")
+  return result.rows[0]?.value !== 'true'
+}
+
+async function completeSetup(password) {
+  const hash = await bcrypt.hash(password, 10)
+  if (!pool) {
+    const index = memory.users.findIndex((user) => user.id === 'md')
+    memory.users[index] = { ...memory.users[index], password_hash: hash }
+    memory.setupComplete = true
+    memory.audit.unshift({ time: 'Recent', actor: 'Managing Director', action: 'Completed setup', ref: 'auth', detail: 'MD password created' })
+    return memory.users[index]
+  }
+
+  const result = await pool.query('update app_users set password_hash = $2 where id = $1 returning *', ['md', hash])
+  await pool.query(
+    `insert into app_settings (key, value) values ('setup_complete', 'true')
+     on conflict (key) do update set value = excluded.value`,
+  )
+  await pool.query('insert into audit_events (actor, action, ref, detail) values ($1, $2, $3, $4)', [
+    'Managing Director',
+    'Completed setup',
+    'auth',
+    'MD password created',
+  ])
+  return result.rows[0]
 }
 
 async function findUser(id) {

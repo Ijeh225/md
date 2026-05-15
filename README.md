@@ -15,6 +15,7 @@ Private executive finance control dashboard for the MD and selected treasury/pay
 - Excel-compatible report export, printable/PDF reports, and print support
 - Dark/light mode, responsive layout, smart tables, charts, badges, sticky filters, and search
 - JWT-protected backend API
+- One-time in-app MD password setup on first launch
 - Render Postgres persistence for payments, comments, notifications, wallets, users, and audit logs
 - Automatic database schema creation and first-run seed data
 
@@ -36,12 +37,7 @@ npm start
 
 Open `http://localhost:3000`.
 
-Local fallback login:
-
-```text
-User: Managing Director
-Password: ChangeMe123!
-```
+On first launch, create the MD password in the one-time setup screen. After setup, use the normal login page.
 
 ## Build
 
@@ -71,11 +67,10 @@ Then start:
 npm start
 ```
 
-Set `MD_INITIAL_PASSWORD` when Render asks for secrets. The app generates `JWT_SECRET` automatically and attaches `DATABASE_URL` from the Blueprint database.
+The app generates `JWT_SECRET` automatically and attaches `DATABASE_URL` from the Blueprint database.
 
-First production login:
+First production launch:
 
 ```text
-User: Managing Director
-Password: the value you set for MD_INITIAL_PASSWORD
+Create the MD password in the one-time setup screen.
 ```

@@ -244,6 +244,14 @@ function App() {
   const [walletRows, setWalletRows] = useState(wallets)
   const [loading, setLoading] = useState(Boolean(auth))
   const [error, setError] = useState('')
+  const [setupRequired, setSetupRequired] = useState(false)
+
+  useEffect(() => {
+    if (auth) return
+    apiRequest('/api/setup/status')
+      .then((data) => setSetupRequired(Boolean(data.required)))
+      .catch(() => setSetupRequired(false))
+  }, [auth])
 
   useEffect(() => {
     if (!auth?.token) return
@@ -298,6 +306,18 @@ function App() {
     })
     localStorage.setItem('md-finance-token', data.token)
     localStorage.setItem('md-finance-user', JSON.stringify(data.user))
+    setAuth({ token: data.token, user: data.user })
+    applyBootstrap(await apiRequest('/api/bootstrap', { token: data.token }))
+  }
+
+  async function completeSetup(password) {
+    const data = await apiRequest('/api/setup/complete', {
+      method: 'POST',
+      body: { password },
+    })
+    localStorage.setItem('md-finance-token', data.token)
+    localStorage.setItem('md-finance-user', JSON.stringify(data.user))
+    setSetupRequired(false)
     setAuth({ token: data.token, user: data.user })
     applyBootstrap(await apiRequest('/api/bootstrap', { token: data.token }))
   }
@@ -440,7 +460,7 @@ function App() {
   }
 
   if (!auth) {
-    return <LoginScreen onLogin={login} />
+    return setupRequired ? <SetupScreen onComplete={completeSetup} /> : <LoginScreen onLogin={login} />
   }
 
   return (
@@ -534,6 +554,52 @@ function LoginScreen({ onLogin }) {
         {error && <div className="system-banner error">{error}</div>}
         <button className="primary" disabled={busy}>{busy ? 'Signing in...' : 'Sign in'}</button>
         <small>Use the private password configured by the system owner.</small>
+      </form>
+    </main>
+  )
+}
+
+function SetupScreen({ onComplete }) {
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [error, setError] = useState('')
+  const [busy, setBusy] = useState(false)
+
+  async function submit(event) {
+    event.preventDefault()
+    if (password !== confirmPassword) {
+      setError('Passwords do not match')
+      return
+    }
+    setBusy(true)
+    setError('')
+    try {
+      await onComplete(password)
+    } catch (requestError) {
+      setError(requestError.message)
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <main className="login-page">
+      <form className="login-panel" onSubmit={submit}>
+        <div className="brand-mark"><ShieldCheck size={24} /></div>
+        <span className="eyebrow">One-time secure setup</span>
+        <h1>Create MD Access</h1>
+        <p>Create the private Managing Director password. This setup can only be completed once.</p>
+        <label>
+          New MD password
+          <input value={password} onChange={(event) => setPassword(event.target.value)} type="password" placeholder="At least 10 characters" />
+        </label>
+        <label>
+          Confirm password
+          <input value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} type="password" placeholder="Repeat password" />
+        </label>
+        {error && <div className="system-banner error">{error}</div>}
+        <button className="primary" disabled={busy}>{busy ? 'Creating access...' : 'Create MD login'}</button>
+        <small>After setup, this screen is locked and the normal login page is used.</small>
       </form>
     </main>
   )
