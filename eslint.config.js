@@ -27,4 +27,10 @@ export default [
       'react-refresh/only-export-components': 'off',
     },
   },
+  {
+    files: ['server/**/*.js'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
 ]

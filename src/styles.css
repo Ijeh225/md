@@ -39,6 +39,85 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(81, 214, 255, 0.2), transparent 28%),
+    radial-gradient(circle at 84% 0%, rgba(185, 255, 102, 0.16), transparent 24%),
+    linear-gradient(145deg, #071014, #08191b 55%, #0e1517);
+}
+
+.login-panel {
+  width: min(560px, 100%);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 28px;
+  display: grid;
+  gap: 16px;
+}
+
+.login-panel h1 {
+  font-size: 46px;
+  margin: 0;
+}
+
+.login-panel p,
+.login-panel small {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.login-panel label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.login-panel input,
+.login-panel select {
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0 12px;
+  outline: 0;
+}
+
+.system-banner {
+  border: 1px solid rgba(81, 214, 255, 0.35);
+  border-radius: 8px;
+  background: rgba(81, 214, 255, 0.12);
+  color: var(--text);
+  padding: 10px 12px;
+  font-weight: 800;
+}
+
+.system-banner.error {
+  border-color: rgba(255, 107, 107, 0.45);
+  background: rgba(255, 107, 107, 0.14);
+}
+
+.logout-button {
+  min-height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
 .app {
   min-height: 100vh;
   display: grid;

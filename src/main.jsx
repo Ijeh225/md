@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
   AlertTriangle,
@@ -224,6 +224,12 @@ const navItems = [
 ]
 
 function App() {
+  const [auth, setAuth] = useState(() => {
+    const token = localStorage.getItem('md-finance-token')
+    const user = localStorage.getItem('md-finance-user')
+    return token && user ? { token, user: JSON.parse(user) } : null
+  })
+  const [workspaceUsers, setWorkspaceUsers] = useState(users)
   const [selectedUser, setSelectedUser] = useState('all')
   const [activePage, setActivePage] = useState('dashboard')
   const [payments, setPayments] = useState(initialPayments)
@@ -234,6 +240,16 @@ function App() {
   const [commentDraft, setCommentDraft] = useState('')
   const [notificationOpen, setNotificationOpen] = useState(false)
   const [soundEnabled, setSoundEnabled] = useState(true)
+  const [audit, setAudit] = useState(() => buildAudit(initialPayments))
+  const [walletRows, setWalletRows] = useState(wallets)
+  const [loading, setLoading] = useState(Boolean(auth))
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (!auth?.token) return
+    refreshData(auth.token).finally(() => setLoading(false))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth?.token])
 
   const scopedPayments = useMemo(
     () => payments.filter((payment) => selectedUser === 'all' || payment.userId === selectedUser),
@@ -255,9 +271,44 @@ function App() {
   const selectedPayment = payments.find((payment) => payment.id === selectedPaymentId) || payments[0]
   const unreadCount = notifications.filter((notification) => notification.unread).length
 
-  const audit = useMemo(() => buildAudit(payments), [payments])
+  async function refreshData(token = auth?.token) {
+    if (!token) return
+    try {
+      const data = await apiRequest('/api/bootstrap', { token })
+      applyBootstrap(data)
+      setError('')
+    } catch (requestError) {
+      setError(requestError.message)
+      if (requestError.status === 401) logout()
+    }
+  }
 
-  function updatePayment(paymentId, action, overrides = {}) {
+  function applyBootstrap(data) {
+    setWorkspaceUsers(data.users?.length ? data.users : users)
+    setPayments(data.payments?.length ? data.payments : initialPayments)
+    setWalletRows(data.wallets?.length ? data.wallets : wallets)
+    setNotifications(data.notifications || [])
+    setAudit(data.audit?.length ? data.audit : buildAudit(data.payments || initialPayments))
+  }
+
+  async function login(userId, password) {
+    const data = await apiRequest('/api/auth/login', {
+      method: 'POST',
+      body: { userId, password },
+    })
+    localStorage.setItem('md-finance-token', data.token)
+    localStorage.setItem('md-finance-user', JSON.stringify(data.user))
+    setAuth({ token: data.token, user: data.user })
+    applyBootstrap(await apiRequest('/api/bootstrap', { token: data.token }))
+  }
+
+  function logout() {
+    localStorage.removeItem('md-finance-token')
+    localStorage.removeItem('md-finance-user')
+    setAuth(null)
+  }
+
+  async function updatePayment(paymentId, action, overrides = {}) {
     setPayments((current) =>
       current.map((payment) => {
         if (payment.id !== paymentId) return payment
@@ -276,9 +327,21 @@ function App() {
       },
       ...current,
     ])
+    try {
+      const data = await apiRequest(`/api/payments/${paymentId}`, {
+        method: 'PATCH',
+        token: auth?.token,
+        body: { action, updates: overrides },
+      })
+      applyBootstrap(data)
+      setError('')
+    } catch (requestError) {
+      setError(requestError.message)
+      await refreshData()
+    }
   }
 
-  function addComment(paymentId, quickText) {
+  async function addComment(paymentId, quickText) {
     const text = (quickText || commentDraft).trim()
     if (!text) return
     const stamped = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -298,6 +361,18 @@ function App() {
       ...current,
     ])
     setCommentDraft('')
+    try {
+      const data = await apiRequest(`/api/payments/${paymentId}/comments`, {
+        method: 'POST',
+        token: auth?.token,
+        body: { text },
+      })
+      applyBootstrap(data)
+      setError('')
+    } catch (requestError) {
+      setError(requestError.message)
+      await refreshData()
+    }
   }
 
   function exportExcel(rows, name) {
@@ -364,11 +439,18 @@ function App() {
     audit,
   }
 
+  if (!auth) {
+    return <LoginScreen onLogin={login} />
+  }
+
   return (
     <div className={`app ${theme}`}>
-      <Sidebar activePage={activePage} setActivePage={setActivePage} />
+      <Sidebar activePage={activePage} setActivePage={setActivePage} user={auth.user} onLogout={logout} />
       <main className="shell">
+        {loading && <div className="system-banner">Loading secure treasury workspace...</div>}
+        {error && <div className="system-banner error">{error}</div>}
         <Topbar
+          users={workspaceUsers}
           selectedUser={selectedUser}
           setSelectedUser={setSelectedUser}
           query={query}
@@ -384,14 +466,17 @@ function App() {
           setSelectedPaymentId={setSelectedPaymentId}
           soundEnabled={soundEnabled}
           setSoundEnabled={setSoundEnabled}
+          token={auth.token}
+          applyBootstrap={applyBootstrap}
         />
         {activePage === 'dashboard' && (
           <Dashboard
             metrics={metrics}
             payments={scopedPayments}
             selectedUser={selectedUser}
+            users={workspaceUsers}
             setActivePage={setActivePage}
-            wallets={wallets.filter((wallet) => selectedUser === 'all' || wallet.userId === selectedUser)}
+            wallets={walletRows.filter((wallet) => selectedUser === 'all' || wallet.userId === selectedUser)}
           />
         )}
         {activePage === 'today' && <PaymentsPage title="Total Scheduled Payments Today" mode="Today" {...pageProps} />}
@@ -407,7 +492,54 @@ function App() {
   )
 }
 
-function Sidebar({ activePage, setActivePage }) {
+function LoginScreen({ onLogin }) {
+  const [userId, setUserId] = useState('md')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [busy, setBusy] = useState(false)
+
+  async function submit(event) {
+    event.preventDefault()
+    setBusy(true)
+    setError('')
+    try {
+      await onLogin(userId, password)
+    } catch (requestError) {
+      setError(requestError.message)
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <main className="login-page">
+      <form className="login-panel" onSubmit={submit}>
+        <div className="brand-mark"><Coins size={24} /></div>
+        <span className="eyebrow">Private executive treasury</span>
+        <h1>MD Treasury Command</h1>
+        <p>Sign in with your assigned MD or treasury assistant account to access persistent approvals, comments, audit trail, and wallet control.</p>
+        <label>
+          User
+          <select value={userId} onChange={(event) => setUserId(event.target.value)}>
+            <option value="md">Managing Director</option>
+            <option value="mr-a">Mr A</option>
+            <option value="mr-b">Mr B</option>
+            <option value="mr-c">Mr C</option>
+          </select>
+        </label>
+        <label>
+          Password
+          <input value={password} onChange={(event) => setPassword(event.target.value)} type="password" placeholder="Enter password" />
+        </label>
+        {error && <div className="system-banner error">{error}</div>}
+        <button className="primary" disabled={busy}>{busy ? 'Signing in...' : 'Sign in'}</button>
+        <small>Default MD password is controlled by `MD_INITIAL_PASSWORD` on Render. Local fallback: ChangeMe123!</small>
+      </form>
+    </main>
+  )
+}
+
+function Sidebar({ activePage, setActivePage, user, onLogout }) {
   return (
     <aside className="sidebar">
       <div className="brand">
@@ -431,7 +563,8 @@ function Sidebar({ activePage, setActivePage }) {
       <div className="secure-card">
         <ShieldCheck size={22} />
         <strong>Executive access</strong>
-        <span>MD and selected treasury/payment assistants only.</span>
+        <span>{user?.name} • {user?.role}</span>
+        <button className="logout-button" onClick={onLogout}>Sign out</button>
       </div>
     </aside>
   )
@@ -440,6 +573,7 @@ function Sidebar({ activePage, setActivePage }) {
 function Topbar(props) {
   const {
     selectedUser,
+    users,
     setSelectedUser,
     query,
     setQuery,
@@ -454,10 +588,18 @@ function Topbar(props) {
     setSelectedPaymentId,
     soundEnabled,
     setSoundEnabled,
+    token,
+    applyBootstrap,
   } = props
 
-  function openNotification(notification) {
+  async function openNotification(notification) {
     setNotifications((current) => current.map((item) => (item.id === notification.id ? { ...item, unread: false } : item)))
+    try {
+      const data = await apiRequest(`/api/notifications/${notification.id}/read`, { method: 'PATCH', token })
+      applyBootstrap(data)
+    } catch {
+      // Keep local read state if the network blips.
+    }
     if (notification.target?.startsWith('PAY-')) {
       setSelectedPaymentId(notification.target)
       setActivePage('approvals')
@@ -509,7 +651,7 @@ function Topbar(props) {
   )
 }
 
-function Dashboard({ metrics, payments, selectedUser, setActivePage, wallets }) {
+function Dashboard({ metrics, payments, selectedUser, setActivePage, wallets, users }) {
   const cards = [
     ['Total Scheduled Payments Today', metrics.todayTotal, 'today', CalendarClock],
     ["Tomorrow's Scheduled Payments", metrics.tomorrowTotal, 'tomorrow', Clock],
@@ -984,6 +1126,24 @@ function buildAudit(payments) {
     ...payment.comments.map((comment) => ({ time: comment.at, actor: comment.by, action: 'Commented', ref: payment.id, detail: comment.text })),
     ...payment.timeline.slice(0, 2).map((event) => ({ time: 'Recent', actor: event.includes('MD') ? 'MD' : payment.createdBy, action: 'Workflow event', ref: payment.id, detail: event })),
   ])
+}
+
+async function apiRequest(path, options = {}) {
+  const response = await fetch(path, {
+    method: options.method || 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      ...(options.token ? { Authorization: `Bearer ${options.token}` } : {}),
+    },
+    body: options.body ? JSON.stringify(options.body) : undefined,
+  })
+  const data = await response.json().catch(() => ({}))
+  if (!response.ok) {
+    const error = new Error(data.message || 'Request failed')
+    error.status = response.status
+    throw error
+  }
+  return data
 }
 
 createRoot(document.getElementById('root')).render(<App />)
