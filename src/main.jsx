@@ -41,7 +41,11 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import './styles.css'
+import cssText from './styles.css?inline'
+
+const style = document.createElement('style')
+style.textContent = cssText
+document.head.appendChild(style)
 
 const currency = new Intl.NumberFormat('en-NG', {
   style: 'currency',
