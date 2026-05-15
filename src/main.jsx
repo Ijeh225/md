@@ -533,7 +533,7 @@ function LoginScreen({ onLogin }) {
         </label>
         {error && <div className="system-banner error">{error}</div>}
         <button className="primary" disabled={busy}>{busy ? 'Signing in...' : 'Sign in'}</button>
-        <small>Default MD password is controlled by `MD_INITIAL_PASSWORD` on Render. Local fallback: ChangeMe123!</small>
+        <small>Use the private password configured by the system owner.</small>
       </form>
     </main>
   )
