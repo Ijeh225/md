@@ -8,7 +8,7 @@ Built from the meal photos, prices, logo and contact details on https://spicyfoo
 | `spicyfood_60s_square_1x1.mp4` | 1080×1080 | Instagram and Facebook feed |
 | `spicyfood_60s_landscape_16x9.mp4` | 1920×1080 | YouTube, Facebook, website |
 
-The video has a silent audio track. Add music when you post.
+All videos include an original Afrobeats-style instrumental (106 BPM), generated from scratch by `source/beat.py`, so it is royalty-free. The music alone is in `music/`.
 
 ## 36-second ad cut
 `spicyfood_36s_ad_*.mp4` (same three sizes): intro, Jollof + Half Chicken, Jollof + Big Turkey, Coconut Rice + Full Chicken, Egusi Soup (Garri, Semo, Pounded Yam), Okro Soup (Garri, Semo, Pounded Yam), Big Boss Combo, then the order details.
