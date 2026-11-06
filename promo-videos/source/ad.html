@@ -1,0 +1,135 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700;800;900&display=block" rel="stylesheet">
+<style>
+:root{--red:#d7192f;--deep:#3d0409;--gold:#ffb81c;--cream:#fff7ec}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;font-family:Raleway,sans-serif;background:#1a0306;color:#fff}
+#stage{position:relative;width:100vw;height:100vh;overflow:hidden;--u:1vmin}
+#bg{position:absolute;inset:-20%;background:radial-gradient(circle at 50% 40%,#8a0f1e 0%,#4a050c 45%,#160204 100%)}
+.dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,184,28,.18) 1.2px,transparent 1.5px);background-size:calc(var(--u)*4.5) calc(var(--u)*4.5)}
+.scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0}
+.abs{position:absolute}
+.center{display:flex;flex-direction:column;align-items:center;text-align:center}
+.logo{width:calc(var(--u)*42)}
+.big{font-weight:900;font-size:calc(var(--u)*14);line-height:1;letter-spacing:-.02em}
+.mid{font-weight:700;font-size:calc(var(--u)*5.2);line-height:1.2}
+.gold{color:var(--gold)}
+/* dish layout */
+.dish{display:flex;gap:calc(var(--u)*5);align-items:center;justify-content:center;width:100%;height:100%;padding:calc(var(--u)*6)}
+.v .dish{flex-direction:column;gap:calc(var(--u)*5)}
+.card{position:relative;background:#fff;border-radius:calc(var(--u)*5);overflow:hidden;box-shadow:0 calc(var(--u)*3) calc(var(--u)*8) rgba(0,0,0,.45);flex:none}
+.v .card{width:86vw;height:52vh}
+.s .card{width:52vw;height:78vh}
+.l .card{width:44vw;height:80vh}
+.card img{position:absolute;inset:4%;width:92%;height:92%;object-fit:contain}
+.info{display:flex;flex-direction:column;gap:calc(var(--u)*2.4)}
+.v .info{align-items:center;text-align:center}
+.tag{align-self:flex-start;background:var(--red);font-weight:800;font-size:calc(var(--u)*3.4);letter-spacing:.14em;padding:calc(var(--u)*1.2) calc(var(--u)*2.6);border-radius:999px}
+.v .tag{align-self:center}
+.name{font-weight:900;font-size:calc(var(--u)*8.4);line-height:1.02;letter-spacing:-.01em}
+.s .name{font-size:calc(var(--u)*6.2)}
+.s .card{width:48vw}
+.s .info,.l .info{flex:1;min-width:0}
+.s .long .price{font-size:calc(var(--u)*5.2)}
+.s .long .card{width:44vw}
+.s .wm{top:auto;bottom:calc(var(--u)*3)}
+.price{white-space:nowrap}
+.long .name{font-size:calc(var(--u)*6.6)}
+.s .long .name{font-size:calc(var(--u)*5.4)}
+.desc{font-weight:500;font-size:calc(var(--u)*3.8);opacity:.85;max-width:calc(var(--u)*80)}
+.price{align-self:flex-start;background:var(--gold);color:#2a0306;font-weight:900;font-size:calc(var(--u)*8);padding:calc(var(--u)*1.2) calc(var(--u)*3.4);border-radius:calc(var(--u)*2.4);transform-origin:left center}
+.v .price{align-self:center;transform-origin:center}
+.wm{position:absolute;top:calc(var(--u)*3);right:calc(var(--u)*3);width:calc(var(--u)*16);opacity:0}
+.cta-pill{background:#25d366;color:#fff;font-weight:800;font-size:calc(var(--u)*5.4);padding:calc(var(--u)*2) calc(var(--u)*5);border-radius:999px;display:flex;align-items:center;gap:calc(var(--u)*2)}
+.areas{font-weight:700;font-size:calc(var(--u)*3.4);letter-spacing:.06em;opacity:.8}
+.url{font-weight:800;font-size:calc(var(--u)*5);color:var(--gold)}
+</style></head>
+<body><div id="stage"><div id="bg"><div class="dots"></div></div>
+
+<!-- S1 intro -->
+<div class="scene" id="s1"><div class="center" style="gap:calc(var(--u)*4)">
+  <img class="logo" id="s1logo" src="imgs/logo.png">
+  <div class="big" id="s1a">Hungry<span class="gold">?</span></div>
+  <div class="mid" id="s1b">Rich flavours, freshly made,<br>delivered fast.</div>
+</div></div>
+
+<div id="dishes"></div>
+
+<!-- final CTA -->
+<div class="scene" id="s9"><div class="center" style="gap:calc(var(--u)*3.6);padding:calc(var(--u)*6)">
+  <img class="logo" id="s9logo" src="imgs/logo.png" style="width:calc(var(--u)*34)">
+  <div class="big" id="s9a" style="font-size:calc(var(--u)*10)">Order in<br><span class="gold">20–30 mins</span></div>
+  <div class="cta-pill" id="s9b"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.6-.1 1.2z"/></svg>0904 042 2964</div>
+  <div class="url" id="s9c">spicyfood.com.ng</div>
+  <div class="areas" id="s9d">APAPA · SURULERE · YABA · IKEJA · LEKKI · VI</div>
+</div></div>
+
+<img class="wm" id="wm" src="imgs/logo.png">
+</div>
+<script>
+const W=innerWidth,H=innerHeight;
+document.body.className = H>W*1.3?'v':(W>H*1.3?'l':'s');
+const dishes=[
+ {id:'d1',t0:2.3,t1:4.9,img:'jollof_half_chicken',tag:'BESTSELLER',name:'Jollof + Half Chicken',desc:'Smoky party jollof rice. Best value.',price:'₦3,500'},
+ {id:'d2',t0:4.9,t1:7.3,img:'jollof_big_turkey',tag:'GO BIG',name:'Jollof + Big Turkey',desc:'Smoky party jollof with a generous big turkey.',price:'₦6,000'},
+ {id:'d3',t0:7.3,t1:9.7,imgs:['fried_rice_medium_turkey','coconut_rice_half_chicken','spaghetti_medium_turkey'],tag:'RICE & PASTA',name:'Fried Rice · Coconut Rice<br>· Spaghetti',desc:'Freshly made every day.',price:'From ₦3,500'},
+ {id:'d4',t0:9.7,t1:12.1,img:'egusi_pounded_yam',tag:'TRADITIONAL',name:'Egusi + Pounded Yam',desc:'Thick egusi soup with assorted meat.',price:'₦7,000'},
+];
+const host=document.getElementById('dishes');
+for(const d of dishes){
+  const imgs=(d.imgs||[d.img]).map((s,i)=>`<img id="${d.id}i${i}" src="imgs/${s}.jpg">`).join('');
+  host.insertAdjacentHTML('beforeend',`<div class="scene ${d.imgs?'long':''}" id="${d.id}"><div class="dish">
+   <div class="card" id="${d.id}c">${imgs}</div>
+   <div class="info"><div class="tag" id="${d.id}t">${d.tag}</div><div class="name" id="${d.id}n">${d.name}</div>
+   <div class="desc" id="${d.id}d">${d.desc}</div><div class="price" id="${d.id}p">${d.price}</div></div></div></div>`);
+}
+const $=id=>document.getElementById(id);
+const cl=x=>Math.max(0,Math.min(1,x));
+const eo=x=>1-Math.pow(1-cl(x),3);
+const eb=x=>{x=cl(x);const c=1.9;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const p=(t,a,b)=>cl((t-a)/(b-a));
+function set(el,o,tf){el.style.opacity=o;el.style.transform=tf||''}
+function sceneVis(el,t,t0,t1,fin=.25,fout=.3){
+  const o=Math.min(p(t,t0,t0+fin),1-p(t,t1-fout,t1));
+  el.style.opacity=(t>=t0&&t<=t1)?o:0; return t>=t0-.01&&t<=t1+.01;
+}
+function rise(el,t,a,dist=6){const k=eo(p(t,a,a+.5));set(el,k,`translateY(${(1-k)*dist}vmin)`)}
+window.render=function(t){
+  const bg=$('bg'); bg.style.transform=`scale(${1+.06*Math.sin(t*.4)}) translate(${Math.sin(t*.3)*2}%,${Math.cos(t*.25)*2}%)`;
+  // S1
+  const s1=$('s1');
+  if(sceneVis(s1,t,0,2.45,.01,.35)){
+    const k=eb(p(t,0,.6)); set($('s1logo'),cl(p(t,0,.25)),`scale(${.4+.6*k}) rotate(${(1-k)*-10}deg)`);
+    const k2=eb(p(t,.45,.95)); set($('s1a'),cl(p(t,.45,.6)),`scale(${.6+.4*k2})`);
+    rise($('s1b'),t,.95);
+  }
+  for(const d of dishes){
+    const el=$(d.id); if(!sceneVis(el,t,d.t0,d.t1)) continue;
+    const lt=t-d.t0, dur=d.t1-d.t0, out=p(t,d.t1-.3,d.t1);
+    const kin=eo(p(lt,0,.55));
+    set($(d.id+'c'),1,`translateX(${(1-kin)*30 - eo(out)*25}vmin) rotate(${(1-kin)*6}deg)`);
+    const n=(d.imgs||[0]).length;
+    for(let i=0;i<n;i++){
+      const im=$(d.id+'i'+i); const seg=dur/n, s=i*seg;
+      const vis=n==1?1:(lt>=s&&lt<s+seg?1:0);
+      const z=1+.12*p(lt,s,s+seg); im.style.opacity=vis; im.style.transform=`scale(${z})`;
+    }
+    rise($(d.id+'t'),lt,.25,4); rise($(d.id+'n'),lt,.38); rise($(d.id+'d'),lt,.55,4);
+    const kp=eb(p(lt,.7,1.15)); set($(d.id+'p'),cl(p(lt,.7,.85)),`scale(${.3+.7*kp}) rotate(${(1-kp)*-8}deg)`);
+  }
+  // watermark during dishes
+  $('wm').style.opacity=Math.min(p(t,2.4,2.8),1-p(t,11.8,12.1))*.95;
+  // CTA
+  if(sceneVis($('s9'),t,12.0,15.01,.3,.01)){
+    const lt=t-12.0;
+    const k=eb(p(lt,0,.6)); set($('s9logo'),cl(p(lt,0,.2)),`scale(${.5+.5*k})`);
+    rise($('s9a'),lt,.25);
+    const kb=eb(p(lt,.6,1.1)); const pulse=1+.035*Math.sin(Math.max(0,lt-1.2)*7);
+    set($('s9b'),cl(p(lt,.6,.75)),`scale(${(.4+.6*kb)*(lt>1.2?pulse:1)})`);
+    rise($('s9c'),lt,1.0,4); rise($('s9d'),lt,1.25,3);
+  }
+};
+window.ready=Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]);
+render(0);
+</script></body></html>
