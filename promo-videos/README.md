@@ -1,4 +1,4 @@
-# SpicyFood.CF promo video (62 seconds)
+# SpicyFood.CF promo videos
 
 Built from the meal photos, prices, logo and contact details on https://spicyfood.com.ng/menu.
 
@@ -10,7 +10,11 @@ Built from the meal photos, prices, logo and contact details on https://spicyfoo
 
 The video has a silent audio track. Add music when you post.
 
-## Scenes
+## 36-second ad cut
+`spicyfood_36s_ad_*.mp4` (same three sizes): intro, Jollof + Half Chicken, Jollof + Big Turkey, Coconut Rice + Full Chicken, Egusi Soup (Garri, Semo, Pounded Yam), Okro Soup (Garri, Semo, Pounded Yam), Big Boss Combo, then the order details.
+Render it with `source/ad.html?keep=0,1,2,5,7,9,10,13` (scene numbers from the full list below, starting at 0).
+
+## Scenes (full 62-second version)
 | Time | Scene |
 |---|---|
 | 0:00 | Logo, "Hungry?", "Rich flavours, freshly made, delivered fast." |
