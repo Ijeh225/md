@@ -1,0 +1,200 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700;800;900&display=block" rel="stylesheet">
+<style>
+:root{--red:#d7192f;--deep:#9e0c1d;--gold:#ffb81c}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family:Raleway,sans-serif;color:#fff}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+.abs{position:absolute}
+#bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,#4a0810 0%,#22040a 50%,#070102 100%)}
+#rays{position:absolute;left:50%;top:62%;width:3400px;height:3400px;margin:-1700px 0 0 -1700px;
+  background:repeating-conic-gradient(from 0deg,rgba(255,184,28,.07) 0deg 5deg,transparent 5deg 20deg);
+  -webkit-mask:radial-gradient(circle,#000 0%,transparent 55%);mask:radial-gradient(circle,#000 0%,transparent 55%)}
+.bokeh{position:absolute;border-radius:50%;filter:blur(16px)}
+#world{position:absolute;inset:0;transform-origin:540px 1150px}
+/* ---------- the branded box (top-down, lid open) ---------- */
+#boxwrap{position:absolute;left:40px;top:430px;width:1000px;height:1340px}
+#lid{position:absolute;left:0;top:0;width:1000px;height:320px;
+  clip-path:polygon(4% 0,96% 0,100% 100%,0 100%);
+  background:linear-gradient(180deg,#b30f22 0%,#d7192f 70%,#c11427 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+#lid::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 14px,transparent 14px 28px)}
+#lid img{height:170px;position:relative;filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+#lid .u{position:relative;font-weight:800;font-size:30px;letter-spacing:.18em;color:#ffe3a3}
+#hinge{position:absolute;left:0;top:312px;width:1000px;height:18px;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,0))}
+#box{position:absolute;left:0;top:320px;width:1000px;height:940px;border-radius:26px;
+  background:linear-gradient(180deg,#e3233a,#c3122a);box-shadow:0 50px 90px rgba(0,0,0,.6)}
+#floor{position:absolute;left:26px;top:26px;width:948px;height:888px;border-radius:12px;overflow:hidden;
+  background:#ead3a8;
+  box-shadow:inset 0 34px 30px -10px rgba(80,30,0,.45),inset 0 -14px 20px -8px rgba(80,30,0,.25),inset 26px 0 26px -12px rgba(80,30,0,.35),inset -26px 0 26px -12px rgba(80,30,0,.35)}
+#floor::before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,rgba(120,70,20,.05) 0 3px,transparent 3px 9px),
+  radial-gradient(ellipse at 50% 40%,rgba(255,255,255,.25),transparent 70%)}
+#floormark{position:absolute;left:50%;top:50%;width:420px;transform:translate(-50%,-50%);opacity:.13;filter:grayscale(1) sepia(1)}
+#front{position:absolute;left:12px;top:1250px;width:976px;height:74px;border-radius:0 0 22px 22px;
+  background:linear-gradient(180deg,#8e0a1a,#6e0613);display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:34px;letter-spacing:.35em;color:#ffcf63}
+.item{position:absolute;opacity:0;will-change:transform}
+.item img{width:100%;height:100%;display:block;filter:drop-shadow(0 18px 18px rgba(0,0,0,.45))}
+#rice{left:44px;top:70px;width:586px;height:800px}
+#malt{left:656px;top:44px;width:290px;height:542px}
+#plan{left:620px;top:552px;width:316px;height:319px}
+/* effects */
+.dust{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,236,200,.95),rgba(255,200,120,0) 70%);opacity:0}
+.ring{position:absolute;border-radius:50%;border:10px solid rgba(255,220,140,.9);opacity:0;box-shadow:0 0 40px rgba(255,184,28,.8)}
+.spark{position:absolute;width:26px;height:26px;opacity:0;background:#fff3c4;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);filter:drop-shadow(0 0 8px #ffb81c)}
+#speed{position:absolute;inset:-400px;background:repeating-conic-gradient(from 0deg at 50% 58%,rgba(255,255,255,.0) 0deg 3deg,rgba(255,240,210,.35) 3deg 3.6deg,rgba(255,255,255,0) 3.6deg 9deg);
+  -webkit-mask:radial-gradient(circle at 50% 58%,transparent 22%,#000 60%);mask:radial-gradient(circle at 50% 58%,transparent 22%,#000 60%);opacity:0}
+/* text */
+#title{position:absolute;left:0;right:0;top:0;text-align:center;transform-origin:540px 0}
+#title .s{font-weight:900;font-size:54px;letter-spacing:.28em;color:var(--gold)}
+#title .b{font-weight:900;font-size:104px;line-height:1.02;letter-spacing:-.01em;text-shadow:0 8px 30px rgba(0,0,0,.6)}
+#title .b span{color:var(--gold)}
+.label{position:absolute;left:50%;top:1795px;transform:translateX(-50%);white-space:nowrap;display:flex;align-items:center;gap:20px;
+  background:var(--red);border:4px solid var(--gold);border-radius:999px;padding:14px 44px;font-weight:900;font-size:52px;letter-spacing:.02em;opacity:0;
+  box-shadow:0 12px 40px rgba(0,0,0,.55)}
+.label .n{display:inline-flex;width:62px;height:62px;border-radius:50%;background:var(--gold);color:#2a0306;align-items:center;justify-content:center;font-size:40px}
+#stamp{position:absolute;left:50%;top:300px;transform:translateX(-50%);text-align:center;opacity:0;white-space:nowrap}
+#stamp .in{display:inline-block;background:var(--gold);color:#2a0306;border:8px solid #fff;border-radius:30px;padding:16px 50px 22px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#stamp .a{font-weight:900;font-size:58px;letter-spacing:.06em}
+#stamp .p{font-weight:900;font-size:150px;line-height:1}
+#real{position:absolute;left:50%;top:420px;width:860px;margin-left:-430px;background:#fff;padding:26px 26px 110px;border-radius:12px;opacity:0;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+#real img{width:100%;display:block;background:#f2ece2}
+#real .cap{position:absolute;left:0;right:0;bottom:26px;text-align:center;color:#2a0306;font-weight:900;font-size:50px}
+#realtag{position:absolute;left:0;right:0;top:250px;text-align:center;font-weight:900;font-size:70px;opacity:0}
+#outro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0}
+.urlbtn{display:flex;align-items:center;gap:22px;background:var(--gold);color:#2a0306;font-weight:900;font-size:72px;padding:26px 60px;border-radius:999px;box-shadow:0 16px 50px rgba(0,0,0,.5)}
+.badge{background:var(--gold);color:#2a0306;font-weight:900;font-size:84px;padding:8px 44px;border-radius:24px}
+#flash{position:absolute;inset:0;background:#fff;opacity:0}
+#vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 58%,rgba(0,0,0,.6) 100%)}
+</style></head>
+<body><div id="stage">
+<div id="bg"><div id="rays"></div><div id="bokehs"></div></div>
+<div id="world">
+  <div id="boxwrap">
+    <div id="lid"><img src="../promo/imgs/logo.png"><div class="u">SPICYFOOD.COM.NG</div></div><div id="hinge"></div>
+    <div id="front">SPICYFOOD.CF</div>
+    <div id="box"><div id="floor"><img id="floormark" src="../promo/imgs/logo.png">
+      <div class="item" id="rice"><img src="rice.png"></div>
+      <div class="item" id="plan"><img src="plantain.png"></div>
+      <div class="item" id="malt"><img src="malt.png"></div>
+    </div></div>
+  </div>
+  <div id="fx"></div>
+</div>
+<div id="speed"></div>
+<div id="title"><div class="s" id="t1">WHAT'S INSIDE</div><div class="b" id="t2">OUR <span>₦5,500</span><br>PACKAGE?</div></div>
+<div class="label" id="L0"><span class="n">1</span>JOLLOF RICE + TURKEY</div>
+<div class="label" id="L1"><span class="n">2</span>CHILLED MALT</div>
+<div class="label" id="L2"><span class="n">3</span>SWEET FRIED PLANTAIN</div>
+<div id="stamp"><div class="in"><div class="a">ALL THIS FOR</div><div class="p">₦5,500!</div></div></div>
+<div id="realtag">THE <span style="color:var(--gold)">REAL</span> PACKAGE</div>
+<div id="real"><img src="complete.png"><div class="cap">What you actually get</div></div>
+<div id="outro">
+  <img id="o0" src="../promo/imgs/logo.png" style="width:330px">
+  <div id="o1" style="font-weight:900;font-size:118px;margin:20px 0 6px">Mini Odogwu</div>
+  <div id="o2" style="font-weight:600;font-size:42px;opacity:.9;max-width:900px;line-height:1.35;margin-bottom:34px">Jollof rice + turkey, sweet fried plantain<br>and a chilled malt</div>
+  <div class="badge" id="o3" style="margin-bottom:50px">₦5,500</div>
+  <div id="o4" style="font-weight:800;font-size:40px;letter-spacing:.2em;margin-bottom:24px">ORDER NOW AT</div>
+  <div class="urlbtn" id="o5">spicyfood.com.ng <span>→</span></div>
+</div>
+<div id="vig"></div>
+<div id="flash"></div>
+</div>
+<script>
+const TOTAL=18.6; window.TOTAL=TOTAL;
+const $=id=>document.getElementById(id);
+const cl=x=>Math.max(0,Math.min(1,x)), p=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-cl(x),3), ei=x=>Math.pow(cl(x),2.2), eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const eb=x=>{x=cl(x);const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+let seed=11; const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+// bokeh
+const bk=[]; for(let i=0;i<20;i++){const e=document.createElement('div');e.className='bokeh';const s=70+rnd()*220;
+  Object.assign(e.style,{width:s+'px',height:s+'px',background:rnd()<.5?'rgba(255,184,28,.30)':'rgba(215,25,47,.42)'});$('bokehs').appendChild(e);
+  bk.push({e,x:rnd()*1080,y:rnd()*1920,vx:(rnd()-.5)*26,vy:-8-rnd()*26,ph:rnd()*6});}
+// impacts: time, centre (world coords), size
+const BOX={x:40+26,y:430+320+26}; // floor origin in world
+const items=[
+ {id:'rice',t:2.9,drop:.55,spin:0,  L:'L0',lt:[3.0,5.1]},
+ {id:'malt',t:5.6,drop:.5, spin:260,L:'L1',lt:[5.7,7.7]},
+ {id:'plan',t:8.2,drop:.5, spin:-90,L:'L2',lt:[8.3,10.0]},
+];
+const fx=$('fx'); const IMP=[];
+function center(id){const e=$(id);return {x:BOX.x+e.offsetLeft+e.offsetWidth/2,y:BOX.y+e.offsetTop+e.offsetHeight/2,w:e.offsetWidth,h:e.offsetHeight}}
+function addImpact(t,c,big){const o={t,c,dust:[],ring:null,sparks:[]};
+  const n=big?34:22; for(let i=0;i<n;i++){const d=document.createElement('div');d.className='dust';const s=(big?90:60)+rnd()*80;d.style.width=d.style.height=s+'px';fx.appendChild(d);
+    const a=rnd()*Math.PI*2;o.dust.push({d,s,a,r:(big?520:300)+rnd()*260});}
+  const r=document.createElement('div');r.className='ring';fx.appendChild(r);o.ring=r;
+  const m=big?26:12; for(let i=0;i<m;i++){const s=document.createElement('div');s.className='spark';fx.appendChild(s);
+    o.sparks.push({s,a:rnd()*Math.PI*2,r:(big?380:200)+rnd()*(big?420:220),sc:.6+rnd()*1.4,ph:rnd()*6});}
+  o.big=big; IMP.push(o);}
+window.ready=Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]).then(()=>{
+  for(const it of items){const c=center(it.id); it.c=c; addImpact(it.t,{x:c.x,y:c.y+c.h*.35},false);}
+  addImpact(10.55,{x:540,y:1180},true);
+});
+function shakeAt(t){let x=0,y=0;const hits=[[2.9,26],[5.6,18],[8.2,18],[10.55,44]];
+  for(const [a,amp] of hits){const d=t-a; if(d>=0&&d<.5){const k=amp*Math.exp(-d*9);x+=k*Math.sin(d*90);y+=k*Math.cos(d*77);}} return [x,y];}
+window.renderAsync=async function(t){
+  $('rays').style.transform=`rotate(${t*5}deg)`;
+  for(const b of bk){const x=(b.x+b.vx*t+1200)%1200-60,y=((b.y+b.vy*t)%2000+2000)%2000-40;b.e.style.transform=`translate(${x}px,${y}px)`;b.e.style.opacity=.5+.5*Math.sin(t*1.3+b.ph);}
+  // ---- title: big centre, then moves up
+  {const k1=eb(p(t,.15,.7)),k2=eb(p(t,.55,1.15)),mv=eio(p(t,1.6,2.3));
+   $('t1').style.opacity=cl(p(t,.15,.3)); $('t1').style.transform=`scale(${.3+.7*k1})`;
+   $('t2').style.opacity=cl(p(t,.55,.7)); $('t2').style.transform=`scale(${.3+.7*k2}) rotate(${(1-k2)*-6}deg)`;
+   const y=700-(700-70)*mv, sc=1.15-.45*mv;
+   $('title').style.transform=`translateY(${y}px) scale(${sc})`;
+   const wig=(t>1.15&&t<1.6)?Math.sin((t-1.15)*30)*3*(1-p(t,1.15,1.6)):0; $('t2').querySelector('span').style.display='inline-block'; $('t2').querySelector('span').style.transform=`rotate(${wig}deg)`;
+   $('title').style.opacity=Math.min(1,1-p(t,10.3,10.5))*(t<13?1:0) + (t>=15?0:0);}
+  // ---- box entrance (lid opens)
+  {const k=eo(p(t,1.7,2.4)); $('boxwrap').style.opacity=cl(p(t,1.7,1.9));
+   $('boxwrap').style.transform=`translateY(${(1-k)*700}px) scale(${.85+.15*k})`;
+   const lk=eb(p(t,2.0,2.6)); $('lid').style.transform=`scaleY(${.15+.85*lk})`; $('lid').style.transformOrigin='50% 100%';}
+  // ---- item drops
+  for(const it of items){const e=$(it.id); const a=it.t-it.drop;
+    if(t<a){e.style.opacity=0;continue;}
+    e.style.opacity=1;
+    if(t<it.t){const k=ei(p(t,a,it.t)); e.style.transform=`translateY(${-(1-k)*1700}px) scale(${1.35-.35*k}) rotate(${(1-k)*it.spin}deg)`;}
+    else{const d=t-it.t; const sq=Math.exp(-d*10)*Math.sin(d*28); e.style.transform=`scale(${1+.07*sq},${1-.09*sq})`;}
+  }
+  // labels
+  for(const it of items){const e=$(it.L);const [a,b]=it.lt;const k=eb(p(t,a,a+.45)),o=1-p(t,b-.3,b);
+    e.style.opacity=Math.min(cl(p(t,a,a+.15)),o); e.style.transform=`translateX(-50%) scale(${.4+.6*k})`;}
+  // impacts fx
+  for(const o of IMP){const d=t-o.t;
+    for(const q of o.dust){const k=eo(p(d,0,.9)); const on=d>=0&&d<1.1;
+      q.d.style.opacity=on?(1-p(d,.1,1.1))*.85:0; q.d.style.transform=`translate(${o.c.x+Math.cos(q.a)*q.r*k-q.s/2}px,${o.c.y+Math.sin(q.a)*q.r*k*.55-q.s/2}px) scale(${.5+1.2*k})`;}
+    {const k=eo(p(d,0,.6)); const S=(o.big?1500:700)*k; const on=d>=0&&d<.65;
+     o.ring.style.opacity=on?(1-k):0; Object.assign(o.ring.style,{width:S+'px',height:S*.6+'px',left:(o.c.x-S/2)+'px',top:(o.c.y-S*.3)+'px'});}
+    for(const s of o.sparks){const k=eo(p(d,0,o.big?1.4:.8)); const on=d>=0&&d<(o.big?2.2:1.0);
+      s.s.style.opacity=on?(1-p(d,o.big?.8:.4,o.big?2.2:1.0))*(.6+.4*Math.sin(d*20+s.ph)):0;
+      s.s.style.transform=`translate(${o.c.x+Math.cos(s.a)*s.r*k}px,${o.c.y+Math.sin(s.a)*s.r*k-(o.big?120*k:0)}px) scale(${s.sc*(1-.4*k)}) rotate(${d*200}deg)`;}
+  }
+  // ---- ram / zoom
+  {let sc=1, ty=0;
+   if(t>=9.9&&t<10.3) sc=1-.07*eio(p(t,9.9,10.3));
+   else if(t>=10.3&&t<10.55) sc=.93+.45*ei(p(t,10.3,10.55));
+   else if(t>=10.55&&t<12.4) sc=1.38+.05*p(t,10.55,12.4);
+   else if(t>=12.4&&t<13.0) sc=1.43-.43*eio(p(t,12.4,13.0));
+   const [sx,sy]=shakeAt(t);
+   const out=eio(p(t,12.9,13.3));
+   $('world').style.transform=`translate(${sx}px,${sy}px) scale(${sc*(1-.25*out)})`; $('world').style.opacity=1-out;
+   $('speed').style.opacity=(t>=10.25&&t<10.9)?Math.sin(p(t,10.25,10.9)*Math.PI)*.9:0; $('speed').style.transform=`rotate(${t*40}deg)`;}
+  // stamp
+  {const k=eb(p(t,10.65,11.05)); const o=1-p(t,12.6,12.9); const e=$('stamp');
+   e.style.opacity=t<10.65?0:Math.min(cl(p(t,10.65,10.75)),o); e.style.transform=`translateX(-50%) scale(${2.8-1.8*k}) rotate(${-8*k}deg)`;}
+  // real photo
+  {const k=eo(p(t,13.2,13.9)), o=1-p(t,15.0,15.35); const e=$('real');
+   e.style.opacity=t<13.2?0:Math.min(cl(p(t,13.2,13.5)),o); e.style.transform=`translateY(${(1-k)*500}px) rotate(${(1-k)*12-3}deg) scale(${1+.04*p(t,13.9,15)})`;
+   const tg=$('realtag'); const k2=eo(p(t,13.5,14.0)); tg.style.opacity=t<13.5?0:Math.min(k2,o); tg.style.transform=`translateY(${(1-k2)*-40}px)`;}
+  // outro
+  {const ot=t-15.2; const e=$('outro'); e.style.opacity=p(ot,0,.35);
+   const pop=(el,a)=>{const k=eb(p(ot,a,a+.6));el.style.opacity=cl(p(ot,a,a+.2));el.style.transform=`scale(${.4+.6*k})`;};
+   const rise=(el,a)=>{const k=eo(p(ot,a,a+.6));el.style.opacity=k;el.style.transform=`translateY(${(1-k)*40}px)`;};
+   pop($('o0'),.05);rise($('o1'),.3);rise($('o2'),.55);pop($('o3'),.8);rise($('o4'),1.1);pop($('o5'),1.3);
+   if(ot>2.0)$('o5').style.transform+=` scale(${1+.03*Math.sin((ot-2)*5)})`;}
+  // flashes
+  const fl=(a,s=1)=>{const d=t-a;return d<-.06||d>.4?0:(d<0?(1+d/.06):(1-d/.4))*s};
+  $('flash').style.opacity=Math.max(fl(.12,.9),fl(2.9,.35),fl(5.6,.25),fl(8.2,.25),fl(10.55,1),fl(13.15,.7),fl(15.2,.6));
+};
+</script></body></html>
