@@ -60,6 +60,37 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:Raleway,sans-serif;
 .cta-pill{background:#25d366;color:#fff;font-weight:800;font-size:calc(var(--u)*5.6);padding:calc(var(--u)*2) calc(var(--u)*5);border-radius:999px;display:flex;align-items:center;gap:calc(var(--u)*2)}
 .areas{font-weight:700;font-size:calc(var(--u)*3.4);letter-spacing:.06em;opacity:.85;max-width:90vw}
 .url{font-weight:800;font-size:calc(var(--u)*5.2);color:var(--gold)}
+
+/* website phone scene */
+.site{display:grid;width:100%;height:100%;padding:calc(var(--u)*5);gap:calc(var(--u)*3) calc(var(--u)*6);align-content:center;justify-content:center;align-items:center}
+.v .site{grid-template-areas:"head" "phone" "steps";justify-items:center}
+.s .site,.l .site{grid-template-areas:"phone head" "phone steps";grid-template-columns:auto auto;align-content:center}
+.sitehead{grid-area:head;display:flex;flex-direction:column;gap:calc(var(--u)*1.8);align-items:flex-start;align-self:end}
+.v .sitehead{align-items:center;text-align:center}
+.sitehead .name{font-size:calc(var(--u)*8)}
+.s .sitehead .name{font-size:calc(var(--u)*6.4)}
+.phonewrap{grid-area:phone}
+.phone{background:#0b0b0d;border-radius:calc(var(--u)*6);padding:calc(var(--u)*1.3);box-shadow:0 calc(var(--u)*3) calc(var(--u)*9) rgba(0,0,0,.55),inset 0 0 0 2px #333}
+.screen{position:relative;overflow:hidden;border-radius:calc(var(--u)*4.8);background:#fff;height:var(--sh);width:calc(var(--sh)*390/664)}
+.v .screen{--sh:56vh}.s .screen{--sh:74vh}.l .screen{--sh:84vh}
+.s .site{gap:calc(var(--u)*2.4) calc(var(--u)*4);padding:calc(var(--u)*4)}
+.s .site .tag{font-size:calc(var(--u)*2.8)}
+.s .sitehead .name{font-size:calc(var(--u)*5.8)!important}
+.s .step{font-size:calc(var(--u)*3.8)}
+.l .sitehead .name{font-size:calc(var(--u)*9)}
+.l .step{font-size:calc(var(--u)*5)}
+.screen img{position:absolute;left:0;top:0;width:100%;opacity:0}
+.tap{position:absolute;width:calc(var(--sh)*.09);height:calc(var(--sh)*.09);margin:calc(var(--sh)*-.045) 0 0 calc(var(--sh)*-.045);border-radius:50%;border:calc(var(--u)*.7) solid #fff;background:rgba(255,184,28,.45);box-shadow:0 0 0 2px rgba(0,0,0,.25);opacity:0}
+.steps{grid-area:steps;display:flex;flex-direction:column;gap:calc(var(--u)*2);align-self:start}
+.v .steps{flex-direction:row;gap:calc(var(--u)*2.4)}
+.step{display:flex;align-items:center;gap:calc(var(--u)*1.8);font-weight:800;font-size:calc(var(--u)*4.4);opacity:.45;white-space:nowrap}
+.v .step{font-size:calc(var(--u)*3.9);gap:calc(var(--u)*1.2)}
+.step .num{display:inline-flex;align-items:center;justify-content:center;width:1.7em;height:1.7em;border-radius:50%;background:rgba(255,255,255,.15);font-weight:900}
+.step.on{opacity:1}.step.on .num{background:var(--gold);color:#2a0306}
+/* website CTA */
+.urlbtn{display:flex;align-items:center;gap:calc(var(--u)*2.2);background:var(--gold);color:#2a0306;font-weight:900;font-size:calc(var(--u)*7);padding:calc(var(--u)*2.4) calc(var(--u)*5.5);border-radius:999px;box-shadow:0 calc(var(--u)*1.5) calc(var(--u)*5) rgba(0,0,0,.4);white-space:nowrap}
+.small{font-weight:700;font-size:calc(var(--u)*3.6);opacity:.85}
+.wa-small{display:flex;align-items:center;gap:calc(var(--u)*1.2);font-weight:700;font-size:calc(var(--u)*3.6);opacity:.8}
 </style></head>
 <body><div id="stage"><div id="bg"><div class="dots"></div></div><div id="scenes"></div>
 <img class="wm" id="wm" src="imgs/logo.png"></div>
@@ -68,7 +99,7 @@ const W=innerWidth,H=innerHeight;
 document.body.className = H>W*1.3?'v':(W>H*1.3?'l':'s');
 const V=document.body.className==='v';
 const S=[
- {type:'intro',dur:4},
+ {type:'intro',dur:3.6},
  {type:'dish',dur:3.8,img:'jollof_half_chicken',tag:'BESTSELLER',name:'Jollof + Half Chicken',desc:'Smoky party jollof rice. Best value.',price:'₦3,500'},
  {type:'dish',dur:3.8,img:'jollof_big_turkey',tag:'JOLLOF RICE',name:'Jollof + Big Turkey',desc:'Smoky party jollof with a generous big turkey.',price:'₦6,000'},
  {type:'dish',dur:3.8,img:'jollof_fish',tag:'JOLLOF RICE',name:'Jollof + Fish',desc:'Smoky party jollof with well-seasoned fish.',price:'₦5,500'},
@@ -85,7 +116,8 @@ const S=[
  {type:'dish',dur:4.0,img:'mini_odogwu',tag:'COMBO',name:'Mini Odogwu',desc:'Rice or spaghetti, turkey or chicken, salad or plantain + a cold drink.',price:'₦5,500'},
  {type:'grid',dur:5,tag:'EXTRAS',name:'Add something extra',desc:'',
    items:[['plantain','Plantain','₦500'],['goat_meat','Goat Meat','₦1,000'],['big_gizzard','Big Gizzard','₦1,500'],['salad','Salad','₦500']]},
- {type:'cta',dur:5.5},
+ {type:'site',dur:7.8},
+ {type:'cta',dur:5.6},
 ];
 const keep=new URLSearchParams(location.search).get('keep');
 if(keep){const ks=keep.split(',').map(Number); const kept=S.filter((_,i)=>ks.includes(i)); S.length=0; S.push(...kept);}
@@ -107,12 +139,20 @@ S.forEach((s,k)=>{
     <div class="row">${s.items.map((it,i)=>`<div class="item a" data-a="rise" data-d="${(.7+i*(s.type==='trio'?.55:.35)).toFixed(2)}">
       <div class="card"><img class="kb" src="menu_imgs/${it[0]}.jpg"></div><div class="meta"><div class="lbl">${it[1]}</div>
       <div class="sp a" data-a="pop" data-d="${(1.0+i*(s.type==='trio'?.55:.35)).toFixed(2)}">${it[2]}</div></div></div>`).join('')}</div></div>`;
-  if(s.type==='cta') h=`<div class="center" style="gap:calc(var(--u)*3.8);padding:calc(var(--u)*6)">
-    <img class="logo a" data-a="pop" data-d="0" src="imgs/logo.png" style="width:calc(var(--u)*34)">
-    <div class="big a" data-a="rise" data-d=".4" style="font-size:calc(var(--u)*10)">Order in<br><span class="gold">20–30 mins</span></div>
-    <div class="cta-pill a" data-a="pop" data-d="1.0" data-pulse="1">${wa}0904 042 2964</div>
-    <div class="url a" data-a="rise" data-d="1.5">spicyfood.com.ng</div>
-    <div class="areas a" data-a="rise" data-d="1.9">APAPA · SURULERE · YABA · IKEJA · LEKKI · VI · AND MORE</div></div>`;
+  if(s.type==='site') h=`<div class="site">
+    <div class="sitehead"><div class="tag a" data-a="rise" data-d="0">ORDER ON OUR WEBSITE</div>
+      <div class="name a" data-a="rise" data-d=".2">Order online<br>in a few taps</div></div>
+    <div class="phonewrap a" data-a="rise" data-d=".1"><div class="phone"><div class="screen">
+      <img class="ph" src="phone/1_home.png"><img class="ph" src="phone/2_menu_long.png"><img class="ph" src="phone/3_meal.png">
+      <img class="ph" src="phone/4_added.png"><img class="ph" src="phone/5_cart.png"><div class="tap"></div></div></div></div>
+    <div class="steps"><div class="step"><span class="num">1</span>Pick your meal</div><div class="step"><span class="num">2</span>Add to cart</div><div class="step"><span class="num">3</span>Checkout</div></div></div>`;
+  if(s.type==='cta') h=`<div class="center" style="gap:calc(var(--u)*3.6);padding:calc(var(--u)*6)">
+    <img class="logo a" data-a="pop" data-d="0" src="imgs/logo.png" style="width:calc(var(--u)*32)">
+    <div class="big a" data-a="rise" data-d=".35" style="font-size:calc(var(--u)*10)">Order now at</div>
+    <div class="urlbtn a" data-a="pop" data-d=".8" data-pulse="1">spicyfood.com.ng <span>→</span></div>
+    <div class="mid a" data-a="rise" data-d="1.3" style="font-size:calc(var(--u)*4.6)">Hungry? <span class="gold">Order in 20–30 mins.</span></div>
+    <div class="areas a" data-a="rise" data-d="1.6">APAPA · SURULERE · YABA · IKEJA · LEKKI · VI · AND MORE</div>
+    <div class="wa-small a" data-a="rise" data-d="1.9">or WhatsApp ${wa} 0904 042 2964</div></div>`;
   host.insertAdjacentHTML('beforeend',`<div class="scene" id="${id}">${h}</div>`);
   s.el=document.getElementById(id); s.anims=[...s.el.querySelectorAll('.a')]; s.kbs=[...s.el.querySelectorAll('.kb')];
 });
@@ -120,6 +160,17 @@ const cl=x=>Math.max(0,Math.min(1,x));
 const eo=x=>1-Math.pow(1-cl(x),3);
 const eb=x=>{x=cl(x);const c=1.6;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
 const p=(t,a,b)=>cl((t-a)/(b-a));
+function renderSite(s,lt){
+  if(!s.ph){s.ph=[...s.el.querySelectorAll('.ph')];s.tap=s.el.querySelector('.tap');s.steps=[...s.el.querySelectorAll('.step')];}
+  const ph=[[0,1.7],[1.7,4.0],[4.0,5.2],[5.2,6.2],[6.2,99]];
+  ph.forEach(([a,b],i)=>{s.ph[i].style.opacity=Math.min(cl((lt-a)/.15)||(i===0?1:0),1-cl((lt-b)/.15));});
+  s.ph[0].style.opacity=1-cl((lt-1.7)/.15);
+  const sc=eo(p(lt,1.9,3.9))*1150/2400*100; s.ph[1].style.transform=`translateY(${-sc}%)`;
+  let tp=null; if(lt>0.9&&lt<1.6) tp=[195,438,(lt-.9)/.7]; if(lt>4.5&&lt<5.2) tp=[266,628,(lt-4.5)/.7];
+  if(tp){s.tap.style.left=tp[0]/390*100+'%';s.tap.style.top=tp[1]/664*100+'%';
+    const k=tp[2];s.tap.style.opacity=k<.6?1:1-(k-.6)/.4;s.tap.style.transform=`scale(${k<.3?1.4-k*1.6:.92+.6*(k-.3)})`;} else s.tap.style.opacity=0;
+  const st=lt<4.0?0:(lt<6.2?1:2); s.steps.forEach((e,i)=>e.classList.toggle('on',i===st));
+}
 window.render=function(t){
   document.getElementById('bg').style.transform=`scale(${1+.06*Math.sin(t*.3)}) translate(${Math.sin(t*.22)*2}%,${Math.cos(t*.18)*2}%)`;
   for(const s of S){
@@ -138,14 +189,16 @@ window.render=function(t){
       else if(a==='slide'){const k=eo(p(lt,d,d+1.0)); o=1; tf=`translateX(${(1-k)*(V?0:22) - out*12}vmin) translateY(${V?(1-k)*12:0}vmin) rotate(${(1-k)*4}deg)`; o=cl(p(lt,d,d+.4));}
       el.style.opacity=o; el.style.transform=tf;
     }
+    if(s.type==='site') renderSite(s,lt);
     for(const im of s.kbs){ im.style.transform=`scale(${1+.08*p(lt,0,s.dur)})`; }
   }
   const ex=S.find(s=>s.type==='cta').t0;
   const cur=S.find(s=>t>=s.t0&&t<s.t1)||S[S.length-1];
-  const hideWm=document.body.className!=='v'&&(cur.type==='trio'||cur.type==='grid');
+  const hideWm=cur.type==='site'||(document.body.className!=='v'&&(cur.type==='trio'||cur.type==='grid'));
   document.getElementById('wm').style.opacity=hideWm?0:Math.min(p(t,4,4.5),1-p(t,ex-.4,ex))*.95;
 };
 window.__stills=S.map(s=>s.t0+Math.min(s.dur-.5,3.4));
+{const at=new URLSearchParams(location.search).get('at'); if(at){const st=S.find(x=>x.type==='site').t0, ct=S.find(x=>x.type==='cta').t0; window.__stills=at.split(',').map(v=>v[0]==='c'?ct+ +v.slice(1):st+ +v);}}
 window.ready=Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]);
 render(0);
 </script></body></html>
