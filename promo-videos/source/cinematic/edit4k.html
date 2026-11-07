@@ -1,0 +1,127 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700;800;900&display=block" rel="stylesheet">
+<style>
+:root{--red:#d7192f;--gold:#ffb81c}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family:Raleway,sans-serif;color:#fff}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+.full{position:absolute;inset:0}
+#bg{background:radial-gradient(ellipse at 50% 45%,#3a070d 0%,#1c0306 45%,#060102 100%)}
+#rays{position:absolute;left:50%;top:40%;width:3200px;height:3200px;margin:-1600px 0 0 -1600px;
+  background:repeating-conic-gradient(from 0deg,rgba(255,184,28,.06) 0deg 4deg,transparent 4deg 18deg);
+  -webkit-mask:radial-gradient(circle,#000 0%,transparent 55%);mask:radial-gradient(circle,#000 0%,transparent 55%)}
+.bokeh{position:absolute;border-radius:50%;filter:blur(14px)}
+#card{position:absolute;left:90px;top:230px;width:900px;height:1400px;border-radius:40px;overflow:hidden;
+  box-shadow:0 40px 120px rgba(0,0,0,.75),0 0 0 3px rgba(255,184,28,.55),0 0 60px rgba(255,120,30,.25);opacity:0}
+#foot{position:absolute;left:0;top:-20px;width:900px;height:1440px;object-fit:cover}
+#cardshade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 18%,transparent 75%,rgba(0,0,0,.45) 100%)}
+#head{position:absolute;left:90px;right:90px;top:60px;height:140px;display:flex;align-items:center;justify-content:space-between;opacity:0}
+#head img{height:130px}
+#head .t{text-align:right}
+#head .n{font-weight:900;font-size:64px;letter-spacing:.02em;line-height:1}
+#head .p{display:inline-block;margin-top:10px;background:var(--gold);color:#2a0306;font-weight:900;font-size:40px;padding:4px 18px;border-radius:14px}
+.chip{position:absolute;left:50%;top:1690px;transform:translateX(-50%);display:flex;align-items:center;gap:18px;white-space:nowrap;
+  background:rgba(20,3,5,.75);border:2px solid rgba(255,184,28,.7);border-radius:999px;padding:18px 38px;font-weight:800;font-size:46px;opacity:0;
+  box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.chip .dot{width:22px;height:22px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
+#intro,#outro{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0}
+.small{font-weight:800;font-size:34px;letter-spacing:.5em;color:var(--gold)}
+.huge{font-weight:900;font-size:150px;line-height:1;margin:30px 0}
+.badge{background:var(--gold);color:#2a0306;font-weight:900;font-size:88px;padding:10px 46px;border-radius:26px}
+#streak{position:absolute;top:0;bottom:0;width:500px;background:linear-gradient(90deg,transparent,rgba(255,220,150,.55),transparent);filter:blur(20px);transform:skewX(-18deg);opacity:0}
+.leak{position:absolute;border-radius:50%;mix-blend-mode:screen;filter:blur(80px);opacity:0}
+#flash{background:#fff;opacity:0}
+#vig{background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.65) 100%);pointer-events:none}
+#grain{position:absolute;inset:0;width:1080px;height:1920px;opacity:.09;mix-blend-mode:overlay;image-rendering:pixelated}
+#bars div{position:absolute;left:0;right:0;height:0;background:#000}
+.urlbtn{display:flex;align-items:center;gap:22px;background:var(--gold);color:#2a0306;font-weight:900;font-size:72px;padding:26px 60px;border-radius:999px;box-shadow:0 16px 50px rgba(0,0,0,.5)}
+.desc{font-weight:600;font-size:40px;opacity:.88;max-width:900px;line-height:1.35;margin:10px 0 40px}
+</style></head>
+<body><div id="stage">
+<div class="full" id="bg"><div id="rays"></div><div id="bokehs"></div></div>
+<div id="card"><img id="foot" src="ff4g/0001.jpg"><div id="cardshade"></div></div>
+<div id="head"><img src="../promo/imgs/logo.png"><div class="t"><div class="n">MINI ODOGWU</div><div class="p">₦5,500</div></div></div>
+<div class="chip" id="c0"><span class="dot"></span>Cold drink included</div>
+<div class="chip" id="c1"><span class="dot"></span>Sweet fried plantain</div>
+<div class="chip" id="c2"><span class="dot"></span>Big turkey or chicken</div>
+<div class="chip" id="c3"><span class="dot"></span>Your choice of rice</div>
+<div class="full" id="intro">
+  <div class="small" id="i1">SPICYFOOD.CF PRESENTS</div>
+  <div class="huge" id="i2">MINI<br>ODOGWU</div>
+  <div class="badge" id="i3">₦5,500</div>
+</div>
+<div class="full" id="outro">
+  <img id="o0" src="../promo/imgs/logo.png" style="width:330px">
+  <div class="huge" id="o1" style="font-size:120px;margin:24px 0 10px">Mini Odogwu</div>
+  <div class="desc" id="o2">Rice of your choice, turkey or chicken, salad or plantain + a cold drink</div>
+  <div class="badge" id="o3" style="font-size:80px;margin-bottom:50px">₦5,500</div>
+  <div class="small" id="o4" style="letter-spacing:.2em;font-size:40px;color:#fff;margin-bottom:24px">ORDER NOW AT</div>
+  <div class="urlbtn" id="o5">spicyfood.com.ng <span>→</span></div>
+</div>
+<div id="streak"></div>
+<div class="leak" id="l1" style="width:900px;height:900px;background:radial-gradient(circle,#ff7a1a,transparent 70%)"></div>
+<div class="leak" id="l2" style="width:700px;height:1100px;background:radial-gradient(circle,#ff2d3a,transparent 70%)"></div>
+<div class="full" id="vig"></div>
+
+<div class="full" id="flash"></div>
+</div>
+<script>
+const T_IN=2.2, FOOT=468/30, T_OUT=T_IN+FOOT, TOTAL=T_OUT+4.4; window.TOTAL=TOTAL;
+const $=id=>document.getElementById(id);
+const cl=x=>Math.max(0,Math.min(1,x)), p=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-cl(x),3), eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const eb=x=>{x=cl(x);const c=1.6;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+// seeded rng
+let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+const bk=[]; for(let i=0;i<22;i++){const e=document.createElement('div');e.className='bokeh';
+  const s=60+rnd()*220; Object.assign(e.style,{width:s+'px',height:s+'px',background:rnd()<.5?'rgba(255,184,28,.35)':'rgba(215,25,47,.45)'});
+  $('bokehs').appendChild(e); bk.push({e,x:rnd()*1080,y:rnd()*1920,vx:(rnd()-.5)*30,vy:-10-rnd()*30,ph:rnd()*6});}
+
+
+function rise(el,t,a,d=40,dur=.7){const k=eo(p(t,a,a+dur));el.style.opacity=k;el.style.transform=`translateY(${(1-k)*d}px)`;}
+function pop(el,t,a){const k=eb(p(t,a,a+.6));el.style.opacity=cl(p(t,a,a+.2));el.style.transform=`scale(${.4+.6*k})`;}
+const foot=$('foot'); let lastFi=-1;
+window.renderAsync=async function(t){
+  const fi=Math.round(t*30);
+  // background life
+  $('rays').style.transform=`rotate(${t*4}deg)`;
+  for(const b of bk){const x=(b.x+b.vx*t+1200)%1200-60, y=((b.y+b.vy*t)%2000+2000)%2000-40;
+    b.e.style.transform=`translate(${x}px,${y}px)`; b.e.style.opacity=.5+.5*Math.sin(t*1.3+b.ph);}
+  $('bg').style.opacity=p(t,0,.8);
+  // intro
+  const io=Math.min(p(t,0,.3),1-p(t,T_IN-.15,T_IN)); $('intro').style.opacity=io;
+  rise($('i1'),t,.25,30);
+  {const k=eo(p(t,.6,1.5)); const e=$('i2'); e.style.opacity=cl(p(t,.6,.9)); e.style.letterSpacing=(0.45*(1-k)+0.02)+'em'; e.style.filter=`blur(${(1-k)*14}px)`;}
+  pop($('i3'),t,1.35);
+  {const k=p(t,.1,1.3); const s=$('streak'); s.style.opacity=k>0&&k<1?Math.sin(k*Math.PI):0; s.style.left=(-600+k*2300)+'px';}
+  // footage card
+  const ft=t-T_IN, c=$('card');
+  if(t>=T_IN-.01&&t<=T_OUT+.6){
+    const kin=eo(p(ft,0,.9)), kout=eio(p(t,T_OUT,T_OUT+.5));
+    c.style.opacity=Math.min(1,1-kout); c.style.transform=`scale(${(1.12-.12*kin)*(1-.1*kout)})`;
+    const idx=Math.max(1,Math.min(468,Math.floor(ft*30)+1));
+    if(idx!==lastFi){foot.src=`ff4g/${String(idx).padStart(4,'0')}.jpg`; await foot.decode().catch(()=>{}); lastFi=idx;}
+    foot.style.transform=`scale(${1+.06*p(ft,0,FOOT)})`;
+  } else c.style.opacity=0;
+  $('head').style.opacity=Math.min(p(ft,.5,1.1),1-p(t,T_OUT,T_OUT+.4)); $('head').style.transform=`translateY(${(1-eo(p(ft,.5,1.2)))*-30}px)`;
+  const chips=[[.8,3.0],[3.2,5.6],[6.0,10.4],[10.8,15.0]];
+  chips.forEach(([a,b],i)=>{const e=$('c'+i); const k=eo(p(ft,a,a+.5)), o=1-p(ft,b-.4,b);
+    e.style.opacity=Math.min(k,o); e.style.transform=`translateX(-50%) translateY(${(1-k)*40}px) scale(${.9+.1*k})`;});
+  // outro
+  const ot=t-T_OUT-.3; $('outro').style.opacity=p(ot,0,.4);
+  pop($('o0'),ot,.1); rise($('o1'),ot,.4); rise($('o2'),ot,.7,30); pop($('o3'),ot,1.0); rise($('o4'),ot,1.4,20);
+  pop($('o5'),ot,1.6); if(ot>2.3) $('o5').style.transform+=` scale(${1+.03*Math.sin((ot-2.3)*5)})`;
+  // light leaks at accents
+  const leak=(a,dur)=>{const k=p(t,a,a+dur);return k>0&&k<1?Math.sin(k*Math.PI):0};
+  const L1=Math.max(leak(0,2.4),leak(T_IN+6.0-.4,2.2),leak(T_OUT-.2,2.0));
+  $('l1').style.opacity=L1*.7; $('l1').style.transform=`translate(${-300+((t*180)%1700)}px,${200+Math.sin(t)*300}px)`;
+  const L2=Math.max(leak(T_IN+.2,1.6),leak(T_IN+11,2.0));
+  $('l2').style.opacity=L2*.6; $('l2').style.transform=`translate(${900-((t*150)%1400)}px,${700+Math.cos(t*.8)*300}px)`;
+  // flashes
+  const fl=(a)=>{const d=t-a; return d<-.08||d>.35?0:(d<0?1+d/.08:1-d/.35)};
+  $('flash').style.opacity=Math.max(fl(T_IN),fl(T_OUT+.25)*.8,fl(T_IN+6.0)*.35);
+  /* grain off for HD */
+};
+window.ready=Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]);
+</script></body></html>
