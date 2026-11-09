@@ -30,7 +30,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 #arm{position:absolute;left:1030px;top:410px;width:14px;height:190px;background:linear-gradient(90deg,#bbb,#fff,#999);border-radius:7px;transform-origin:50% 100%}
 #knob{position:absolute;left:1009px;width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff8a8a,#d7192f 55%,#7a0612);box-shadow:0 6px 14px rgba(0,0,0,.5)}
 #pivot{position:absolute;left:1013px;top:582px;width:48px;height:48px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff3c4,#ffb81c 60%,#9a6a00)}
-#jack{position:absolute;left:0;right:0;top:470px;text-align:center;font-weight:900;font-size:120px;color:var(--gold);opacity:0;
+#jack{position:absolute;left:0;right:0;top:440px;text-align:center;font-weight:900;font-size:108px;color:var(--gold);opacity:0;
   text-shadow:0 6px 0 #6e0613,0 0 40px rgba(255,184,28,.9),0 0 90px rgba(255,120,0,.6);-webkit-text-stroke:3px #6e0613}
 /* box */
 #box{position:absolute;left:90px;top:840px;width:900px;height:830px;border-radius:26px;background:linear-gradient(180deg,#e3233a,#c3122a);box-shadow:0 40px 80px rgba(0,0,0,.6)}
@@ -42,7 +42,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
   display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px;letter-spacing:.35em;color:#ffcf63}
 .it{position:absolute;opacity:0;will-change:transform}
 .it img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 16px 16px rgba(0,0,0,.45))}
-#finder{position:absolute;left:70px;top:820px;width:940px;height:920px;opacity:0}
+#finder{position:absolute;left:40px;top:728px;width:1000px;height:990px;opacity:0}
 #finder i{position:absolute;width:110px;height:110px;border:10px solid #fff}
 /* fx */
 .dust{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,236,200,.95),rgba(255,200,120,0) 70%);opacity:0}
@@ -54,7 +54,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 .comp{position:relative;width:736px;height:676px;background:#ead3a8;border-radius:6px;overflow:hidden;box-shadow:inset 0 0 0 14px #c8152c}
 .comp img{position:absolute;object-fit:contain;filter:drop-shadow(0 8px 8px rgba(0,0,0,.35))}
 .pol .cap{height:84px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-weight:900;font-size:44px;letter-spacing:.06em}
-.ph{position:absolute;top:50px;width:230px;height:236px;border:5px dashed rgba(255,184,28,.7);border-radius:14px;display:flex;align-items:center;justify-content:center;
+.ph{position:absolute;top:50px;width:220px;height:226px;border:5px dashed rgba(255,184,28,.7);border-radius:14px;display:flex;align-items:center;justify-content:center;
   font-weight:900;font-size:110px;color:rgba(255,184,28,.55);opacity:0}
 /* text */
 .word{position:absolute;left:0;right:0;text-align:center;font-weight:900;opacity:0;text-shadow:0 8px 30px rgba(0,0,0,.6)}
@@ -62,13 +62,13 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
   background:var(--red);border:4px solid var(--gold);border-radius:999px;padding:12px 26px;font-weight:900;font-size:36px;opacity:0;box-shadow:0 12px 40px rgba(0,0,0,.55)}
 .label .pr{display:inline-flex;padding:4px 16px;border-radius:999px;background:#fff;color:#d7192f;font-size:38px}
 .label .n{display:inline-flex;padding:4px 18px;border-radius:999px;background:var(--gold);color:var(--ink);font-size:36px}
-#stamp{position:absolute;left:50%;top:850px;transform:translateX(-50%);opacity:0;white-space:nowrap;text-align:center}
+#stamp{position:absolute;left:50%;top:1120px;transform:translateX(-50%);opacity:0;white-space:nowrap;text-align:center}
 #stamp .in{display:inline-block;background:var(--gold);color:var(--ink);border:8px solid #fff;border-radius:30px;padding:14px 46px 20px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
-#stamp .a{font-weight:900;font-size:62px;letter-spacing:.04em}
-#stamp .p{font-weight:900;font-size:120px;line-height:1}
-#drinkhead{position:absolute;left:0;right:0;top:1150px;text-align:center;font-weight:900;font-size:66px;opacity:0}
-.drink{position:absolute;top:1250px;height:420px;width:230px;opacity:0;display:flex;flex-direction:column;align-items:center}
-.drink img{height:330px;object-fit:contain;filter:drop-shadow(0 14px 14px rgba(0,0,0,.5))}
+#stamp .a{font-weight:900;font-size:52px;letter-spacing:.04em}
+#stamp .p{font-weight:900;font-size:100px;line-height:1}
+#drinkhead{position:absolute;left:0;right:0;top:1350px;text-align:center;font-weight:900;font-size:66px;opacity:0}
+.drink{position:absolute;top:1440px;height:380px;width:230px;opacity:0;display:flex;flex-direction:column;align-items:center}
+.drink img{height:290px;object-fit:contain;filter:drop-shadow(0 14px 14px rgba(0,0,0,.5))}
 .drink b{margin-top:12px;font-weight:900;font-size:36px;color:var(--gold)}
 /* phone */
 #phonesec{position:absolute;inset:0;opacity:0}
@@ -90,20 +90,27 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 #vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 58%,rgba(0,0,0,.6) 100%)}
 .stm{position:absolute;left:0;top:0;border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,255,.5),transparent 70%);filter:blur(12px);opacity:0}
 #tB,#tC,#tA{text-shadow:0 6px 0 rgba(0,0,0,.35),0 10px 40px rgba(0,0,0,.9)}
+.cuc{position:absolute;left:80px;right:80px;height:112px;display:flex;align-items:center;gap:26px;padding:0 34px;border-radius:26px;background:rgba(255,255,255,.08);border:3px solid rgba(255,184,28,.75);font-weight:900;font-size:56px;opacity:0;white-space:nowrap}
+.cuc i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:var(--gold);color:var(--ink);font-size:42px}
+.cux{position:absolute;top:960px;width:230px;height:420px;display:flex;flex-direction:column;align-items:center;opacity:0}
+.cux img{width:220px;height:300px;object-fit:contain;filter:drop-shadow(0 12px 14px rgba(0,0,0,.5))}
+.cux b{margin-top:10px;font-weight:900;font-size:34px;color:var(--gold)}
 </style></head>
 <body><div id="stage">
 <div id="bg"><div id="rays"></div><div id="bokehs"></div></div>
 <div id="world">
   <div id="phs"></div>
+  <div id="sw" style="position:absolute;inset:0;transform-origin:540px 330px;transform:translateY(-10px) scale(.86)">
   <div id="slot"><div id="marq"><span style="color:#fff">₦5,500</span> COMBO SLOTS</div><div id="bulbs"></div>
     <div class="win" id="w0" style="left:28px"><div class="strip" id="s0"></div></div>
     <div class="win" id="w1" style="left:332px"><div class="strip" id="s1"></div></div>
     <div class="win" id="w2" style="left:636px"><div class="strip" id="s2"></div></div>
     <div class="pay" style="left:0;border-left:26px solid var(--gold)"></div><div class="pay" style="right:0;border-right:26px solid var(--gold)"></div>
-    <div id="slotfoot">3 COMBOS · 1 PRICE · ₦5,500</div></div>
-  <div id="arm"></div><div id="knob"></div><div id="pivot"></div>
+    <div id="slotfoot">4 COMBOS · 1 PRICE · ₦5,500</div></div>
+  <div id="arm"></div><div id="knob"></div><div id="pivot"></div></div>
+  <div id="bw" style="position:absolute;inset:0;transform-origin:540px 840px;transform:translateY(-90px) scale(1.07)">
   <div id="front">SPICYFOOD.CF</div>
-  <div id="box"><div id="floor"><img id="floormark" src="../promo/imgs/logo.png"><div id="items"></div></div></div>
+  <div id="box"><div id="floor"><img id="floormark" src="../promo/imgs/logo.png"><div id="items"></div></div></div></div>
   <div id="finder"><i style="left:0;top:0;border-right:0;border-bottom:0"></i><i style="right:0;top:0;border-left:0;border-bottom:0"></i><i style="left:0;bottom:0;border-right:0;border-top:0"></i><i style="right:0;bottom:0;border-left:0;border-top:0"></i></div>
   <div id="fx"></div>
 </div>
@@ -114,19 +121,29 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 <div class="word" id="h4" style="top:1090px;font-size:120px">ARE YOU?</div>
 <div class="label" id="lab0"><span class="n">COMBO 1</span>JOLLOF + MALT + PLANTAIN<span class="pr">₦5,500</span></div>
 <div class="label" id="lab1"><span class="n">COMBO 2</span>SPAGHETTI + FANTA + SALAD<span class="pr">₦5,500</span></div>
+<div class="label" id="lab3"><span class="n">COMBO 4</span>JOLLOF CHICKEN + COKE + SALAD<span class="pr">₦5,500</span></div>
 <div class="label" id="lab2"><span class="n">COMBO 3</span>FRIED RICE + ZOBO + PLANTAIN<span class="pr">₦5,500</span></div>
 <div id="pols"></div>
 <div id="stamp"><div class="in"><div class="a">EVERY COMBO WINS!</div><div class="p">₦5,500</div></div></div>
 <div id="drinkhead">PICK ANY <span style="color:var(--gold)">DRINK</span></div>
 <div id="drinks"></div>
 <div id="conf"></div>
+<div id="cus" style="position:absolute;inset:0;opacity:0">
+  <div class="word" id="cu0" style="top:330px;font-size:110px;line-height:1.05">YOUR PACK,<br><span style="color:var(--gold)">YOUR WAY</span></div>
+  <div class="cuc" id="cu1" style="top:650px"><i>✓</i>Choose your rice or pasta</div>
+  <div class="cuc" id="cu2" style="top:785px"><i>✓</i>Choose any drink</div>
+  <div class="cuc" id="cu3" style="top:920px"><i>✓</i>Turkey or chicken</div>
+  <div class="cuc" id="cu4" style="top:1055px"><i>✓</i>Plantain or salad</div>
+  <div class="word" id="cu5" style="top:1250px;font-size:52px;color:#ffe3a3">Any combo, one price</div>
+  <div class="word" id="cu6" style="top:1360px;font-size:76px"><span style="background:var(--gold);color:var(--ink);padding:10px 34px;border-radius:20px">MINI ODOGWU · ₦5,500</span></div>
+</div>
 <div id="phonesec"><div id="ptitle">ORDER IN<br><span style="color:var(--gold)">A FEW TAPS</span><div style="margin-top:14px;font-size:46px;font-weight:800;color:#ffe3a3">Mini Odogwu · <span style="background:var(--gold);color:var(--ink);padding:2px 16px;border-radius:12px">₦5,500</span></div></div>
   <div id="phone"><div id="screen"><img id="p0" src="phone/2_meal_view.png"><img id="p1" src="phone/1_meal_long.png"><img id="p2" src="phone/2_meal_view.png"><img id="p3" src="phone/3_added.png"><img id="p4" src="phone/4_cart.png"><div id="tap"></div></div></div>
   <div id="psteps"><div class="ps"><span class="num">1</span>Pick</div><div class="ps"><span class="num">2</span>Add to cart</div><div class="ps"><span class="num">3</span>Checkout</div></div></div>
 <div id="outro">
   <img id="o0" src="../promo/imgs/logo.png" style="width:320px">
   <div id="o1" style="font-weight:900;font-size:118px;margin:16px 0 4px">Mini Odogwu</div>
-  <div id="o2" style="font-weight:800;font-size:46px;letter-spacing:.06em;color:#ffe3a3;margin-bottom:34px">3 COMBOS · 4 DRINKS · 1 PRICE</div>
+  <div id="o2" style="font-weight:800;font-size:46px;letter-spacing:.06em;color:#ffe3a3;margin-bottom:34px">4 COMBOS · ANY DRINK · YOUR WAY</div>
   <div class="badge" id="o3" style="margin-bottom:46px">₦5,500</div>
   <div id="o4" style="font-weight:800;font-size:40px;letter-spacing:.2em;margin-bottom:24px">ORDER NOW AT</div>
   <div class="urlbtn" id="o5">spicyfood.com.ng <span>→</span></div>
@@ -146,21 +163,21 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 <div id="vig"></div><div id="flash"></div><div id="black"></div>
 </div>
 <script>
-const TOTAL=43; window.TOTAL=TOTAL;
+const TOTAL=53.0; window.TOTAL=TOTAL;
 const $=id=>document.getElementById(id);
 const cl=x=>Math.max(0,Math.min(1,x)), p=(t,a,b)=>cl((t-a)/(b-a)), lerp=(a,b,k)=>a+(b-a)*k;
 const eo=x=>1-Math.pow(1-cl(x),3), ei=x=>Math.pow(cl(x),2.2), eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
 const eb=(x,c=1.7)=>{x=cl(x);return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
 let seed=21; const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
 const IMG=n=>`img/${n}.png`;
-const FOODS=['jollof','spag2','fried2'], DRINKS=['malt','fanta','coke','zobo'], SIDES=['plantain','salad'];
+const FOODS=['jollof','spag2','fried2','jollofchk'], DRINKS=['malt','fanta','coke','zobo'], SIDES=['plantain','salad'];
 const CATS=[FOODS,DRINKS,SIDES];
-const ASP={jollof:762/1039,spag2:877/1334,fried2:797/1351};
-const COMBOS=[[0,0,0],[1,1,1],[2,3,0]];
-const NAMES=['COMBO 1','COMBO 2','COMBO 3'];
+const ASP={jollof:762/1039,spag2:877/1334,fried2:797/1351,jollofchk:971/1397};
+const COMBOS=[[0,0,0],[1,1,1],[2,3,0],[3,2,1]];
+const NAMES=['COMBO 1','COMBO 2','COMBO 3','COMBO 4'];const NC=4;
 // ---- timeline (slower)
-const SH=3.0, CD=6.4, B=k=>2.2+SH+k*CD;          // combo starts
-const FIN=B(3), PH=FIN+7.8, END=PH+5.4; // 21.4, 29.2, 34.6
+const BSC=1.07, SSC=.86, SH=3.0, CD=6.4, B=k=>2.2+SH+k*CD;          // combo starts
+const FIN=B(NC), CUS=FIN+7.2, PH=CUS+4.0, END=PH+5.4;
 // relative combo times
 const R={lever:0, spin:.2, stop:[1.3,1.65,2.0], jack:2.05, land:[2.75,3.2,3.65], fly:.55, label:[2.75,6.2], finder:4.0, snap:4.35, hold:1.3, toSlot:.55, clear:6.0};
 // ---------- background
@@ -174,7 +191,7 @@ CATS.forEach((cat,r)=>{let h='';for(let c=0;c<CYC;c++)for(const n of cat)h+=`<di
 const F=[[0,0,0]];
 COMBOS.forEach((cmb,k)=>{const prev=F[F.length-1];F.push(cmb.map((tg,r)=>{const L=CATS[r].length;const base=prev[r]+L*(3+r);return base+((tg-base)%L+L)%L;}));});
 function reelPos(r,t){let pos=F[0][r];
-  for(let k=0;k<3;k++){const s=B(k)+R.spin,e=B(k)+R.stop[r];if(t>=s){pos=t>=e?F[k+1][r]:lerp(F[k][r],F[k+1][r],eb(p(t,s,e),.6));}}
+  for(let k=0;k<NC;k++){const s=B(k)+R.spin,e=B(k)+R.stop[r];if(t>=s){pos=t>=e?F[k+1][r]:lerp(F[k][r],F[k+1][r],eb(p(t,s,e),.6));}}
   return pos;}
 // ---- per-combo layout in the box floor (856 x 786): food + tight column (drink over side)
 function layout(k){const fa=ASP[FOODS[COMBOS[k][0]]];const Hf=720,Wf=Hf*fa,Wc=270,g=14;const gw=Wf+g+Wc,x0=(856-gw)/2,y0=33;
@@ -187,10 +204,10 @@ COMBOS.forEach((cmb,k)=>{const L=layout(k);cmb.forEach((idx,r)=>{const e=documen
 const pols=COMBOS.map((cmb,k)=>{const L=layout(k);const d=document.createElement('div');d.className='pol';
   d.innerHTML=`<div class="comp">${cmb.map((idx,r)=>`<img src="${IMG(CATS[r][idx])}" style="left:${L[r].x/856*100}%;top:${L[r].y/786*100}%;width:${L[r].w/856*100}%;height:${L[r].h/786*100}%">`).join('')}</div><div class="cap">${NAMES[k]} · <span style="color:#d7192f">₦5,500</span></div>`;
   $('pols').appendChild(d);return d;});
-const SLOTX=[220,540,860], SLOTY=168;
-SLOTX.forEach(x=>{const d=document.createElement('div');d.className='ph';d.style.left=(x-115)+'px';d.textContent='?';$('phs').appendChild(d);});
+const SLOTX=[150,410,670,930], SLOTY=162, SLW=220;
+SLOTX.forEach(x=>{const d=document.createElement('div');d.className='ph';d.style.left=(x-110)+'px';d.textContent='?';$('phs').appendChild(d);});
 // finale row: three side by side, no overlap
-const ROWX=[183,540,897], ROWY=560, ROWW=330, ROWR=[-2,0,2];
+const GX=[280,800,280,800], GY=[318,318,838,838], GW=495, GR=[-2,2,2,-2];
 // drinks row
 const DX=[150,405,665,925];
 DRINKS.forEach((n,i)=>{const d=document.createElement('div');d.className='drink';d.id='dr'+i;d.style.left=(DX[i]-115)+'px';
@@ -210,8 +227,8 @@ const HITS=[];let WIN=[];
 window.ready=Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]).then(()=>{
   WIN=[0,1,2].map(r=>{const b=$('w'+r).getBoundingClientRect();return {x:b.left+b.width/2,y:b.top+b.height/2};});
   const fb=$('floor').getBoundingClientRect();
-  for(const it of items){const s=it.s;it.tx=fb.left+s.x+s.w/2;it.ty=fb.top+s.y+s.h/2;addImpact(it.land,it.tx,it.ty+s.h*.3,false);HITS.push([it.land,it.r===0?20:12]);}
-  [0,1,2].forEach(k=>HITS.push([FIN+.95+.45*k,22]));
+  for(const it of items){const s=it.s;it.tx=fb.left+(s.x+s.w/2)*BSC;it.ty=fb.top+(s.y+s.h/2)*BSC;addImpact(it.land,it.tx,it.ty+s.h*.3*BSC,false);HITS.push([it.land,it.r===0?20:12]);}
+  [0,1,2,3].forEach(k=>HITS.push([FIN+1.05+.45*k,20]));
 });
 function shake(t){let x=0,y=0;for(const [a,amp] of HITS){const d=t-a;if(d>=0&&d<.45){const k=amp*Math.exp(-d*10);x+=k*Math.sin(d*90);y+=k*Math.cos(d*77);}}return [x,y];}
 function pop(el,t,a,dur=.6){const k=eb(p(t,a,a+dur));el.style.opacity=cl(p(t,a,a+.18));el.style.transform=`scale(${.3+.7*k})`;return k;}
@@ -236,48 +253,48 @@ window.renderAsync=async function(t){
   bulbs.forEach((b,i)=>{b.style.opacity=Math.floor(t*8+i)%3===0?1:.35;});
   document.querySelectorAll('.ph').forEach((e,i)=>{e.style.opacity=Math.min(p(t,1.9+SH,2.2+SH),1-p(t,FIN,FIN+.3))*.9*(t<B(i)+R.snap+R.hold+R.toSlot?1:0);});
   // lever
-  let lv=0; for(let k=0;k<3;k++){const a=B(k);lv=Math.max(lv,t>=a&&t<a+.5?Math.sin(p(t,a,a+.5)*Math.PI):0);}
+  let lv=0; for(let k=0;k<NC;k++){const a=B(k);lv=Math.max(lv,t>=a&&t<a+.5?Math.sin(p(t,a,a+.5)*Math.PI):0);}
   const sc=1-1.85*lv; $('arm').style.transform=slotT+` scaleY(${sc})`; $('knob').style.top=(410+190-190*sc-28)+'px';
   // reels
   for(let r=0;r<3;r++){const pos=reelPos(r,t),pos2=reelPos(r,t-1/30);const v=Math.abs(pos-pos2)*30;
     const s=$('s'+r);s.style.transform=`translateY(${-pos*300}px)`;s.style.filter=v>2?`blur(${Math.min(10,v*.5)}px)`:'none';}
   // jackpot text
-  {let o=0,k=0,n=0;for(let c=0;c<3;c++){const a=B(c)+R.jack;if(t>=a&&t<a+.85){k=eb(p(t,a,a+.35),2);o=1-p(t,a+.6,a+.85);n=c;}}
+  {let o=0,k=0,n=0;for(let c=0;c<NC;c++){const a=B(c)+R.jack;if(t>=a&&t<a+.85){k=eb(p(t,a,a+.35),2);o=1-p(t,a+.6,a+.85);n=c;}}
    $('jack').textContent=NAMES[n]+'!'; $('jack').style.opacity=o; $('jack').style.transform=`scale(${.4+.6*k}) rotate(${-4*k}deg)`;}
   // items fly from reels into box
   for(const it of items){const e=it.e,a=it.land-R.fly,clr=B(it.k)+R.clear;
     if(t<a||t>=clr+.4||!WIN.length){e.style.opacity=0;continue;}
     e.style.opacity=1; const s=it.s;
     if(t<it.land){const k=p(t,a,it.land),ke=ei(k);const w=WIN[it.r];
-      const x=lerp(w.x,it.tx,ke)-it.tx, y=lerp(w.y,it.ty,ke)-it.ty - Math.sin(k*Math.PI)*240;
-      const s0=Math.min(240/s.w,280/s.h);const scl=lerp(s0,1,ke)*(1+.22*Math.sin(k*Math.PI));
+      const x=(lerp(w.x,it.tx,ke)-it.tx)/BSC, y=(lerp(w.y,it.ty,ke)-it.ty - Math.sin(k*Math.PI)*240)/BSC;
+      const s0=Math.min(240*SSC/(s.w*BSC),280*SSC/(s.h*BSC));const scl=lerp(s0,1,ke)*(1+.22*Math.sin(k*Math.PI));
       e.style.transform=`translate(${x}px,${y}px) scale(${scl}) rotate(${(1-ke)*(it.r===1?-180:it.r===2?110:-25)}deg)`;}
     else if(t<clr){const d=t-it.land,sq=Math.exp(-d*9)*Math.sin(d*26);e.style.transform=`scale(${1+.06*sq},${1-.08*sq})`;}
     else{const k=ei(p(t,clr,clr+.4));e.style.transform=`translateX(${-k*1300}px) rotate(${-k*25}deg)`;}}
   // labels
-  for(let k=0;k<3;k++){const e=$('lab'+k),a=B(k)+R.label[0],b=B(k)+R.label[1];const kk=eb(p(t,a,a+.45));e.style.opacity=t<a?0:Math.min(cl(p(t,a,a+.12)),1-p(t,b-.3,b));e.style.transform=`translateX(-50%) scale(${.4+.6*kk})`;}
+  for(let k=0;k<NC;k++){const e=$('lab'+k),a=B(k)+R.label[0],b=B(k)+R.label[1];const kk=eb(p(t,a,a+.45));e.style.opacity=t<a?0:Math.min(cl(p(t,a,a+.12)),1-p(t,b-.3,b));e.style.transform=`translateX(-50%) scale(${.4+.6*kk})`;}
   // viewfinder
-  {let o=0,s=1;for(let k=0;k<3;k++){const a=B(k)+R.finder;if(t>=a&&t<B(k)+R.snap){o=1;s=1.08-.08*eo(p(t,a,a+.3));}}$('finder').style.opacity=o;$('finder').style.transform=`scale(${s})`;}
+  {let o=0,s=1;for(let k=0;k<NC;k++){const a=B(k)+R.finder;if(t>=a&&t<B(k)+R.snap){o=1;s=1.08-.08*eo(p(t,a,a+.3));}}$('finder').style.opacity=o;$('finder').style.transform=`scale(${s})`;}
   // polaroids
   pols.forEach((el,k)=>{const a=B(k)+R.snap; if(t<a){el.style.opacity=0;return;}
     const h1=a+.5, h2=h1+R.hold, h3=h2+R.toSlot;
     const fa=FIN+.55+.45*k, fb=fa+.5;
-    if(t<h1){const kk=eb(p(t,a,h1));setPol(el,540,1180,780*(.55+.45*kk),-3*kk,cl(p(t,a,a+.12)));}
-    else if(t<h2){setPol(el,540,1180-14*p(t,h1,h2),780*(1+.03*p(t,h1,h2)),-3,1);}
-    else if(t<h3){const kk=eio(p(t,h2,h3));setPol(el,lerp(540,SLOTX[k],kk),lerp(1166,SLOTY,kk),lerp(803,230,kk),lerp(-3,0,kk),1);}
-    else if(t<fa){setPol(el,SLOTX[k],SLOTY,230,0,1);}
-    else if(t<fb){const kk=eb(p(t,fa,fb),1.3);setPol(el,lerp(SLOTX[k],ROWX[k],kk),lerp(SLOTY,ROWY,kk),lerp(230,ROWW,kk),lerp(0,ROWR[k],kk),1);}
-    else{const o=1-p(t,PH-.4,PH);setPol(el,ROWX[k],ROWY+Math.sin((t-fb)*1.6+k)*4,ROWW,ROWR[k],o);}
+    if(t<h1){const kk=eb(p(t,a,h1));setPol(el,540,1190,920*(.55+.45*kk),-3*kk,cl(p(t,a,a+.12)));}
+    else if(t<h2){setPol(el,540,1190-14*p(t,h1,h2),920*(1+.03*p(t,h1,h2)),-3,1);}
+    else if(t<h3){const kk=eio(p(t,h2,h3));setPol(el,lerp(540,SLOTX[k],kk),lerp(1176,SLOTY,kk),lerp(948,SLW,kk),lerp(-3,0,kk),1);}
+    else if(t<fa){setPol(el,SLOTX[k],SLOTY,SLW,0,1);}
+    else if(t<fb){const kk=eb(p(t,fa,fb),1.3);setPol(el,lerp(SLOTX[k],GX[k],kk),lerp(SLOTY,GY[k],kk),lerp(SLW,GW,kk),lerp(0,GR[k],kk),1);}
+    else{const o=1-p(t,CUS-.4,CUS);setPol(el,GX[k],GY[k]+Math.sin((t-fb)*1.6+k)*4,GW,GR[k],o);}
     el.style.zIndex=2;});
   // stamp
-  {const a=FIN+2.2,k=eb(p(t,a,a+.45)),o=1-p(t,PH-.4,PH);const e=$('stamp');e.style.opacity=t<a?0:Math.min(cl(p(t,a,a+.12)),o);
+  {const a=FIN+2.7,k=eb(p(t,a,a+.45)),o=1-p(t,CUS-.4,CUS);const e=$('stamp');e.style.opacity=t<a?0:Math.min(cl(p(t,a,a+.12)),o);
    e.style.transform=`translateX(-50%) scale(${(2.4-1.4*k)*(t>a+1?1+.02*Math.sin((t-a)*4):1)}) rotate(${-4*k}deg)`;}
   // confetti
-  for(const c of conf){const d=t-(FIN+2.2)-c.d;if(d<0||t>PH){c.c.style.opacity=0;continue;}
+  for(const c of conf){const d=t-(FIN+2.7)-c.d;if(d<0||t>CUS){c.c.style.opacity=0;continue;}
     const y=-60+c.v*d,x=c.x+Math.sin(d*3+c.sw)*60;c.c.style.opacity=y<1980?1:0;c.c.style.transform=`translate(${x}px,${y}px) rotate(${c.rot+d*500}deg) rotateY(${d*400}deg)`;}
   // drinks row
-  {const o=1-p(t,PH-.4,PH);const hk=eo(p(t,FIN+3.3,FIN+3.8));$('drinkhead').style.opacity=Math.min(hk,o);$('drinkhead').style.transform=`translateY(${(1-hk)*40}px)`;
-   DRINKS.forEach((n,i)=>{const e=$('dr'+i),a=FIN+3.6+.35*i;const k=eb(p(t,a,a+.5));e.style.opacity=t<a?0:Math.min(cl(p(t,a,a+.15)),o);
+  {const o=1-p(t,CUS-.4,CUS);const hk=eo(p(t,FIN+3.8,FIN+4.3));$('drinkhead').style.opacity=Math.min(hk,o);$('drinkhead').style.transform=`translateY(${(1-hk)*40}px)`;
+   DRINKS.forEach((n,i)=>{const e=$('dr'+i),a=FIN+4.1+.35*i;const k=eb(p(t,a,a+.5));e.style.opacity=t<a?0:Math.min(cl(p(t,a,a+.15)),o);
      e.style.transform=`translateY(${(1-k)*-500 + (t>a+.6?Math.sin((t-a)*2+i)*5:0)}px) scale(${.6+.4*k}) rotate(${(1-k)*30}deg)`;});}
   // fx
   for(const o of IMP){const d=t-o.t;
@@ -285,6 +302,11 @@ window.renderAsync=async function(t){
     {const k=eo(p(d,0,.55)),S=(o.big?1400:620)*k,on=d>=0&&d<.6;o.ring.style.opacity=on?1-k:0;Object.assign(o.ring.style,{width:S+'px',height:S*.6+'px',left:(o.x-S/2)+'px',top:(o.y-S*.3)+'px'});}
     for(const s of o.sparks){const k=eo(p(d,0,.8)),on=d>=0&&d<1;s.s.style.opacity=on?(1-p(d,.4,1))*(.6+.4*Math.sin(d*20+s.ph)):0;
       s.s.style.transform=`translate(${o.x+Math.cos(s.a)*s.r*k}px,${o.y+Math.sin(s.a)*s.r*k*.6}px) scale(${s.sc*(1-.4*k)}) rotate(${d*200}deg)`;}}
+  // ---- customise scene
+  {const c=$('cus');c.style.opacity=Math.min(p(t,CUS,CUS+.3),1-p(t,PH-.3,PH));const lt=t-CUS;
+   pop($('cu0'),lt,.1,.6);
+   [1,2,3,4].forEach((i,j)=>{const e=$('cu'+i),a=.55+.32*j;const k=eo(p(lt,a,a+.45));e.style.opacity=k;e.style.transform=`translateX(${(1-k)*(j%2?700:-700)}px)`;});
+   rise($('cu5'),lt,1.95); pop($('cu6'),lt,2.25,.6);}
   // ---- phone: ordering Mini Odogwu
   {const ps=$('phonesec');ps.style.opacity=Math.min(p(t,PH,PH+.35),1-p(t,END-.3,END));
    const lt=t-PH; const k=eo(p(lt,0,.6)); $('phone').style.transform=`translateX(-50%) translateY(${(1-k)*900}px)`;
@@ -301,8 +323,8 @@ window.renderAsync=async function(t){
    if(ot>2.3)$('o5').style.transform+=` scale(${1+.035*Math.sin((ot-2.3)*5)})`;}
   // flashes / black
   const fl=(a,s=1)=>{const d=t-a;return d<-.05||d>.4?0:(d<0?(1+d/.05):(1-d/.4))*s};
-  let f=Math.max(fl(.1,.5),fl(2.25,.35),fl(2.8,.3),fl(3.4,.3),fl(FIN+.95,.35),fl(PH,.45),fl(END,.55));
-  for(let k=0;k<3;k++) f=Math.max(f,fl(B(k)+R.snap,1),fl(B(k)+R.jack,.3));
+  let f=Math.max(fl(.1,.5),fl(2.25,.35),fl(2.8,.3),fl(3.4,.3),fl(FIN+1.05,.35),fl(CUS,.4),fl(PH,.45),fl(END,.55));
+  for(let k=0;k<NC;k++) f=Math.max(f,fl(B(k)+R.snap,1),fl(B(k)+R.jack,.3));
   $('flash').style.opacity=f;
   $('black').style.opacity=Math.max(1-p(t,0,.1),p(t,TOTAL-.4,TOTAL));
 };
