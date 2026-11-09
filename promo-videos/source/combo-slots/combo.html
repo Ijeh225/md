@@ -16,7 +16,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 #slot{position:absolute;left:70px;top:330px;width:940px;height:470px;border-radius:42px;
   background:linear-gradient(180deg,#e01e35 0%,#a90d20 100%);border:8px solid var(--gold);
   box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 0 0 4px rgba(0,0,0,.25),0 0 50px rgba(255,184,28,.25)}
-#marq{position:absolute;left:0;right:0;top:14px;text-align:center;font-weight:900;font-size:50px;letter-spacing:.12em;color:var(--gold);text-shadow:0 3px 0 #6e0613,0 0 20px rgba(255,184,28,.6)}
+#marq{position:absolute;left:0;right:0;top:10px;text-align:center;font-weight:900;font-size:58px;letter-spacing:.12em;color:var(--gold);text-shadow:0 3px 0 #6e0613,0 0 20px rgba(255,184,28,.6)}
 .bulb{position:absolute;width:18px;height:18px;border-radius:50%;background:#fff3c4;box-shadow:0 0 14px #ffb81c}
 .win{position:absolute;top:100px;width:260px;height:300px;border-radius:18px;overflow:hidden;
   background:radial-gradient(ellipse at 50% 50%,#fffdf6 0%,#f1e6d0 100%);border:6px solid #3a0408}
@@ -59,7 +59,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 /* text */
 .word{position:absolute;left:0;right:0;text-align:center;font-weight:900;opacity:0;text-shadow:0 8px 30px rgba(0,0,0,.6)}
 .label{position:absolute;left:50%;top:1748px;transform:translateX(-50%);white-space:nowrap;display:flex;align-items:center;gap:18px;
-  background:var(--red);border:4px solid var(--gold);border-radius:999px;padding:14px 40px;font-weight:900;font-size:44px;opacity:0;box-shadow:0 12px 40px rgba(0,0,0,.55)}
+  background:var(--red);border:4px solid var(--gold);border-radius:999px;padding:12px 26px;font-weight:900;font-size:36px;opacity:0;box-shadow:0 12px 40px rgba(0,0,0,.55)}
+.label .pr{display:inline-flex;padding:4px 16px;border-radius:999px;background:#fff;color:#d7192f;font-size:38px}
 .label .n{display:inline-flex;padding:4px 18px;border-radius:999px;background:var(--gold);color:var(--ink);font-size:36px}
 #stamp{position:absolute;left:50%;top:850px;transform:translateX(-50%);opacity:0;white-space:nowrap;text-align:center}
 #stamp .in{display:inline-block;background:var(--gold);color:var(--ink);border:8px solid #fff;border-radius:30px;padding:14px 46px 20px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
@@ -71,7 +72,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 .drink b{margin-top:12px;font-weight:900;font-size:36px;color:var(--gold)}
 /* phone */
 #phonesec{position:absolute;inset:0;opacity:0}
-#ptitle{position:absolute;left:0;right:0;top:170px;text-align:center;font-weight:900;font-size:84px;line-height:1.05}
+#ptitle{position:absolute;left:0;right:0;top:110px;text-align:center;font-weight:900;font-size:84px;line-height:1.05}
 #phone{position:absolute;left:50%;top:470px;transform:translateX(-50%);background:#0b0b0d;border-radius:64px;padding:16px;box-shadow:0 30px 90px rgba(0,0,0,.6),inset 0 0 0 2px #333}
 #screen{position:relative;overflow:hidden;border-radius:50px;background:#fff;width:676px;height:1150px}
 #screen img{position:absolute;left:0;top:0;width:100%;opacity:0}
@@ -94,7 +95,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 <div id="bg"><div id="rays"></div><div id="bokehs"></div></div>
 <div id="world">
   <div id="phs"></div>
-  <div id="slot"><div id="marq">SPICY COMBO SLOTS</div><div id="bulbs"></div>
+  <div id="slot"><div id="marq"><span style="color:#fff">₦5,500</span> COMBO SLOTS</div><div id="bulbs"></div>
     <div class="win" id="w0" style="left:28px"><div class="strip" id="s0"></div></div>
     <div class="win" id="w1" style="left:332px"><div class="strip" id="s1"></div></div>
     <div class="win" id="w2" style="left:636px"><div class="strip" id="s2"></div></div>
@@ -111,15 +112,15 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 <div class="word" id="h2" style="top:780px;font-size:150px;color:var(--gold)">₦5,500</div>
 <div class="word" id="h3" style="top:950px;font-size:120px">COMBO</div>
 <div class="word" id="h4" style="top:1090px;font-size:120px">ARE YOU?</div>
-<div class="label" id="lab0"><span class="n">COMBO 1</span>JOLLOF + MALT + PLANTAIN</div>
-<div class="label" id="lab1"><span class="n">COMBO 2</span>SPAGHETTI + FANTA + SALAD</div>
-<div class="label" id="lab2"><span class="n">COMBO 3</span>FRIED RICE + ZOBO + PLANTAIN</div>
+<div class="label" id="lab0"><span class="n">COMBO 1</span>JOLLOF + MALT + PLANTAIN<span class="pr">₦5,500</span></div>
+<div class="label" id="lab1"><span class="n">COMBO 2</span>SPAGHETTI + FANTA + SALAD<span class="pr">₦5,500</span></div>
+<div class="label" id="lab2"><span class="n">COMBO 3</span>FRIED RICE + ZOBO + PLANTAIN<span class="pr">₦5,500</span></div>
 <div id="pols"></div>
 <div id="stamp"><div class="in"><div class="a">EVERY COMBO WINS!</div><div class="p">₦5,500</div></div></div>
 <div id="drinkhead">PICK ANY <span style="color:var(--gold)">DRINK</span></div>
 <div id="drinks"></div>
 <div id="conf"></div>
-<div id="phonesec"><div id="ptitle">ORDER IN<br><span style="color:var(--gold)">A FEW TAPS</span></div>
+<div id="phonesec"><div id="ptitle">ORDER IN<br><span style="color:var(--gold)">A FEW TAPS</span><div style="margin-top:14px;font-size:46px;font-weight:800;color:#ffe3a3">Mini Odogwu · <span style="background:var(--gold);color:var(--ink);padding:2px 16px;border-radius:12px">₦5,500</span></div></div>
   <div id="phone"><div id="screen"><img id="p0" src="phone/2_meal_view.png"><img id="p1" src="phone/1_meal_long.png"><img id="p2" src="phone/2_meal_view.png"><img id="p3" src="phone/3_added.png"><img id="p4" src="phone/4_cart.png"><div id="tap"></div></div></div>
   <div id="psteps"><div class="ps"><span class="num">1</span>Pick</div><div class="ps"><span class="num">2</span>Add to cart</div><div class="ps"><span class="num">3</span>Checkout</div></div></div>
 <div id="outro">
@@ -184,7 +185,7 @@ COMBOS.forEach((cmb,k)=>{const L=layout(k);cmb.forEach((idx,r)=>{const e=documen
   items.push({e,k,r,s,land:B(k)+R.land[r]});});});
 // polaroids (comp = scaled copy of the box floor)
 const pols=COMBOS.map((cmb,k)=>{const L=layout(k);const d=document.createElement('div');d.className='pol';
-  d.innerHTML=`<div class="comp">${cmb.map((idx,r)=>`<img src="${IMG(CATS[r][idx])}" style="left:${L[r].x/856*100}%;top:${L[r].y/786*100}%;width:${L[r].w/856*100}%;height:${L[r].h/786*100}%">`).join('')}</div><div class="cap">${NAMES[k]}</div>`;
+  d.innerHTML=`<div class="comp">${cmb.map((idx,r)=>`<img src="${IMG(CATS[r][idx])}" style="left:${L[r].x/856*100}%;top:${L[r].y/786*100}%;width:${L[r].w/856*100}%;height:${L[r].h/786*100}%">`).join('')}</div><div class="cap">${NAMES[k]} · <span style="color:#d7192f">₦5,500</span></div>`;
   $('pols').appendChild(d);return d;});
 const SLOTX=[220,540,860], SLOTY=168;
 SLOTX.forEach(x=>{const d=document.createElement('div');d.className='ph';d.style.left=(x-115)+'px';d.textContent='?';$('phs').appendChild(d);});
