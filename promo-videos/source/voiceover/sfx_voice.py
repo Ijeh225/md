@@ -55,6 +55,7 @@ T=dict(know=.05,all=5.41,jollof=8.01,zobo=11.25,plantain=12.77,salad=14.28,sw=16
 at(hit(.4),T['know'],.6)
 at(riser(1.2),T['all']-1.2,.8); at(boom(1.4,110,32),T['all'],1.3); at(hit(.5),T['all'],.7)
 for k in ('jollof','zobo','plantain'): at(whoosh(.45),T[k]-.45,.6); at(boom(.7,100,40),T[k],.75)
+at(whoosh(.3,400,7000),10.12-.3,.6); at(boom(.6,110,45),10.12,.65)
 at(whoosh(.3,500,6000),T['salad']-.3,.5); at(pop_(),T['salad'],.6)
 at(whoosh(.35,400,7000),T['sw']-.1,.7)
 for k in ('fried','spag'): at(whoosh(.3,400,7000),T[k]-.3,.7); at(boom(.6,110,45),T[k],.7)

@@ -71,7 +71,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 <div id="bg"><div id="rays"></div><div id="bokehs"></div></div>
 <div id="world">
   <div id="box"><div id="floor"><img id="floormark" src="../promo/imgs/logo.png">
-    <div class="it" id="fJ"><img src="img/jollof.png"></div><div class="it" id="fF"><img src="img/fried2.png"></div><div class="it" id="fS"><img src="img/spag2.png"></div>
+    <div class="it" id="fJC"><img src="img/jollofchk.png"></div><div class="it" id="fJ"><img src="img/jollof.png"></div><div class="it" id="fF"><img src="img/fried2.png"></div><div class="it" id="fS"><img src="img/spag2.png"></div>
     <div class="it" id="dZ"><img src="img/zobo.png"></div><div class="it" id="dM"><img src="img/malt.png"></div><div class="it" id="dF"><img src="img/fanta.png"></div><div class="it" id="dC"><img src="img/coke.png"></div>
     <div class="it" id="sP"><img src="img/plantain.png"></div><div class="it" id="sS"><img src="img/salad.png"></div>
   </div></div>
@@ -88,7 +88,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 <div class="head" id="h3">PICK YOUR <span class="gold">DRINK!</span></div>
 <div class="head" id="h4">YOUR COMBO,<br><span class="gold">YOUR WAY</span></div>
 <div class="chip" id="c1">🍛 JOLLOF RICE</div>
-<div class="chip" id="c2">🍗 CHICKEN or TURKEY</div>
+<div class="chip" id="c2">🍗 WITH CHICKEN</div>
+<div class="chip" id="c2b">🍗 OR TURKEY</div>
 <div class="chip" id="c3">🧃 CHILLED ZOBO</div>
 <div class="chip" id="c4">🍌 PLANTAIN</div>
 <div class="chip" id="c5">🥗 or SALAD</div>
@@ -120,7 +121,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 </div>
 <script>
 // ---- timeline (seconds), synced to Ifeoma take 1
-const T={know:.05,just:1.08,num:1.76,numEnd:4.1,get:4.69,all:5.41,plate:7.22,jollof:8.01,chicken:9.21,zobo:11.25,plantain:12.77,salad:14.28,
+const T={know:.05,just:1.08,num:1.76,numEnd:4.1,get:4.69,all:5.41,plate:7.22,jollof:8.01,chicken:9.21,turkey:10.12,zobo:11.25,plantain:12.77,salad:14.28,
  mood:15.07,sw:16.66,fried:17.32,spag:18.92,pick:19.8,malt:21.05,fanta:22.06,coke:22.9,zobo2:24.12,your:24.89,yway:25.96,still:27.62,price:28.5,
  thats:31.33,mini:31.72,big:33.25,small:34.61,hund:35.96,order:39.06,url:40.06,end:42.6};
 const TOTAL=46.0; window.TOTAL=TOTAL;
@@ -137,7 +138,7 @@ const FL={x:40,y:36,w:560,h:810}, DR={x:630,y:40,w:290,h:470}, SD={x:620,y:540,w
 function fit(id,box,asp){const e=$(id);let w=box.w,h=box.w/asp;if(h>box.h){h=box.h;w=h*asp;}
   Object.assign(e.style,{left:(box.x+(box.w-w)/2)+'px',top:(box.y+(box.h-h)/2)+'px',width:w+'px',height:h+'px'});}
 const ASP={jollof:762/1039,spag2:877/1334,fried2:797/1351,jollofchk:971/1397};
-fit('fJ',FL,ASP.jollof);fit('fF',FL,ASP.fried2);fit('fS',FL,ASP.spag2);
+fit('fJ',FL,ASP.jollof);fit('fJC',FL,ASP.jollofchk);fit('fF',FL,ASP.fried2);fit('fS',FL,ASP.spag2);
 ['dZ','dM','dF','dC'].forEach(id=>fit(id,DR,id==='dM'?691/1277:id==='dZ'?549/1382:id==='dF'?418/1407:457/1429));
 fit('sP',SD,1);fit('sS',SD,1017/1032);
 // finale grid
@@ -157,9 +158,9 @@ function addImpact(t,x,y,big){const o={t,x,y,big,dust:[],sparks:[]};const n=big?
   for(let i=0;i<(big?24:10);i++){const s=document.createElement('div');s.className='spark';fx.appendChild(s);o.sparks.push({s,a:rnd()*Math.PI*2,r:(big?380:180)+rnd()*300,sc:.6+rnd()*1.3,ph:rnd()*6});}
   IMP.push(o);}
 const BX=40+24, BY=470+24;
-const HITS=[[T.all,40],[T.jollof,18],[T.zobo,12],[T.plantain,12],[T.salad,8],[T.fried,14],[T.spag,14],[T.price,30]];
+const HITS=[[T.all,40],[T.jollof,18],[T.turkey,14],[T.zobo,12],[T.plantain,12],[T.salad,8],[T.fried,14],[T.spag,14],[T.price,30]];
 addImpact(T.all,540,1000,true);
-addImpact(T.jollof,BX+FL.x+FL.w/2,BY+FL.y+FL.h*.8,false);addImpact(T.zobo,BX+DR.x+DR.w/2,BY+DR.y+DR.h*.85,false);addImpact(T.plantain,BX+SD.x+SD.w/2,BY+SD.y+SD.h*.8,false);
+addImpact(T.jollof,BX+FL.x+FL.w/2,BY+FL.y+FL.h*.8,false);addImpact(T.turkey,BX+FL.x+FL.w/2,BY+FL.y+FL.h*.8,false);addImpact(T.zobo,BX+DR.x+DR.w/2,BY+DR.y+DR.h*.85,false);addImpact(T.plantain,BX+SD.x+SD.w/2,BY+SD.y+SD.h*.8,false);
 addImpact(T.fried,BX+FL.x+FL.w/2,BY+FL.y+FL.h*.8,false);addImpact(T.spag,BX+FL.x+FL.w/2,BY+FL.y+FL.h*.8,false);addImpact(T.price,540,1700,true);
 function shake(t){let x=0,y=0;for(const [a,amp] of HITS){const d=t-a;if(d>=0&&d<.45){const k=amp*Math.exp(-d*10);x+=k*Math.sin(d*90);y+=k*Math.cos(d*77);}}return [x,y];}
 function popEl(el,t,a,b,base='',dur=.5){if(t<a||t>b+.3){el.style.opacity=0;return;}const k=eb(p(t,a,a+dur));el.style.opacity=Math.min(cl(p(t,a,a+.12)),1-p(t,b,b+.25));el.style.transform=`${base} scale(${.4+.6*k})`;}
@@ -195,7 +196,8 @@ window.renderAsync=async function(t){
   {const inB=eo(p(t,T.plate-.25,T.plate+.25)), outB=eio(p(t,T.thats-.25,T.thats+.15));
    $('box').style.opacity=t<T.plate-.25?0:1-outB; $('box').style.transform=`translateY(${(1-inB)*1200+outB*1300}px)`;}
   const BOXOUT=T.thats-.25;
-  drop('fJ',t,T.jollof,T.fried-.3,0);
+  drop('fJC',t,T.jollof,T.turkey-.25,0);
+  swapIn('fJ',t,T.turkey,T.fried-.3);
   drop('dZ',t,T.zobo,T.malt-.3,0);
   drop('sP',t,T.plantain,T.salad-.25,0);
   swapIn('sS',t,T.salad,BOXOUT);
@@ -207,7 +209,7 @@ window.renderAsync=async function(t){
      else if(t<BOXOUT){const d=t-T.zobo2,sq=Math.exp(-d*9)*Math.sin(d*26);e.style.transform=`scale(${1+.05*sq},${1-.06*sq})`;}
      else{const k=ei(p(t,BOXOUT,BOXOUT+.35));e.style.transform=`translateX(${-k*1400}px)`;}}}
   // chips
-  popEl($('c1'),t,T.jollof,T.chicken-.1,'translateX(-50%)');popEl($('c2'),t,T.chicken,T.zobo-.1,'translateX(-50%)');
+  popEl($('c1'),t,T.jollof,T.chicken-.1,'translateX(-50%)');popEl($('c2'),t,T.chicken,T.turkey-.1,'translateX(-50%)');popEl($('c2b'),t,T.turkey,T.zobo-.1,'translateX(-50%)');
   popEl($('c3'),t,T.zobo,T.plantain-.1,'translateX(-50%)');popEl($('c4'),t,T.plantain,T.salad-.1,'translateX(-50%)');
   popEl($('c5'),t,T.salad,T.mood-.1,'translateX(-50%)');popEl($('c6'),t,T.fried,T.spag-.1,'translateX(-50%)');popEl($('c7'),t,T.spag,T.pick-.1,'translateX(-50%)');
   // heads
