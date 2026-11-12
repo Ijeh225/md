@@ -127,6 +127,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 <div class="w" id="hd"></div>
 <div class="chip" id="ch1">🍛 SMOKY RICE</div><div class="chip" id="ch2">🍗 TURKEY or CHICKEN</div><div class="chip" id="ch3">🥤 COLD DRINKS</div><div class="chip" id="ch4">🥗 SALAD or PLANTAIN</div>
 <div class="chip" id="ch5">😋 EVERYBODY CHOPS TILL DEM BELLEFUL!</div>
+<div class="w" id="f5" style="top:230px;font-size:120px">FEED <span class="gold">5</span> PEOPLE<br>FOR JUST</div><div class="price" id="p0" style="top:1380px"><div>₦25,000</div></div>
 <div class="price" id="p25"><div>₦25,000</div></div><div class="price" id="p50"><div>₦50,000</div></div><div class="price" id="p100"><div>₦100,000</div></div>
 <div class="w" id="cnt">50</div><div class="w" id="cntl">GUESTS?</div>
 <div class="w" id="bring">BRING THEM<br><span class="gold">ALL!</span></div>
@@ -168,10 +169,10 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 <div class="full" id="vig"></div><div class="full" id="redf"></div><div class="full" id="flash"></div><div class="full" id="black"></div>
 </div>
 <script>
-const T={stop:.13,dont:1.4,party:2.93,here:4.22,spicy:5.78,whole:7.46,squad:8.99,five:9.87,smoky:11.82,turkey:13.37,drinks:14.61,salad:15.77,p25:17.63,
- ten:19.43,p50:20.34,twenty:21.82,p100:22.94,chops:25.04,fifty:28.33,hundred:29.15,twoh:30.09,bring:31.27,cover:33.05,every:34.08,custom:35.65,jollof:37.07,fried:37.84,spag:38.66,drink:39.61,
- ns0:41.31,ns1:42.21,ns2:43.46,order:44.49,day:45.24,call:46.81,n0:47.81,n1:49.8,n2:51.26,visit:53.12,url:53.96,end:57.05};
-const TOTAL=60.8; window.TOTAL=TOTAL;
+const T={stop:.05,feed:1.69,price0:3.44,dont:5.45,party:6.95,bday:7.6,here:8.6,spicy:10.17,whole:11.81,squad:13.28,five:13.38,smoky:15.09,turkey:17.05,drinks:18.47,salad:19.79,p25:20.55,
+ ten:21.83,p50:22.52,twenty:24.67,p100:25.87,chops:27.78,fifty:30.99,hundred:31.82,twoh:33.04,bring:34.38,cover:36.36,every:37.37,custom:39.34,jollof:40.57,fried:41.86,spag:42.83,drink:43.91,
+ ns0:46.0,ns1:47.1,ns2:48.47,order:49.9,day:50.54,call:52.43,n0:53.9,n1:56.29,n2:57.99,visit:60.04,url:61.11,end:64.35};
+const TOTAL=68.0; window.TOTAL=TOTAL;
 const $=id=>document.getElementById(id);
 const cl=x=>Math.max(0,Math.min(1,x)), p=(t,a,b)=>cl((t-a)/(b-a)), lerp=(a,b,k)=>a+(b-a)*k;
 const eo=x=>1-Math.pow(1-cl(x),3), ei=x=>Math.pow(cl(x),2.2), eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
@@ -187,7 +188,7 @@ const spks=[];for(let i=0;i<50;i++){const s=document.createElement('div');s.clas
 // confetti
 const conf=[];const CC=['#ffb81c','#d7192f','#fff3c4','#3ad17a','#ffffff'];
 for(let i=0;i<90;i++){const c=document.createElement('div');c.className='conf';c.style.background=CC[i%5];$('conf').appendChild(c);conf.push({c,x:rnd()*1080,d:rnd(),v:420+rnd()*420,sw:rnd()*6,rot:rnd()*720});}
-const CONF_T=[T.p25,T.p50,T.p100,T.every,T.end];
+const CONF_T=[T.price0,T.p25,T.p50,T.p100,T.every,T.end];
 // units (20 packs)
 const F=['jollof','fried2','spag2','jollofchk'],D=['malt','fanta','coke','zobo'],SD=['salad','plantain'];
 function lay(n){const cols=n===5?2:n===10?3:4, rows=Math.ceil(n/cols), w=n===5?350:n===10?268:212, h=w*1.02, g=n===5?16:12;
@@ -198,20 +199,20 @@ const L5=lay(5),L10=lay(10),L20=lay(20);
 const units=[];for(let i=0;i<20;i++){const u=document.createElement('div');u.className='u';
   u.innerHTML=`<div class="b"></div><img src="img/${F[i%4]}.png" style="left:3%;top:3%;width:60%;height:94%"><img src="img/${D[i%4]}.png" style="left:66%;top:3%;width:30%;height:56%"><img src="img/${SD[i%2]}.png" style="left:64%;top:62%;width:34%;height:34%">`;
   $('units').appendChild(u);
-  const a = i<5 ? T.smoky-.6+i*.2 : i<10 ? T.ten+.05+(i-5)*.12 : T.twenty+.05+(i-10)*.07;
+  const a = i<5 ? T.five+.2+i*.22 : i<10 ? T.ten+.05+(i-5)*.12 : T.twenty+.05+(i-10)*.07;
   units.push({u,i,a});}
 // people
 const PE=['🧑🏾','👩🏾','👨🏾','👧🏾','🧔🏾','👩🏾‍🦱','👦🏾'];const ppl=[];for(let i=0;i<55;i++){const s=document.createElement('span');s.textContent=PE[i%7];$('ppl').appendChild(s);ppl.push(s);}
 // impact dust
 const fx=$('fx');const IMP=[];function addImpact(t,x,y,n=14,R=300){const o={t,x,y,d:[]};for(let i=0;i<n;i++){const d=document.createElement('div');d.className='dust';const s=70+rnd()*80;d.style.width=d.style.height=s+'px';fx.appendChild(d);o.d.push({d,s,a:rnd()*6.28,r:R+rnd()*200});}IMP.push(o);}
-[T.p25,T.p50,T.p100].forEach(a=>addImpact(a,540,1540,22,420));
-const HITS=[[T.stop,46],[T.dont,22],[T.here,20],[T.p25,30],[T.p50,30],[T.p100,36],[T.fifty,14],[T.hundred,16],[T.twoh,20],[T.cover,30],[T.every,26],[T.ns0,14],[T.ns1,14],[T.ns2,18]];
+[T.p25,T.p50,T.p100].forEach(a=>addImpact(a,540,1540,22,420));addImpact(T.price0,540,1480,22,420);
+const HITS=[[T.stop,30],[T.price0,34],[T.dont,22],[T.here,20],[T.p25,30],[T.p50,30],[T.p100,36],[T.fifty,14],[T.hundred,16],[T.twoh,20],[T.cover,30],[T.every,26],[T.ns0,14],[T.ns1,14],[T.ns2,18]];
 function shake(t){let x=0,y=0;for(const [a,amp] of HITS){const d=t-a;if(d>=0&&d<.45){const k=amp*Math.exp(-d*10);x+=k*Math.sin(d*90);y+=k*Math.cos(d*77);}}return [x,y];}
 function pop(el,t,a,b,base='',big=false){if(t<a||t>b+.3){el.style.opacity=0;return;}const k=eb(p(t,a,a+.4),big?2.2:1.7);el.style.opacity=Math.min(cl(p(t,a,a+.08)),1-p(t,b,b+.22));el.style.transform=`${base} scale(${big?2.6-1.6*k:.4+.6*k})`;}
 function rise(el,t,a,b,base=''){if(t<a||t>b+.3){el.style.opacity=0;return;}const k=eo(p(t,a,a+.45));el.style.opacity=Math.min(k,1-p(t,b,b+.22));el.style.transform=`${base} translateY(${(1-k)*50}px)`;}
 // captions
-let WORDS=[[0.13, 0.15, "Got"], [0.19, 0.22, "a"], [0.29, 0.6, "party"], [0.64, 0.9, "coming"], [0.97, 1.2, "up?"], [1.4, 1.49, "DON'T"], [1.54, 1.86, "stress"], [1.93, 2.72, "yourself!"], [2.93, 3.4, "Owambe,"], [3.47, 4.15, "birthday,"], [4.22, 4.74, "end-of-year"], [4.85, 5.64, "bash..."], [5.78, 6.46, "SpicyFood"], [6.54, 6.69, "is"], [6.74, 7.06, "feeding"], [7.14, 7.36, "the"], [7.46, 7.96, "WHOLE"], [8.08, 8.78, "crowd!"], [8.99, 9.05, "Squad"], [9.08, 9.13, "of"], [9.23, 9.72, "five?"], [9.87, 10.47, "Five"], [10.59, 11.07, "FULL"], [11.16, 11.67, "packs!"], [11.82, 12.34, "Smoky"], [12.43, 12.86, "rice,"], [12.94, 13.31, "juicy"], [13.37, 13.69, "turkey"], [13.76, 13.91, "or"], [13.97, 14.51, "chicken,"], [14.61, 15.03, "cold"], [15.1, 15.7, "drinks,"], [15.77, 16.08, "salad"], [16.13, 16.23, "or"], [16.29, 17.27, "plantain,"], [17.54, 17.58, "just"], [17.63, 18.11, "twenty-five"], [18.17, 18.63, "thousand"], [18.71, 19.23, "naira!"], [19.43, 19.44, "Ten"], [19.52, 19.67, "of"], [19.74, 20.27, "you?"], [20.34, 20.71, "Fifty"], [20.76, 21.09, "thousand"], [21.16, 21.61, "naira!"], [21.82, 21.91, "Twenty"], [22.0, 22.89, "guests?"], [22.94, 23.11, "One"], [23.17, 23.56, "hundred"], [23.62, 24.08, "thousand"], [24.16, 24.9, "naira,"], [25.04, 25.05, "and"], [25.14, 25.88, "everybody"], [25.96, 26.4, "chops"], [26.49, 26.85, "till"], [26.9, 27.07, "dem"], [27.16, 28.12, "belleful!"], [28.33, 28.71, "Fifty?"], [28.9, 29.09, "A"], [29.15, 30.06, "hundred?"], [30.09, 30.21, "Two"], [30.25, 30.58, "hundred"], [30.66, 31.18, "guests?"], [31.27, 31.7, "Bring"], [31.76, 32.0, "them"], [32.19, 32.97, "ALL!"], [33.05, 33.2, "We"], [33.27, 33.42, "go"], [33.51, 33.94, "cover"], [34.08, 35.44, "EVERYBODY!"], [35.65, 35.91, "Customise"], [35.96, 36.06, "it"], [36.14, 36.44, "your"], [36.53, 37.03, "way!"], [37.07, 37.78, "Jollof,"], [37.84, 38.16, "fried"], [38.23, 38.6, "rice,"], [38.66, 39.5, "spaghetti,"], [39.61, 39.95, "any"], [40.01, 40.32, "drink"], [40.36, 40.47, "you"], [40.55, 41.11, "like!"], [41.31, 41.36, "No"], [41.45, 42.11, "stress,"], [42.21, 42.41, "no"], [42.48, 43.38, "cooking,"], [43.46, 43.61, "no"], [43.66, 44.28, "wahala!"], [44.49, 44.52, "Just"], [44.59, 44.96, "order"], [45.08, 45.19, "a"], [45.24, 45.41, "day"], [45.48, 45.86, "before"], [45.89, 46.01, "your"], [46.1, 46.61, "event!"], [46.81, 46.86, "Call"], [46.91, 47.01, "or"], [47.09, 47.69, "WhatsApp"], [47.81, 48.29, "zero"], [48.36, 48.66, "nine"], [48.73, 49.03, "zero"], [49.09, 49.71, "four,"], [49.8, 50.15, "zero"], [50.21, 50.45, "four"], [50.55, 51.2, "two,"], [51.26, 51.43, "two"], [51.54, 52.02, "nine"], [52.1, 52.32, "six"], [52.38, 53.07, "four,"], [53.12, 53.22, "or"], [53.32, 53.82, "visit"], [53.96, 55.01, "spicyfood"], [55.05, 55.16, "dot"], [55.29, 55.69, "com"], [55.76, 55.99, "dot"], [56.17, 56.36, "N"], [56.47, 56.96, "G!"]],CH=[];
-function buildCaps(){let cur=[];for(const w of WORDS){cur.push(w);const end=/[!?,.]$/.test(w[2]);if((end&&cur.length>=2)||cur.length>=4){CH.push(cur);cur=[];}}if(cur.length)CH.push(cur);}
+let WORDS=[[0.05, 0.07, "Got"], [0.1, 0.14, "a"], [0.2, 0.51, "party"], [0.56, 0.81, "coming"], [0.94, 1.49, "up?"], [1.69, 1.73, "Feed"], [1.84, 2.18, "FIVE"], [2.27, 2.78, "people"], [2.85, 3.08, "for"], [3.14, 3.38, "just"], [3.44, 4.12, "twenty-five"], [4.18, 4.65, "thousand"], [4.76, 5.25, "naira!"], [5.45, 5.54, "DON'T"], [5.61, 5.99, "stress"], [6.07, 6.74, "yourself!"], [6.95, 7.5, "Owambe,"], [7.6, 8.54, "birthday,"], [8.6, 9.14, "end-of-year"], [9.26, 10.04, "bash..."], [10.17, 10.79, "SpicyFood"], [10.86, 11.01, "is"], [11.06, 11.38, "feeding"], [11.46, 11.68, "the"], [11.81, 12.36, "WHOLE"], [12.47, 13.18, "crowd!"], [13.38, 13.62, "Five"], [13.73, 14.15, "FULL"], [14.26, 14.89, "packs!"], [15.09, 15.72, "Smoky"], [15.84, 16.39, "rice,"], [16.49, 16.99, "juicy"], [17.05, 17.44, "turkey"], [17.51, 17.66, "or"], [17.74, 18.33, "chicken,"], [18.47, 19.01, "cold"], [19.09, 19.68, "drinks,"], [19.79, 20.35, "salad"], [20.45, 20.65, "or"], [20.74, 21.62, "plantain!"], [21.83, 21.85, "Ten"], [21.9, 22.0, "of"], [22.07, 22.37, "you?"], [22.52, 23.27, "Fifty"], [23.33, 23.87, "thousand"], [23.94, 24.46, "naira!"], [24.67, 24.73, "Twenty"], [24.83, 25.78, "guests?"], [25.87, 26.16, "One"], [26.2, 26.53, "hundred"], [26.58, 26.98, "thousand"], [27.05, 27.58, "naira,"], [27.78, 27.79, "and"], [27.87, 28.61, "everybody"], [28.71, 29.21, "chops"], [29.27, 29.51, "till"], [29.59, 29.81, "dem"], [29.9, 30.78, "belleful!"], [30.99, 31.65, "Fifty?"], [31.69, 31.73, "A"], [31.82, 33.0, "hundred?"], [33.04, 33.15, "Two"], [33.2, 33.6, "hundred"], [33.67, 34.27, "guests?"], [34.38, 34.94, "Bring"], [35.0, 35.24, "them"], [35.45, 36.29, "ALL!"], [36.36, 36.51, "We"], [36.59, 36.74, "go"], [36.81, 37.19, "cover"], [37.37, 39.13, "EVERYBODY!"], [39.34, 39.54, "Customise"], [39.59, 39.69, "it"], [39.73, 39.91, "your"], [40.01, 40.36, "way!"], [40.57, 41.8, "Jollof,"], [41.86, 42.14, "fried"], [42.24, 42.74, "rice,"], [42.83, 43.78, "spaghetti,"], [43.91, 44.31, "any"], [44.37, 44.68, "drink"], [44.74, 44.9, "you"], [44.98, 45.8, "like!"], [46.0, 46.03, "No"], [46.13, 47.0, "stress,"], [47.1, 47.3, "no"], [47.38, 48.35, "cooking,"], [48.47, 48.72, "no"], [48.84, 49.7, "wahala!"], [49.9, 49.95, "Just"], [50.01, 50.32, "order"], [50.39, 50.47, "a"], [50.54, 50.77, "day"], [50.82, 51.14, "before"], [51.17, 51.29, "your"], [51.39, 52.23, "event!"], [52.43, 52.79, "Call"], [52.87, 53.01, "or"], [53.1, 53.76, "WhatsApp"], [53.9, 54.44, "zero"], [54.51, 54.81, "nine"], [54.9, 55.26, "zero"], [55.35, 56.19, "four,"], [56.29, 56.68, "zero"], [56.75, 57.05, "four"], [57.16, 57.95, "two,"], [57.99, 58.1, "two"], [58.2, 58.62, "nine"], [58.72, 59.0, "six"], [59.06, 59.89, "four,"], [60.04, 60.34, "or"], [60.45, 61.01, "visit"], [61.11, 61.91, "spicyfood"], [61.95, 62.06, "dot"], [62.21, 62.66, "com"], [62.79, 63.18, "dot"], [63.33, 63.48, "N"], [63.67, 64.23, "G!"]],CH=[];
+function buildCaps(){let cur=[];for(let i=0;i<WORDS.length;i++){const w=WORDS[i];cur.push(w);const end=/[!?.]$/.test(w[2]),com=/,$/.test(w[2]);const nx=WORDS[i+1];const nxEnd=nx&&/[!?.]$/.test(nx[2]);if(end||(com&&cur.length>=2)||(cur.length>=4&&!nxEnd)||cur.length>=5){CH.push(cur);cur=[];}}if(cur.length)CH.push(cur);}
 buildCaps();let lastCh=-1;
 function caps(t){const c=$('cap');if(t>=T.end-.1||!CH.length){c.style.opacity=0;return;}
   let k=-1;for(let i=0;i<CH.length;i++){if(t>=CH[i][0][0]-.05)k=i;}
@@ -229,13 +230,13 @@ window.renderAsync=async function(t){
   else if(t>=T.ns0-.3&&t<T.order+.1){po=Math.min(p(t,T.ns0-.3,T.ns0),1-p(t,T.order-.25,T.order+.05));await setPot(150+Math.floor((t-T.ns0)*30*.7));pot.style.transform='scale(1.06)';}
   pot.style.opacity=po;$('potshade').style.opacity=po;
   // ---- hook
-  pop($('stop'),t,T.stop,T.party-.25,'',true);
+  pop($('stop'),t,T.stop,T.feed-.12,'',true);pop($('f5'),t,T.feed,T.dont-.18);
   pop($('dont'),t,T.dont,T.party-.2);
-  pop($('ps'),t,T.party,T.spicy-.15);[[T.party,'ps0'],[3.47,'ps1'],[T.here,'ps2']].forEach(([a,id])=>{const e=$(id);const k=eb(p(t,a,a+.35));e.style.opacity=t<a?0:1;e.style.transform=`scale(${.3+.7*k})`;});
+  pop($('ps'),t,T.party,T.spicy-.15);[[T.party,'ps0'],[T.bday,'ps1'],[T.here,'ps2']].forEach(([a,id])=>{const e=$(id);const k=eb(p(t,a,a+.35));e.style.opacity=t<a?0:1;e.style.transform=`scale(${.3+.7*k})`;});
   {const e=$('logoA');const a=T.spicy,b=T.whole-.3;if(t<a||t>b+.3)e.style.opacity=0;else{const k=eb(p(t,a,a+.45));e.style.opacity=Math.min(cl(p(t,a,a+.1)),1-p(t,b,b+.25));e.style.transform=`scale(${.3+.7*k})`;}}
   rise($('feed'),t,T.spicy+.75,T.squad-.3);$('feedbg').style.opacity=$('feed').style.opacity;
   // fire during hook
-  const fo=t<T.party+.3?Math.min(p(t,T.dont-.05,T.dont+.25),1-p(t,T.party-.1,T.party+.3)):0;
+  const fo=t<T.party+.3?Math.min(p(t,T.price0-.05,T.price0+.25),1-p(t,T.party-.1,T.party+.3)):0;
   for(const f of flames){const lt=((t*f.sp+f.ph)%1);f.f.style.opacity=fo*Math.sin(lt*Math.PI)*.85;f.f.style.transform=`translate(${f.x-f.s/2+Math.sin(t*5+f.ph*9)*30}px,${1920-f.s*.6-lt*520}px) scale(${1.1-.5*lt})`;}
   for(const s of spks){const lt=((t*s.sp+s.ph)%1);s.s.style.opacity=fo*(1-lt);s.s.style.transform=`translate(${s.x+s.dr*lt}px,${1900-lt*1500}px)`;}
   // bulk photo reveal on "whole crowd"
@@ -246,7 +247,7 @@ window.renderAsync=async function(t){
   // ---- spread
   const inSp=t>=T.squad-.1&&t<T.fifty+.2;
   {const e=$('hd');if(!inSp){e.style.opacity=0;}else{const n=t<T.ten?0:t<T.twenty?1:2;const a=[T.squad,T.ten,T.twenty][n];
-    e.innerHTML=['SQUAD OF <span class="gold">5</span>','<span class="gold">10</span> OF YOU','<span class="gold">20</span> GUESTS'][n];
+    e.innerHTML=['<span class="gold">5</span> FULL PACKS','<span class="gold">10</span> OF YOU','<span class="gold">20</span> GUESTS'][n];
     const k=eb(p(t,a,a+.4));e.style.opacity=Math.min(cl(p(t,a,a+.08)),1-p(t,T.fifty-.25,T.fifty));e.style.transform=`scale(${.5+.5*k})`;}}
   const k10=eio(p(t,T.ten-.05,T.ten+.4)),k20=eio(p(t,T.twenty-.05,T.twenty+.4));const out=eio(p(t,T.fifty-.3,T.fifty+.1));
   for(const o of units){const u=o.u;if(t<o.a-.4||t>T.fifty+.2){u.style.opacity=0;continue;}
@@ -259,13 +260,13 @@ window.renderAsync=async function(t){
     u.style.opacity=(1-out);u.style.transform=`translate(${pos.x+dx}px,${pos.y+dy}px) scale(${pos.s*(1+.05*sq)*(1-.2*out)}) rotate(${(1-kin)*(i%2?10:-10)}deg)`;}
   // AI party photos
   {const ph=(id,a,b,z0,z1)=>{const e=$(id);if(t<a||t>b+.3){e.style.opacity=0;return 0;}const o=Math.min(p(t,a,a+.25),1-p(t,b,b+.28));e.style.opacity=o;e.style.transform=`scale(${lerp(z0,z1,p(t,a,b))})`;return o;};
-   const o0=ph('ph5',T.squad-.12,T.smoky-.75,1.12,1.02);const o1=ph('ph10',T.ten-.12,T.twenty-.2,1.14,1.03),o2=ph('phc1',T.fifty-.15,T.bring-.12,1.16,1.0),o3=ph('phc2',T.bring-.12,T.custom-.3,1.0,1.1);
+   const o0=ph('ph5',T.feed-.12,T.dont-.2,1.12,1.02);const o1=ph('ph10',T.ten-.12,T.twenty-.2,1.14,1.03),o2=ph('phc1',T.fifty-.15,T.bring-.12,1.16,1.0),o3=ph('phc2',T.bring-.12,T.custom-.3,1.0,1.1);
    $('phshade').style.opacity=Math.max(o0,o1,o2,o3);}
   pop($('ch1'),t,T.smoky,T.turkey-.3,'translateX(-50%)');pop($('ch2'),t,T.turkey-.25,T.drinks-.12,'translateX(-50%)');pop($('ch3'),t,T.drinks,T.salad-.12,'translateX(-50%)');pop($('ch4'),t,T.salad,T.p25-.2,'translateX(-50%)');
   {const e=$('ch5');pop(e,t,T.chops,T.fifty-.3,'translateX(-50%)');e.style.fontSize='40px';e.style.top='1340px';}
   const pr=(id,a,b)=>{const e=$(id);if(t<a-.05||t>b+.25){e.style.opacity=0;return;}const k=eb(p(t,a-.05,a+.35),1.5);e.style.opacity=Math.min(cl(p(t,a-.05,a+.05)),1-p(t,b,b+.2));
     e.style.transform=`translateX(-50%) scale(${(2.4-1.4*k)*(t>a+.5?1+.025*Math.sin((t-a)*7):1)}) rotate(${-3*k}deg)`;};
-  pr('p25',T.p25,T.ten-.2);pr('p50',T.p50,T.twenty-.2);pr('p100',T.p100,T.chops-.15);
+  pr('p0',T.price0,T.dont-.18);pr('p25',T.p25,T.ten-.2);pr('p50',T.p50,T.twenty-.2);pr('p100',T.p100,T.chops-.15);
   // ---- crowd
   {const e=$('cnt'),l=$('cntl');const a=T.fifty-.05,b=T.bring-.15;if(t<a||t>b+.25){e.style.opacity=0;l.style.opacity=0;}else{
     const v=t<T.hundred?Math.round(lerp(20,50,eo(p(t,a,a+.35)))):t<T.twoh?Math.round(lerp(50,100,eo(p(t,T.hundred,T.hundred+.35)))):Math.round(lerp(100,200,eo(p(t,T.twoh,T.twoh+.45))));
@@ -307,7 +308,7 @@ window.renderAsync=async function(t){
   caps(t);
   const fl=(a,s=1)=>{const d=t-a;return d<-.04||d>.3?0:(d<0?(1+d/.04):(1-d/.3))*s};
   $('redf').style.opacity=0;
-  $('flash').style.opacity=Math.max(fl(T.dont,.5),fl(T.here,.4),fl(T.squad,.4),fl(T.p25,.5),fl(T.p50,.5),fl(T.p100,.6),fl(T.fifty,.35),fl(T.cover,.5),fl(T.ten-.1,.4),fl(T.smoky-.75,.35),fl(T.stop,.6),fl(T.bring-.1,.4),fl(T.custom,.35),fl(T.order,.3),fl(T.call-.1,.35),fl(T.end,.55));
+  $('flash').style.opacity=Math.max(fl(T.dont,.5),fl(T.here,.4),fl(T.squad,.4),fl(T.p25,.5),fl(T.p50,.5),fl(T.p100,.6),fl(T.fifty,.35),fl(T.cover,.5),fl(T.ten-.1,.4),fl(T.feed-.1,.4),fl(T.price0,.55),fl(T.dont-.15,.35),fl(T.stop,.6),fl(T.bring-.1,.4),fl(T.custom,.35),fl(T.order,.3),fl(T.call-.1,.35),fl(T.end,.55));
   $('black').style.opacity=Math.max(1-p(t,0,.05),p(t,TOTAL-.4,TOTAL));
 };
 window.ready=Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]);
