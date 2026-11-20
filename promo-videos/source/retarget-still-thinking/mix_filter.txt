@@ -1,0 +1,1 @@
+eq=contrast=1.17:brightness=0.03:saturation=1.52:gamma=1.05,vibrance=intensity=0.22,colorbalance=rs=0.05:gs=0.015:bs=-0.04:rm=0.07:gm=0.02:bm=-0.07:rh=0.05:gh=0.025:bh=-0.05,curves=r='0/0.02 0.5/0.55 1/1':g='0/0.01 0.5/0.52 0.9/0.9 1/0.98':b='0/0.03 0.5/0.47 1/0.93',unsharp=5:5:0.7,noise=alls=6:allf=t,vignette=PI/4.8
