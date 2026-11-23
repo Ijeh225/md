@@ -1,0 +1,192 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800;900&family=Great+Vibes&display=block" rel="stylesheet">
+<style>
+:root{--gold:#e8b64a;--gold2:#ffd77a;--ink:#140f08;--green:#25d366;--red:#c8152c}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family:Raleway,sans-serif;color:#fff}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+.full{position:absolute;inset:0}
+#bg{background:radial-gradient(ellipse at 50% 45%,#3a2a12 0%,#15100a 55%,#050403 100%)}
+#rays{position:absolute;left:50%;top:50%;width:3400px;height:3400px;margin:-1700px 0 0 -1700px;background:repeating-conic-gradient(from 0deg,rgba(232,182,74,.07) 0deg 5deg,transparent 5deg 20deg);-webkit-mask:radial-gradient(circle,#000 0%,transparent 55%);mask:radial-gradient(circle,#000 0%,transparent 55%)}
+.bokeh{position:absolute;border-radius:50%;filter:blur(16px)}
+#world{position:absolute;inset:0}
+.photo,.clip{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;opacity:0}
+#shade{position:absolute;inset:0;opacity:0;background:linear-gradient(180deg,rgba(5,4,3,.85) 0%,rgba(5,4,3,.5) 22%,transparent 38%,transparent 64%,rgba(5,4,3,.8) 82%,rgba(5,4,3,.92) 100%)}
+.w{position:absolute;left:0;right:0;text-align:center;font-weight:900;opacity:0;text-shadow:0 8px 30px rgba(0,0,0,.85);line-height:1.06;padding:0 30px}
+.gold{color:var(--gold2)}
+.script{font-family:'Great Vibes',cursive;font-weight:400;color:var(--gold2);text-shadow:0 4px 20px rgba(0,0,0,.8)}
+/* top bar */
+#bar{position:absolute;left:30px;right:30px;top:36px;height:120px;display:flex;align-items:center;justify-content:space-between;opacity:0}
+#bar .nm{font-family:'Great Vibes',cursive;font-size:74px;color:var(--gold2);line-height:1;text-shadow:0 4px 14px rgba(0,0,0,.7)}
+#bar .p{background:linear-gradient(180deg,#ffe08f,#e8b64a);color:var(--ink);font-weight:900;font-size:52px;padding:4px 24px;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+/* cover */
+#cover{position:absolute;left:60px;top:430px;width:960px;height:900px;border-radius:34px;background:linear-gradient(180deg,#f3e6cc,#e6d3ad);box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 8px var(--gold);opacity:0;transform-origin:540px 880px}
+#cover img{position:absolute;object-fit:contain;filter:drop-shadow(0 14px 14px rgba(0,0,0,.45))}
+/* box */
+#box{position:absolute;left:40px;top:430px;width:1000px;height:950px;border-radius:30px;background:linear-gradient(180deg,#1d160c,#0b0805);box-shadow:0 40px 90px rgba(0,0,0,.7),0 0 0 6px var(--gold);opacity:0}
+#floor{position:absolute;left:24px;top:24px;width:952px;height:902px;border-radius:14px;overflow:hidden;background:#efe2c6;box-shadow:inset 0 30px 28px -10px rgba(60,30,0,.4),inset 0 -12px 18px -8px rgba(60,30,0,.25)}
+.it{position:absolute;opacity:0;will-change:transform}
+.it img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 16px 16px rgba(0,0,0,.45))}
+.chip{position:absolute;left:50%;top:1430px;transform:translateX(-50%);white-space:nowrap;background:#140f08;border:4px solid var(--gold);color:var(--gold2);border-radius:999px;padding:12px 40px;font-weight:900;font-size:54px;opacity:0;box-shadow:0 12px 40px rgba(0,0,0,.6)}
+.price{position:absolute;left:50%;transform:translateX(-50%);opacity:0;white-space:nowrap}
+.price div{background:linear-gradient(180deg,#ffe08f,#e8b64a);color:var(--ink);font-weight:900;font-size:140px;line-height:1;border:8px solid #fff;border-radius:30px;padding:8px 46px 16px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#num{position:absolute;left:0;right:0;top:980px;display:flex;justify-content:center;gap:24px;font-weight:900;font-size:120px}
+#num span{opacity:0;background:var(--green);border-radius:26px;padding:6px 30px;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+#wa{position:absolute;left:50%;top:740px;transform:translateX(-50%);background:var(--green);border-radius:999px;padding:16px 50px;font-weight:900;font-size:80px;white-space:nowrap;opacity:0}
+#end{position:absolute;inset:0;opacity:0;text-align:center}
+#end .n1{position:absolute;left:0;right:0;top:120px;font-family:'Great Vibes',cursive;font-size:190px;line-height:1;color:var(--gold2);text-shadow:0 6px 24px rgba(0,0,0,.8)}
+#end .n2{position:absolute;left:0;right:0;top:330px;font-weight:900;font-size:110px;letter-spacing:.06em}
+#end .loc{position:absolute;left:0;right:0;top:470px;font-weight:800;font-size:46px;color:#f3e6cc}
+#end .tb{position:absolute;left:110px;right:110px;top:580px;background:rgba(0,0,0,.5);border:4px solid var(--gold);border-radius:30px;padding:16px 40px}
+#end .tb div{display:flex;justify-content:space-between;font-weight:900;font-size:62px;padding:10px 0}
+#end .tb div b{color:var(--gold2)}
+#end .tb small{display:block;text-align:left;font-weight:700;font-size:34px;color:#f3e6cc;margin-top:-6px}
+#end .ph{position:absolute;left:80px;right:80px;top:1060px;background:var(--green);border-radius:999px;font-weight:900;font-size:62px;padding:20px 0;white-space:nowrap}
+#end .cat{position:absolute;left:60px;right:60px;top:1250px;font-weight:900;font-size:54px;line-height:1.25}
+#end .od{position:absolute;left:0;right:0;top:1440px;font-weight:900;font-size:80px;color:var(--gold2)}
+#cap{position:absolute;left:40px;right:40px;top:1650px;text-align:center;font-weight:900;font-size:66px;line-height:1.12;text-transform:uppercase;opacity:0}
+#cap span{display:inline-block;margin:0 9px;padding:2px 12px;border-radius:14px;background:rgba(0,0,0,.72)}
+#cap span.on{background:var(--gold);color:var(--ink)}
+.conf{position:absolute;width:18px;height:30px;opacity:0;border-radius:3px}
+#flash{background:#fff;opacity:0}
+#vig{background:radial-gradient(ellipse at 50% 50%,transparent 58%,rgba(0,0,0,.6) 100%)}
+#black{background:#000;opacity:0}
+</style></head>
+<body><div id="stage">
+<div class="full" id="bg"><div id="rays"></div><div id="bokehs"></div></div>
+<div id="world">
+  <img class="clip" id="k1" src="clip1/0001.jpg"><img class="clip" id="k2" src="clip2/0001.jpg"><img class="clip" id="k3" src="clip3/0001.jpg"><img class="clip" id="kp" src="pot/0001.jpg">
+  <img class="photo" id="f5" src="img/five.jpg"><img class="photo" id="f10" src="img/ten.jpg"><img class="photo" id="fc1" src="img/crowd1.jpg"><img class="photo" id="fc2" src="img/crowd2.jpg"><img class="photo" id="fb" src="img/bulk.png" style="object-fit:contain;background:#0b0805">
+  <div id="shade"></div>
+  <div id="box"><div id="floor">
+    <div class="it" id="iJ"><img src="img/jollofchk.png"></div><div class="it" id="iF"><img src="img/fried2.png"></div>
+    <div class="it" id="iP"><img src="img/plantain.png"></div><div class="it" id="iS"><img src="img/salad.png"></div>
+    <div class="it" id="iC"><img src="img/coke.png"></div><div class="it" id="iA"><img src="img/fanta.png"></div>
+  </div></div>
+  <div id="cover">
+    <img src="img/jollofchk.png" style="left:40px;top:40px;width:560px;height:806px">
+    <img src="img/coke.png" style="left:690px;top:40px;width:170px;height:470px">
+    <img src="img/plantain.png" style="left:640px;top:540px;width:280px;height:280px">
+  </div>
+</div>
+<div id="texts">
+  <div class="w" id="t0" style="top:130px;font-size:150px">ASABA! 👋</div>
+  <div class="w" id="t1" style="top:130px;font-size:110px">ARE YOU<br><span class="gold">HUNGRY?</span> 😋</div>
+  <div class="price" id="p0" style="top:1380px"><div>₦5,000</div></div>
+  <div class="chip" id="c0">🍛 JOLLOF RICE</div><div class="chip" id="c1">🍚 FRIED RICE</div><div class="chip" id="c2">🍗 WITH CHICKEN</div><div class="chip" id="c3">🍗 OR TURKEY</div>
+  <div class="chip" id="c4">🍌 SWEET PLANTAIN</div><div class="chip" id="c5">🥗 OR SALAD</div><div class="chip" id="c6">🥤 COLD COKE</div><div class="chip" id="c7">🥤 OR FANTA</div>
+  <div class="w" id="h1" style="top:200px;font-size:120px">FRESHLY<br><span class="gold">COOKED</span> 🔥</div>
+  <div class="w" id="h2" style="top:200px;font-size:120px">PACKED WITH<br><span class="gold">LOVE</span> ❤️</div>
+  <div class="w" id="h3" style="top:200px;font-size:110px">RIGHT HERE IN<br><span class="gold">ASABA</span> 📍</div>
+  <div class="w" id="g1" style="top:180px;font-size:110px"><span class="gold">5</span> FRIENDS<br>COMING?</div><div class="price" id="p25" style="top:1380px"><div>₦25,000</div></div>
+  <div class="w" id="g2" style="top:180px;font-size:130px"><span class="gold">10</span> PEOPLE?</div><div class="price" id="p50" style="top:1380px"><div>₦50,000</div></div>
+  <div class="w" id="g3" style="top:180px;font-size:130px">BIGGER<br><span class="gold">PARTY?</span> 🎉</div>
+  <div class="chip" id="c8" style="top:1300px">📦 BULK ORDERS</div><div class="chip" id="c9" style="top:1420px">🏡 INDOOR & OUTDOOR CATERING</div>
+  <div class="w" id="g4" style="top:180px;font-size:110px">WE CATER FOR<br><span class="gold">ANY CROWD!</span> 💪</div>
+  <div id="wa">💬 WhatsApp</div>
+  <div id="num"><span id="n0">0706</span><span id="n1">726</span><span id="n2">5057</span></div>
+</div>
+<div id="end">
+  <div class="n1">Cake's &amp;</div><div class="n2">FOOD BY <span class="gold">BB</span></div><div class="loc">📍 Asaba, Delta State</div>
+  <div class="tb"><div><span>1 pack</span><b>₦5,000</b></div><small>Jollof or fried rice · chicken or turkey · plantain or salad · Coke or Fanta</small>
+    <div><span>5 packs</span><b>₦25,000</b></div><div><span>10 packs</span><b>₦50,000</b></div></div>
+  <div class="ph">💬 WhatsApp 0706 726 5057</div>
+  <div class="cat">Bulk orders · Indoor &amp; outdoor catering</div>
+  <div class="od">ORDER NOW!</div>
+</div>
+<div id="bar"><div class="nm">Food by BB</div><div class="p">₦5,000</div></div>
+<div id="conf"></div><div id="cap"></div>
+<div class="full" id="vig"></div><div class="full" id="flash"></div><div class="full" id="black"></div>
+</div>
+<script>
+const WORDS=__WORDS__;
+const T={asaba:.08,hungry:1.04,five:2.58,price:2.96,jollof:4.78,fried:5.56,chicken:7.16,turkey:7.74,plantain:9.3,salad:10.14,coke:11.7,fanta:12.68,fresh:14.22,packed:15.54,here:16.98,
+ f5:19.26,p25:20.82,t10:23.42,p50:24.72,bigger:26.94,bulk:28.32,indoor:29.42,cater:31.72,wa:34.72,n0:35.78,n1:37.32,n2:38.86,end:41.55};
+const TOTAL=49.0; window.TOTAL=TOTAL;
+const $=id=>document.getElementById(id);
+const cl=x=>Math.max(0,Math.min(1,x)), p=(t,a,b)=>cl((t-a)/(b-a)), lerp=(a,b,k)=>a+(b-a)*k;
+const eo=x=>1-Math.pow(1-cl(x),3), ei=x=>Math.pow(cl(x),2.2), eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const eb=(x,c=1.7)=>{x=cl(x);return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+let seed=41; const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+const bk=[];for(let i=0;i<18;i++){const e=document.createElement('div');e.className='bokeh';const s=70+rnd()*220;Object.assign(e.style,{width:s+'px',height:s+'px',background:rnd()<.6?'rgba(232,182,74,.28)':'rgba(255,240,200,.16)'});$('bokehs').appendChild(e);bk.push({e,x:rnd()*1080,y:rnd()*1920,vx:(rnd()-.5)*26,vy:-8-rnd()*26,ph:rnd()*6});}
+const conf=[];const CC=['#e8b64a','#ffd77a','#ffffff','#c8152c','#25d366'];
+for(let i=0;i<80;i++){const c=document.createElement('div');c.className='conf';c.style.background=CC[i%5];$('conf').appendChild(c);conf.push({c,x:rnd()*1080,d:rnd(),v:420+rnd()*420,sw:rnd()*6,rot:rnd()*720});}
+const CONF=[T.price,T.p25,T.p50,T.cater,T.end];
+// box layout (floor 952x902)
+function fit(id,b,asp){const e=$(id);let w=b.w,h=b.w/asp;if(h>b.h){h=b.h;w=h*asp;}Object.assign(e.style,{left:(b.x+(b.w-w)/2)+'px',top:(b.y+(b.h-h)/2)+'px',width:w+'px',height:h+'px'});}
+const FL={x:30,y:30,w:590,h:842},DR={x:650,y:40,w:280,h:470},SD={x:640,y:550,w:300,h:300};
+fit('iJ',FL,971/1397);fit('iF',FL,797/1351);fit('iP',SD,1125/1134);fit('iS',SD,1017/1032);fit('iC',DR,457/1429);fit('iA',DR,418/1407);
+const BX=40+24,BY=430+24;
+const HITS=[[T.five,30],[T.jollof,16],[T.plantain,12],[T.coke,12],[T.p25,30],[T.p50,30],[T.cater,24],[T.end,18]];
+function shake(t){let x=0,y=0;for(const [a,amp] of HITS){const d=t-a;if(d>=0&&d<.45){const k=amp*Math.exp(-d*10);x+=k*Math.sin(d*90);y+=k*Math.cos(d*77);}}return [x,y];}
+function pop(el,t,a,b,base='',big=false){if(t<a||t>b+.3){el.style.opacity=0;return;}const k=eb(p(t,a,a+.4),big?2.2:1.7);el.style.opacity=Math.min(cl(p(t,a,a+.08)),1-p(t,b,b+.22));el.style.transform=`${base} scale(${big?2.4-1.4*k:.4+.6*k})`;}
+function pr(id,a,b){const e=$(id);if(t_<a-.05||t_>b+.25){e.style.opacity=0;return;}const k=eb(p(t_,a-.05,a+.35),1.5);e.style.opacity=Math.min(cl(p(t_,a-.05,a+.05)),1-p(t_,b,b+.2));e.style.transform=`translateX(-50%) scale(${(2.4-1.4*k)*(t_>a+.5?1+.025*Math.sin((t_-a)*7):1)}) rotate(${-3*k}deg)`;}
+function drop(id,t,land,out){const e=$(id);const a=land-.4;if(t<a||t>out+.3){e.style.opacity=0;return;}e.style.opacity=1;
+  if(t<land){const k=ei(p(t,a,land));e.style.transform=`translateY(${-(1-k)*1400}px) scale(${1.25-.25*k}) rotate(${(1-k)*10}deg)`;}
+  else if(t<out){const d=t-land,sq=Math.exp(-d*9)*Math.sin(d*26);e.style.transform=`scale(${1+.06*sq},${1-.08*sq})`;}
+  else{const k=ei(p(t,out,out+.3));e.style.transform=`translateX(${-k*1400}px) rotate(${-k*20}deg)`;}}
+function swap(id,t,land,out){const e=$(id);const a=land-.28;if(t<a||t>out+.3){e.style.opacity=0;return;}e.style.opacity=1;
+  if(t<land){const k=eo(p(t,a,land));e.style.transform=`translateX(${(1-k)*1400}px) rotate(${(1-k)*16}deg)`;}
+  else if(t<out){const d=t-land,sq=Math.exp(-d*9)*Math.sin(d*26);e.style.transform=`scale(${1+.05*sq},${1-.06*sq})`;}
+  else{const k=ei(p(t,out,out+.3));e.style.transform=`translateX(${-k*1400}px) rotate(${-k*16}deg)`;}}
+// captions
+let CH=[];{let cur=[];for(let i=0;i<WORDS.length;i++){const w=WORDS[i];cur.push(w);const end=/[!?.]$/.test(w[2]),com=/,$/.test(w[2]);const nx=WORDS[i+1];const nxEnd=nx&&/[!?.]$/.test(nx[2]);if(end||(com&&cur.length>=2)||(cur.length>=4&&!nxEnd)||cur.length>=5){CH.push(cur);cur=[];}}if(cur.length)CH.push(cur);}
+let lastCh=-1;
+function caps(t){const c=$('cap');if(t>=T.end-.1){c.style.opacity=0;return;}let k=-1;for(let i=0;i<CH.length;i++){if(t>=CH[i][0][0]-.05)k=i;}if(k<0){c.style.opacity=0;return;}
+  const ch=CH[k];const endT=(k+1<CH.length?Math.min(CH[k+1][0][0]-.05,ch[ch.length-1][1]+.6):ch[ch.length-1][1]+.5);if(t>endT){c.style.opacity=0;return;}
+  if(k!==lastCh){c.innerHTML=ch.map(w=>`<span>${w[2].replace(/[,]$/,'')}</span>`).join('');lastCh=k;}
+  c.style.opacity=1;[...c.children].forEach((s,i)=>{const on=t>=ch[i][0]-.03&&(i===ch.length-1||t<ch[i+1][0]-.03);s.className=on?'on':'';s.style.transform=on?'scale(1.12)':'scale(1)';});}
+const CL={k1:{a:14.0,b:15.9,dir:'clip1',off:1.0,max:222},k2:{a:15.9,b:17.4,dir:'clip2',off:1.2,max:291},k3:{a:17.4,b:19.15,dir:'clip3',off:0,max:342},kp:{a:28.2,b:31.65,dir:'pot',off:0,max:321,rate:.62}};
+const last={};
+const PH={f5:[19.15,23.3,1.14,1.02],f10:[23.3,26.85,1.14,1.03],fc1:[26.85,28.2,1.16,1.08],fc2:[31.65,34.6,1.04,1.12],fb:[34.6,T.end+.05,1.0,1.08]};
+let t_=0;
+window.renderAsync=async function(t){t_=t;
+  $('rays').style.transform=`rotate(${t*5}deg)`;
+  for(const b of bk){const x=(b.x+b.vx*t+1200)%1200-60,y=((b.y+b.vy*t)%2000+2000)%2000-40;b.e.style.transform=`translate(${x}px,${y}px)`;b.e.style.opacity=.5+.5*Math.sin(t*1.3+b.ph);}
+  const [sx,sy]=shake(t);$('world').style.transform=`translate(${sx}px,${sy}px)`;
+  let sh=0;
+  for(const [id,c] of Object.entries(CL)){const e=$(id);if(t<c.a||t>c.b+.3){e.style.opacity=0;continue;}const o=Math.min(p(t,c.a,c.a+.2),1-p(t,c.b,c.b+.25));e.style.opacity=o;sh=Math.max(sh,o*.8);
+    const idx=Math.max(1,Math.min(c.max,Math.floor(c.off*30+(t-c.a)*30*(c.rate||1))+1));if(idx!==last[id]){e.src=`${c.dir}/${String(idx).padStart(4,'0')}.jpg`;await e.decode().catch(()=>{});last[id]=idx;}
+    e.style.transform=`scale(${lerp(1.04,1.1,p(t,c.a,c.b))})`;}
+  for(const [id,[a,b,z0,z1]] of Object.entries(PH)){const e=$(id);if(t<a||t>b+.3){e.style.opacity=0;continue;}const o=Math.min(p(t,a,a+.25),1-p(t,b,b+.28));e.style.opacity=o;sh=Math.max(sh,o);e.style.transform=`scale(${lerp(z0,z1,p(t,a,b))})`;}
+  $('shade').style.opacity=sh;
+  // cover (visible from frame 0)
+  {const e=$('cover');const out=eio(p(t,4.35,4.75));e.style.opacity=t>4.8?0:1-out;e.style.transform=`scale(${(1.0+.03*p(t,0,4.3))*(1-.3*out)}) translateY(${out*-200}px)`;}
+  pop($('t0'),t,T.asaba,T.hungry-.1,'',true);pop($('t1'),t,T.hungry,4.3);
+  {const e=$('p0');if(t>4.4){e.style.opacity=0;}else{const a=T.price;const k=t<a?0:eb(p(t,a-.05,a+.35),1.5);e.style.opacity=t<a-.05?0:Math.min(1,1-p(t,4.2,4.4));e.style.transform=`translateX(-50%) scale(${(2.4-1.4*k)*(t>a+.5?1+.025*Math.sin((t-a)*7):1)}) rotate(${-3*k}deg)`;}}
+  // box
+  {const inB=eo(p(t,4.4,4.85)),outB=eio(p(t,13.8,14.15));$('box').style.opacity=t<4.4?0:1-outB;$('box').style.transform=`translateY(${(1-inB)*1200+outB*1300}px)`;}
+  const BO=13.8;
+  drop('iJ',t,T.jollof,T.fried-.25); swap('iF',t,T.fried,T.chicken-.25); swap('iJ2',t,0,0);
+  {const e=$('iJ');// second appearance of jollof+chicken handled by clone logic below
+  }
+  // jollof again on "chicken", fried again on "turkey"
+  const J=$('iJ'),F=$('iF');
+  if(t>=T.chicken-.28&&t<T.turkey){const k=eo(p(t,T.chicken-.28,T.chicken));J.style.opacity=1;J.style.transform=`translateX(${(1-k)*1400}px) rotate(${(1-k)*16}deg)`;}
+  else if(t>=T.turkey&&t<T.turkey+.3){const k=ei(p(t,T.turkey,T.turkey+.3));J.style.opacity=1;J.style.transform=`translateX(${-k*1400}px) rotate(${-k*16}deg)`;}
+  if(t>=T.turkey-.28){const a=T.turkey-.28;if(t>BO+.3){F.style.opacity=0;}else{F.style.opacity=1;if(t<T.turkey){const k=eo(p(t,a,T.turkey));F.style.transform=`translateX(${(1-k)*1400}px) rotate(${(1-k)*16}deg)`;}else if(t<BO){const d=t-T.turkey,sq=Math.exp(-d*9)*Math.sin(d*26);F.style.transform=`scale(${1+.05*sq},${1-.06*sq})`;}else{const k=ei(p(t,BO,BO+.3));F.style.transform=`translateX(${-k*1400}px)`;}}}
+  drop('iP',t,T.plantain+.26,T.salad-.25); swap('iS',t,T.salad+.22,BO);
+  drop('iC',t,T.coke+.46,T.fanta-.25); swap('iA',t,T.fanta+.22,BO);
+  const chips=[[T.jollof,T.fried-.12],[T.fried,T.chicken-.12],[T.chicken,T.turkey-.12],[T.turkey,T.plantain-.12],[T.plantain,T.salad-.12],[T.salad,T.coke-.12],[T.coke,T.fanta-.12],[T.fanta,BO]];
+  chips.forEach(([a,b],i)=>pop($('c'+i),t,a,b,'translateX(-50%)'));
+  $('bar').style.opacity=Math.min(p(t,4.4,4.8),1-p(t,T.end-.3,T.end));
+  // kitchen
+  pop($('h1'),t,T.fresh,T.packed-.15);pop($('h2'),t,T.packed,T.here-.15);pop($('h3'),t,T.here,19.0);
+  // groups
+  pop($('g1'),t,T.f5,23.2);pr('p25',T.p25,23.2);pop($('g2'),t,T.t10,26.75);pr('p50',T.p50,26.75);
+  pop($('g3'),t,T.bigger,T.bulk-.1);pop($('c8'),t,T.bulk,31.5,'translateX(-50%)');pop($('c9'),t,T.indoor,31.5,'translateX(-50%)');
+  pop($('g4'),t,T.cater,34.5);
+  // whatsapp
+  pop($('wa'),t,T.wa,T.end-.3,'translateX(-50%)');
+  [T.n0,T.n1,T.n2].forEach((a,i)=>{const e=$('n'+i);const k=eb(p(t,a,a+.35));e.style.opacity=t<a?0:1-p(t,T.end-.3,T.end);e.style.transform=`scale(${.3+.7*k})`;});
+  // end
+  {const ot=t-T.end;const e=$('end');e.style.opacity=p(ot,0,.35);e.style.transform=`scale(${.92+.08*eo(p(ot,0,.5))})`;}
+  for(const c of conf){let on=false;for(const ct of CONF){const d=t-ct-c.d*.4;if(d>=0&&d<2.6){const y=-60+c.v*d*1.6,x=c.x+Math.sin(d*3+c.sw)*60;c.c.style.opacity=y<1980?1:0;c.c.style.transform=`translate(${x}px,${y}px) rotate(${c.rot+d*500}deg) rotateY(${d*400}deg)`;on=true;}}if(!on)c.c.style.opacity=0;}
+  caps(t);
+  const fls=[[.05,.5],[T.price,.6],[4.4,.35],[14.0,.4],[15.9,.3],[17.4,.3],[19.15,.4],[T.p25,.5],[23.3,.4],[T.p50,.5],[26.85,.4],[28.2,.3],[31.65,.4],[34.6,.35],[T.end,.55]];
+  let f=0;for(const [a,s] of fls){const d=t-a;if(d>=-.04&&d<=.3)f=Math.max(f,(d<0?(1+d/.04):(1-d/.3))*s);}$('flash').style.opacity=f;
+  $('black').style.opacity=p(t,TOTAL-.4,TOTAL);
+};
+window.ready=Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]);
+</script></body></html>
