@@ -44,7 +44,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 #end .tb small{display:block;text-align:left;font-weight:700;font-size:34px;color:#f3e6cc;margin-top:-6px}
 #end .ph{position:absolute;left:80px;right:80px;top:1060px;background:var(--green);border-radius:999px;font-weight:900;font-size:62px;padding:20px 0;white-space:nowrap}
 #end .cat{position:absolute;left:60px;right:60px;top:1250px;font-weight:900;font-size:54px;line-height:1.25}
-#end .od{position:absolute;left:0;right:0;top:1440px;font-weight:900;font-size:80px;color:var(--gold2)}
+#end .db{position:absolute;left:0;right:0;top:1390px;font-weight:900;font-size:56px;color:#f3e6cc}
+#end .od{position:absolute;left:0;right:0;top:1490px;font-weight:900;font-size:80px;color:var(--gold2)}
 #cap{position:absolute;left:40px;right:40px;top:1650px;text-align:center;font-weight:900;font-size:66px;line-height:1.12;text-transform:uppercase;opacity:0}
 #cap span{display:inline-block;margin:0 9px;padding:2px 12px;border-radius:14px;background:rgba(0,0,0,.72)}
 #cap span.on{background:var(--gold);color:var(--ink)}
@@ -84,6 +85,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
   <div class="w" id="g3" style="top:180px;font-size:130px">BIGGER<br><span class="gold">PARTY?</span> 🎉</div>
   <div class="chip" id="c8" style="top:1300px">📦 BULK ORDERS</div><div class="chip" id="c9" style="top:1420px">🏡 INDOOR & OUTDOOR CATERING</div>
   <div class="w" id="g4" style="top:180px;font-size:110px">WE CATER FOR<br><span class="gold">ANY CROWD!</span> 💪</div>
+  <div class="w" id="g5" style="top:180px;font-size:104px">ORDER A DAY<br><span class="gold">BEFORE</span> YOUR EVENT!</div>
   <div id="wa">💬 WhatsApp</div>
   <div id="num"><span id="n0">0706</span><span id="n1">726</span><span id="n2">5057</span></div>
 </div>
@@ -93,6 +95,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
     <div><span>5 packs</span><b>₦25,000</b></div><div><span>10 packs</span><b>₦50,000</b></div></div>
   <div class="ph">💬 WhatsApp 0706 726 5057</div>
   <div class="cat">Bulk orders · Indoor &amp; outdoor catering</div>
+  <div class="db">Order a day before your event!</div>
   <div class="od">ORDER NOW!</div>
 </div>
 <div id="bar"><div class="nm">Food by BB</div><div class="p">₦5,000</div></div>
@@ -102,8 +105,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 <script>
 const WORDS=__WORDS__;
 const T={asaba:.08,hungry:1.04,five:2.58,price:2.96,jollof:4.78,fried:5.56,chicken:7.16,turkey:7.74,plantain:9.3,salad:10.14,coke:11.7,fanta:12.68,fresh:14.22,packed:15.54,here:16.98,
- f5:19.26,p25:20.82,t10:23.42,p50:24.72,bigger:26.94,bulk:28.32,indoor:29.42,cater:31.72,wa:34.72,n0:35.78,n1:37.32,n2:38.86,end:41.55};
-const TOTAL=49.0; window.TOTAL=TOTAL;
+ f5:19.26,p25:20.82,t10:23.42,p50:24.72,bigger:26.94,bulk:28.32,indoor:29.42,cater:31.72,od:34.32,wa:37.12,n0:38.18,n1:39.72,n2:41.26,end:43.95};
+const TOTAL=51.4; window.TOTAL=TOTAL;
 const $=id=>document.getElementById(id);
 const cl=x=>Math.max(0,Math.min(1,x)), p=(t,a,b)=>cl((t-a)/(b-a)), lerp=(a,b,k)=>a+(b-a)*k;
 const eo=x=>1-Math.pow(1-cl(x),3), ei=x=>Math.pow(cl(x),2.2), eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
@@ -139,7 +142,7 @@ function caps(t){const c=$('cap');if(t>=T.end-.1){c.style.opacity=0;return;}let 
   c.style.opacity=1;[...c.children].forEach((s,i)=>{const on=t>=ch[i][0]-.03&&(i===ch.length-1||t<ch[i+1][0]-.03);s.className=on?'on':'';s.style.transform=on?'scale(1.12)':'scale(1)';});}
 const CL={k1:{a:14.0,b:15.9,dir:'clip1',off:1.0,max:222},k2:{a:15.9,b:17.4,dir:'clip2',off:1.2,max:291},k3:{a:17.4,b:19.15,dir:'clip3',off:0,max:342},kp:{a:28.2,b:31.65,dir:'pot',off:0,max:321,rate:.62}};
 const last={};
-const PH={f5:[19.15,23.3,1.14,1.02],f10:[23.3,26.85,1.14,1.03],fc1:[26.85,28.2,1.16,1.08],fc2:[31.65,34.6,1.04,1.12],fb:[34.6,T.end+.05,1.0,1.08]};
+const PH={f5:[19.15,23.3,1.14,1.02],f10:[23.3,26.85,1.14,1.03],fc1:[26.85,28.2,1.16,1.08],fc2:[31.65,36.95,1.04,1.14],fb:[36.95,T.end+.05,1.0,1.08]};
 let t_=0;
 window.renderAsync=async function(t){t_=t;
   $('rays').style.transform=`rotate(${t*5}deg)`;
@@ -158,9 +161,7 @@ window.renderAsync=async function(t){t_=t;
   // box
   {const inB=eo(p(t,4.4,4.85)),outB=eio(p(t,13.8,14.15));$('box').style.opacity=t<4.4?0:1-outB;$('box').style.transform=`translateY(${(1-inB)*1200+outB*1300}px)`;}
   const BO=13.8;
-  drop('iJ',t,T.jollof,T.fried-.25); swap('iF',t,T.fried,T.chicken-.25); swap('iJ2',t,0,0);
-  {const e=$('iJ');// second appearance of jollof+chicken handled by clone logic below
-  }
+  drop('iJ',t,T.jollof,T.fried-.25); swap('iF',t,T.fried,T.chicken-.25);
   // jollof again on "chicken", fried again on "turkey"
   const J=$('iJ'),F=$('iF');
   if(t>=T.chicken-.28&&t<T.turkey){const k=eo(p(t,T.chicken-.28,T.chicken));J.style.opacity=1;J.style.transform=`translateX(${(1-k)*1400}px) rotate(${(1-k)*16}deg)`;}
@@ -176,7 +177,7 @@ window.renderAsync=async function(t){t_=t;
   // groups
   pop($('g1'),t,T.f5,23.2);pr('p25',T.p25,23.2);pop($('g2'),t,T.t10,26.75);pr('p50',T.p50,26.75);
   pop($('g3'),t,T.bigger,T.bulk-.1);pop($('c8'),t,T.bulk,31.5,'translateX(-50%)');pop($('c9'),t,T.indoor,31.5,'translateX(-50%)');
-  pop($('g4'),t,T.cater,34.5);
+  pop($('g4'),t,T.cater,T.od-.15);pop($('g5'),t,T.od,36.85);
   // whatsapp
   pop($('wa'),t,T.wa,T.end-.3,'translateX(-50%)');
   [T.n0,T.n1,T.n2].forEach((a,i)=>{const e=$('n'+i);const k=eb(p(t,a,a+.35));e.style.opacity=t<a?0:1-p(t,T.end-.3,T.end);e.style.transform=`scale(${.3+.7*k})`;});
@@ -184,7 +185,7 @@ window.renderAsync=async function(t){t_=t;
   {const ot=t-T.end;const e=$('end');e.style.opacity=p(ot,0,.35);e.style.transform=`scale(${.92+.08*eo(p(ot,0,.5))})`;}
   for(const c of conf){let on=false;for(const ct of CONF){const d=t-ct-c.d*.4;if(d>=0&&d<2.6){const y=-60+c.v*d*1.6,x=c.x+Math.sin(d*3+c.sw)*60;c.c.style.opacity=y<1980?1:0;c.c.style.transform=`translate(${x}px,${y}px) rotate(${c.rot+d*500}deg) rotateY(${d*400}deg)`;on=true;}}if(!on)c.c.style.opacity=0;}
   caps(t);
-  const fls=[[.05,.5],[T.price,.6],[4.4,.35],[14.0,.4],[15.9,.3],[17.4,.3],[19.15,.4],[T.p25,.5],[23.3,.4],[T.p50,.5],[26.85,.4],[28.2,.3],[31.65,.4],[34.6,.35],[T.end,.55]];
+  const fls=[[.05,.5],[T.price,.6],[4.4,.35],[14.0,.4],[15.9,.3],[17.4,.3],[19.15,.4],[T.p25,.5],[23.3,.4],[T.p50,.5],[26.85,.4],[28.2,.3],[31.65,.4],[T.od-.05,.35],[36.95,.35],[T.end,.55]];
   let f=0;for(const [a,s] of fls){const d=t-a;if(d>=-.04&&d<=.3)f=Math.max(f,(d<0?(1+d/.04):(1-d/.3))*s);}$('flash').style.opacity=f;
   $('black').style.opacity=p(t,TOTAL-.4,TOTAL);
 };
