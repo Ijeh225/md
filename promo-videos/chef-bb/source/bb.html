@@ -42,10 +42,10 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 #end .tb div{display:flex;justify-content:space-between;font-weight:900;font-size:62px;padding:10px 0}
 #end .tb div b{color:var(--gold2)}
 #end .tb small{display:block;text-align:left;font-weight:700;font-size:34px;color:#f3e6cc;margin-top:-6px}
-#end .ph{position:absolute;left:80px;right:80px;top:1060px;background:var(--green);border-radius:999px;font-weight:900;font-size:62px;padding:20px 0;white-space:nowrap}
-#end .cat{position:absolute;left:60px;right:60px;top:1250px;font-weight:900;font-size:54px;line-height:1.25}
-#end .db{position:absolute;left:0;right:0;top:1390px;font-weight:900;font-size:56px;color:#f3e6cc}
-#end .od{position:absolute;left:0;right:0;top:1490px;font-weight:900;font-size:80px;color:var(--gold2)}
+#end .ph{position:absolute;left:80px;right:80px;top:1160px;background:var(--green);border-radius:999px;font-weight:900;font-size:62px;padding:20px 0;white-space:nowrap}
+#end .cat{position:absolute;left:60px;right:60px;top:1340px;font-weight:900;font-size:54px;line-height:1.25}
+#end .db{position:absolute;left:0;right:0;top:1480px;font-weight:900;font-size:56px;color:#f3e6cc}
+#end .od{position:absolute;left:0;right:0;top:1580px;font-weight:900;font-size:80px;color:var(--gold2)}
 #cap{position:absolute;left:40px;right:40px;top:1650px;text-align:center;font-weight:900;font-size:66px;line-height:1.12;text-transform:uppercase;opacity:0}
 #cap span{display:inline-block;margin:0 9px;padding:2px 12px;border-radius:14px;background:rgba(0,0,0,.72)}
 #cap span.on{background:var(--gold);color:var(--ink)}
@@ -58,7 +58,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 <div class="full" id="bg"><div id="rays"></div><div id="bokehs"></div></div>
 <div id="world">
   <img class="clip" id="k1" src="clip1/0001.jpg"><img class="clip" id="k2" src="clip2/0001.jpg"><img class="clip" id="k3" src="clip3/0001.jpg"><img class="clip" id="kp" src="pot/0001.jpg">
-  <img class="photo" id="f5" src="img/five.jpg"><img class="photo" id="f10" src="img/ten.jpg"><img class="photo" id="fc1" src="img/crowd1.jpg"><img class="photo" id="fc2" src="img/crowd2.jpg"><img class="photo" id="fb" src="img/bulk.png" style="object-fit:contain;background:#0b0805">
+  <img class="photo" id="f5" src="img/five.jpg"><img class="photo" id="f10" src="img/ten.jpg"><img class="photo" id="fc1" src="img/crowd1.jpg"><img class="photo" id="fc2" src="img/crowd2.jpg"><img class="photo" id="ffo" src="img/bulk.png"><img class="photo" id="fb" src="img/bulk.png" style="object-fit:contain;background:#0b0805">
   <div id="shade"></div>
   <div id="box"><div id="floor">
     <div class="it" id="iJ"><img src="img/jollofchk.png"></div><div class="it" id="iF"><img src="img/fried2.png"></div>
@@ -86,12 +86,17 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
   <div class="chip" id="c8" style="top:1300px">📦 BULK ORDERS</div><div class="chip" id="c9" style="top:1420px">🏡 INDOOR & OUTDOOR CATERING</div>
   <div class="w" id="g4" style="top:180px;font-size:110px">WE CATER FOR<br><span class="gold">ANY CROWD!</span> 💪</div>
   <div class="w" id="g5" style="top:180px;font-size:104px">ORDER A DAY<br><span class="gold">BEFORE</span> YOUR EVENT!</div>
+  <div class="w" id="s1" style="top:160px;font-size:130px">SMALL<br><span class="gold">BUDGET?</span> 🤔</div>
+  <div class="w" id="s2" style="top:160px;font-size:130px">FOOD<br><span class="gold">ONLY</span></div>
+  <div class="chip" id="s3" style="top:1250px">🍛 RICE + CHICKEN OR TURKEY</div>
+  <div class="price" id="p4" style="top:1380px"><div>₦4,000</div></div>
   <div id="wa">💬 WhatsApp</div>
   <div id="num"><span id="n0">0706</span><span id="n1">726</span><span id="n2">5057</span></div>
 </div>
 <div id="end">
   <div class="n1">Cake's &amp;</div><div class="n2">FOOD BY <span class="gold">BB</span></div><div class="loc">📍 Asaba, Delta State</div>
   <div class="tb"><div><span>1 pack</span><b>₦5,000</b></div><small>Jollof or fried rice · chicken or turkey · plantain or salad · Coke or Fanta</small>
+    <div><span>Food only</span><b>₦4,000</b></div><small>Rice + chicken or turkey</small>
     <div><span>5 packs</span><b>₦25,000</b></div><div><span>10 packs</span><b>₦50,000</b></div></div>
   <div class="ph">💬 WhatsApp 0706 726 5057</div>
   <div class="cat">Bulk orders · Indoor &amp; outdoor catering</div>
@@ -104,9 +109,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 </div>
 <script>
 const WORDS=__WORDS__;
-const T={asaba:.08,hungry:1.04,five:2.58,price:2.96,jollof:4.78,fried:5.56,chicken:7.16,turkey:7.74,plantain:9.3,salad:10.14,coke:11.7,fanta:12.68,fresh:14.22,packed:15.54,here:16.98,
- f5:19.26,p25:20.82,t10:23.42,p50:24.72,bigger:26.94,bulk:28.32,indoor:29.42,cater:31.72,od:34.32,wa:37.12,n0:38.18,n1:39.72,n2:41.26,end:43.95};
-const TOTAL=51.4; window.TOTAL=TOTAL;
+const T={asaba:0.08,hungry:1.04,five:2.58,price:2.96,jollof:4.78,fried:5.56,chicken:7.16,turkey:7.74,plantain:9.3,salad:10.14,coke:11.7,fanta:12.68,small:13.94,food:14.92,p4:16.5,fresh:18.08,packed:19.4,here:20.84,f5:23.12,p25:24.68,t10:27.28,p50:28.58,bigger:30.8,bulk:32.18,indoor:33.28,cater:35.58,od:38.18,wa:40.98,n0:42.04,n1:43.58,n2:45.12,end:47.81};
+const TOTAL=53.8; window.TOTAL=TOTAL;
 const $=id=>document.getElementById(id);
 const cl=x=>Math.max(0,Math.min(1,x)), p=(t,a,b)=>cl((t-a)/(b-a)), lerp=(a,b,k)=>a+(b-a)*k;
 const eo=x=>1-Math.pow(1-cl(x),3), ei=x=>Math.pow(cl(x),2.2), eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
@@ -115,13 +119,13 @@ let seed=41; const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647}
 const bk=[];for(let i=0;i<18;i++){const e=document.createElement('div');e.className='bokeh';const s=70+rnd()*220;Object.assign(e.style,{width:s+'px',height:s+'px',background:rnd()<.6?'rgba(232,182,74,.28)':'rgba(255,240,200,.16)'});$('bokehs').appendChild(e);bk.push({e,x:rnd()*1080,y:rnd()*1920,vx:(rnd()-.5)*26,vy:-8-rnd()*26,ph:rnd()*6});}
 const conf=[];const CC=['#e8b64a','#ffd77a','#ffffff','#c8152c','#25d366'];
 for(let i=0;i<80;i++){const c=document.createElement('div');c.className='conf';c.style.background=CC[i%5];$('conf').appendChild(c);conf.push({c,x:rnd()*1080,d:rnd(),v:420+rnd()*420,sw:rnd()*6,rot:rnd()*720});}
-const CONF=[T.price,T.p25,T.p50,T.cater,T.end];
+const CONF=[T.price,T.p4,T.p25,T.p50,T.cater,T.end];
 // box layout (floor 952x902)
 function fit(id,b,asp){const e=$(id);let w=b.w,h=b.w/asp;if(h>b.h){h=b.h;w=h*asp;}Object.assign(e.style,{left:(b.x+(b.w-w)/2)+'px',top:(b.y+(b.h-h)/2)+'px',width:w+'px',height:h+'px'});}
 const FL={x:30,y:30,w:590,h:842},DR={x:650,y:40,w:280,h:470},SD={x:640,y:550,w:300,h:300};
 fit('iJ',FL,971/1397);fit('iF',FL,797/1351);fit('iP',SD,1125/1134);fit('iS',SD,1017/1032);fit('iC',DR,457/1429);fit('iA',DR,418/1407);
 const BX=40+24,BY=430+24;
-const HITS=[[T.five,30],[T.jollof,16],[T.plantain,12],[T.coke,12],[T.p25,30],[T.p50,30],[T.cater,24],[T.end,18]];
+const HITS=[[T.five,30],[T.p4,28],[T.small,14],[T.jollof,16],[T.plantain,12],[T.coke,12],[T.p25,30],[T.p50,30],[T.cater,24],[T.end,18]];
 function shake(t){let x=0,y=0;for(const [a,amp] of HITS){const d=t-a;if(d>=0&&d<.45){const k=amp*Math.exp(-d*10);x+=k*Math.sin(d*90);y+=k*Math.cos(d*77);}}return [x,y];}
 function pop(el,t,a,b,base='',big=false){if(t<a||t>b+.3){el.style.opacity=0;return;}const k=eb(p(t,a,a+.4),big?2.2:1.7);el.style.opacity=Math.min(cl(p(t,a,a+.08)),1-p(t,b,b+.22));el.style.transform=`${base} scale(${big?2.4-1.4*k:.4+.6*k})`;}
 function pr(id,a,b){const e=$(id);if(t_<a-.05||t_>b+.25){e.style.opacity=0;return;}const k=eb(p(t_,a-.05,a+.35),1.5);e.style.opacity=Math.min(cl(p(t_,a-.05,a+.05)),1-p(t_,b,b+.2));e.style.transform=`translateX(-50%) scale(${(2.4-1.4*k)*(t_>a+.5?1+.025*Math.sin((t_-a)*7):1)}) rotate(${-3*k}deg)`;}
@@ -140,9 +144,9 @@ function caps(t){const c=$('cap');if(t>=T.end-.1){c.style.opacity=0;return;}let 
   const ch=CH[k];const endT=(k+1<CH.length?Math.min(CH[k+1][0][0]-.05,ch[ch.length-1][1]+.6):ch[ch.length-1][1]+.5);if(t>endT){c.style.opacity=0;return;}
   if(k!==lastCh){c.innerHTML=ch.map(w=>`<span>${w[2].replace(/[,]$/,'')}</span>`).join('');lastCh=k;}
   c.style.opacity=1;[...c.children].forEach((s,i)=>{const on=t>=ch[i][0]-.03&&(i===ch.length-1||t<ch[i+1][0]-.03);s.className=on?'on':'';s.style.transform=on?'scale(1.12)':'scale(1)';});}
-const CL={k1:{a:14.0,b:15.9,dir:'clip1',off:1.0,max:222},k2:{a:15.9,b:17.4,dir:'clip2',off:1.2,max:291},k3:{a:17.4,b:19.15,dir:'clip3',off:0,max:342},kp:{a:28.2,b:31.65,dir:'pot',off:0,max:321,rate:.62}};
+const CL={k1:{a:17.86,b:19.76,dir:'clip1',off:1.0,max:222},k2:{a:19.76,b:21.26,dir:'clip2',off:1.2,max:291},k3:{a:21.26,b:23.01,dir:'clip3',off:0,max:342},kp:{a:32.06,b:35.51,dir:'pot',off:0,max:321,rate:.62}};
 const last={};
-const PH={f5:[19.15,23.3,1.14,1.02],f10:[23.3,26.85,1.14,1.03],fc1:[26.85,28.2,1.16,1.08],fc2:[31.65,36.95,1.04,1.14],fb:[36.95,T.end+.05,1.0,1.08]};
+const PH={ffo:[13.8,17.95,1.12,1.02],f5:[23.01,27.16,1.14,1.02],f10:[27.16,30.71,1.14,1.03],fc1:[30.71,32.06,1.16,1.08],fc2:[35.51,40.81,1.04,1.14],fb:[40.81,T.end+.05,1.0,1.08]};
 let t_=0;
 window.renderAsync=async function(t){t_=t;
   $('rays').style.transform=`rotate(${t*5}deg)`;
@@ -171,13 +175,15 @@ window.renderAsync=async function(t){t_=t;
   drop('iC',t,T.coke+.46,T.fanta-.25); swap('iA',t,T.fanta+.22,BO);
   const chips=[[T.jollof,T.fried-.12],[T.fried,T.chicken-.12],[T.chicken,T.turkey-.12],[T.turkey,T.plantain-.12],[T.plantain,T.salad-.12],[T.salad,T.coke-.12],[T.coke,T.fanta-.12],[T.fanta,BO]];
   chips.forEach(([a,b],i)=>pop($('c'+i),t,a,b,'translateX(-50%)'));
-  $('bar').style.opacity=Math.min(p(t,4.4,4.8),1-p(t,T.end-.3,T.end));
+  $('bar').style.opacity=Math.min(p(t,4.4,4.8),1-p(t,T.end-.3,T.end),Math.max(1-p(t,13.7,13.9),p(t,17.85,18.1)));
+  // food-only
+  pop($('s1'),t,T.small,T.food-.1,'',true);pop($('s2'),t,T.food,17.85);pop($('s3'),t,15.32,17.85,'translateX(-50%)');pr('p4',T.p4,17.85);
   // kitchen
-  pop($('h1'),t,T.fresh,T.packed-.15);pop($('h2'),t,T.packed,T.here-.15);pop($('h3'),t,T.here,19.0);
+  pop($('h1'),t,T.fresh,T.packed-.15);pop($('h2'),t,T.packed,T.here-.15);pop($('h3'),t,T.here,22.86);
   // groups
-  pop($('g1'),t,T.f5,23.2);pr('p25',T.p25,23.2);pop($('g2'),t,T.t10,26.75);pr('p50',T.p50,26.75);
-  pop($('g3'),t,T.bigger,T.bulk-.1);pop($('c8'),t,T.bulk,31.5,'translateX(-50%)');pop($('c9'),t,T.indoor,31.5,'translateX(-50%)');
-  pop($('g4'),t,T.cater,T.od-.15);pop($('g5'),t,T.od,36.85);
+  pop($('g1'),t,T.f5,27.06);pr('p25',T.p25,27.06);pop($('g2'),t,T.t10,30.61);pr('p50',T.p50,30.61);
+  pop($('g3'),t,T.bigger,T.bulk-.1);pop($('c8'),t,T.bulk,35.36,'translateX(-50%)');pop($('c9'),t,T.indoor,35.36,'translateX(-50%)');
+  pop($('g4'),t,T.cater,T.od-.15);pop($('g5'),t,T.od,40.71);
   // whatsapp
   pop($('wa'),t,T.wa,T.end-.3,'translateX(-50%)');
   [T.n0,T.n1,T.n2].forEach((a,i)=>{const e=$('n'+i);const k=eb(p(t,a,a+.35));e.style.opacity=t<a?0:1-p(t,T.end-.3,T.end);e.style.transform=`scale(${.3+.7*k})`;});
@@ -185,7 +191,7 @@ window.renderAsync=async function(t){t_=t;
   {const ot=t-T.end;const e=$('end');e.style.opacity=p(ot,0,.35);e.style.transform=`scale(${.92+.08*eo(p(ot,0,.5))})`;}
   for(const c of conf){let on=false;for(const ct of CONF){const d=t-ct-c.d*.4;if(d>=0&&d<2.6){const y=-60+c.v*d*1.6,x=c.x+Math.sin(d*3+c.sw)*60;c.c.style.opacity=y<1980?1:0;c.c.style.transform=`translate(${x}px,${y}px) rotate(${c.rot+d*500}deg) rotateY(${d*400}deg)`;on=true;}}if(!on)c.c.style.opacity=0;}
   caps(t);
-  const fls=[[.05,.5],[T.price,.6],[4.4,.35],[14.0,.4],[15.9,.3],[17.4,.3],[19.15,.4],[T.p25,.5],[23.3,.4],[T.p50,.5],[26.85,.4],[28.2,.3],[31.65,.4],[T.od-.05,.35],[36.95,.35],[T.end,.55]];
+  const fls=[[.05,.5],[T.price,.6],[4.4,.35],[17.86,.4],[19.76,.3],[21.26,.3],[23.01,.4],[T.p25,.5],[27.16,.4],[T.p50,.5],[30.71,.4],[32.06,.3],[35.51,.4],[T.od-.05,.35],[40.81,.35],[T.end,.55],[13.8,.45],[T.p4,.55]];
   let f=0;for(const [a,s] of fls){const d=t-a;if(d>=-.04&&d<=.3)f=Math.max(f,(d<0?(1+d/.04):(1-d/.3))*s);}$('flash').style.opacity=f;
   $('black').style.opacity=p(t,TOTAL-.4,TOTAL);
 };
