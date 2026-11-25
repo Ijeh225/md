@@ -109,8 +109,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family
 </div>
 <script>
 const WORDS=__WORDS__;
-const T={asaba:0.08,hungry:1.04,five:2.58,price:2.96,jollof:4.78,fried:5.56,chicken:7.16,turkey:7.74,plantain:9.3,salad:10.14,coke:11.7,fanta:12.68,small:13.94,food:14.92,p4:16.5,fresh:18.08,packed:19.4,here:20.84,f5:23.12,p25:24.68,t10:27.28,p50:28.58,bigger:30.8,bulk:32.18,indoor:33.28,cater:35.58,od:38.18,wa:40.98,n0:42.04,n1:43.58,n2:45.12,end:47.81};
-const TOTAL=53.8; window.TOTAL=TOTAL;
+const T={asaba:0.08,hungry:1.04,five:2.58,price:2.96,jollof:4.78,fried:5.56,chicken:7.16,turkey:7.74,plantain:9.3,salad:10.14,coke:11.7,fanta:12.68,small:13.7,food:14.84,rice:15.7,p4:17.72,fresh:19.36,packed:20.68,here:22.12,f5:24.4,p25:25.96,t10:28.56,p50:29.86,bigger:32.08,bulk:33.46,indoor:34.56,cater:36.86,od:39.46,wa:42.26,n0:43.32,n1:44.86,n2:46.4,end:49.09};
+const TOTAL=54.15; window.TOTAL=TOTAL;
 const $=id=>document.getElementById(id);
 const cl=x=>Math.max(0,Math.min(1,x)), p=(t,a,b)=>cl((t-a)/(b-a)), lerp=(a,b,k)=>a+(b-a)*k;
 const eo=x=>1-Math.pow(1-cl(x),3), ei=x=>Math.pow(cl(x),2.2), eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
@@ -144,9 +144,9 @@ function caps(t){const c=$('cap');if(t>=T.end-.1){c.style.opacity=0;return;}let 
   const ch=CH[k];const endT=(k+1<CH.length?Math.min(CH[k+1][0][0]-.05,ch[ch.length-1][1]+.6):ch[ch.length-1][1]+.5);if(t>endT){c.style.opacity=0;return;}
   if(k!==lastCh){c.innerHTML=ch.map(w=>`<span>${w[2].replace(/[,]$/,'')}</span>`).join('');lastCh=k;}
   c.style.opacity=1;[...c.children].forEach((s,i)=>{const on=t>=ch[i][0]-.03&&(i===ch.length-1||t<ch[i+1][0]-.03);s.className=on?'on':'';s.style.transform=on?'scale(1.12)':'scale(1)';});}
-const CL={k1:{a:17.86,b:19.76,dir:'clip1',off:1.0,max:222},k2:{a:19.76,b:21.26,dir:'clip2',off:1.2,max:291},k3:{a:21.26,b:23.01,dir:'clip3',off:0,max:342},kp:{a:32.06,b:35.51,dir:'pot',off:0,max:321,rate:.62}};
+const CL={k1:{a:19.14,b:21.04,dir:'clip1',off:1.0,max:222},k2:{a:21.04,b:22.54,dir:'clip2',off:1.2,max:291},k3:{a:22.54,b:24.29,dir:'clip3',off:0,max:342},kp:{a:33.34,b:36.79,dir:'pot',off:0,max:321,rate:.62}};
 const last={};
-const PH={ffo:[13.8,17.95,1.12,1.02],f5:[23.01,27.16,1.14,1.02],f10:[27.16,30.71,1.14,1.03],fc1:[30.71,32.06,1.16,1.08],fc2:[35.51,40.81,1.04,1.14],fb:[40.81,T.end+.05,1.0,1.08]};
+const PH={ffo:[13.55,19.2,1.12,1.02],f5:[24.29,28.44,1.14,1.02],f10:[28.44,31.99,1.14,1.03],fc1:[31.99,33.34,1.16,1.08],fc2:[36.79,42.09,1.04,1.14],fb:[42.09,T.end+.05,1.0,1.08]};
 let t_=0;
 window.renderAsync=async function(t){t_=t;
   $('rays').style.transform=`rotate(${t*5}deg)`;
@@ -175,15 +175,15 @@ window.renderAsync=async function(t){t_=t;
   drop('iC',t,T.coke+.46,T.fanta-.25); swap('iA',t,T.fanta+.22,BO);
   const chips=[[T.jollof,T.fried-.12],[T.fried,T.chicken-.12],[T.chicken,T.turkey-.12],[T.turkey,T.plantain-.12],[T.plantain,T.salad-.12],[T.salad,T.coke-.12],[T.coke,T.fanta-.12],[T.fanta,BO]];
   chips.forEach(([a,b],i)=>pop($('c'+i),t,a,b,'translateX(-50%)'));
-  $('bar').style.opacity=Math.min(p(t,4.4,4.8),1-p(t,T.end-.3,T.end),Math.max(1-p(t,13.7,13.9),p(t,17.85,18.1)));
+  $('bar').style.opacity=Math.min(p(t,4.4,4.8),1-p(t,T.end-.3,T.end),Math.max(1-p(t,13.45,13.65),p(t,19.1,19.35)));
   // food-only
-  pop($('s1'),t,T.small,T.food-.1,'',true);pop($('s2'),t,T.food,17.85);pop($('s3'),t,15.32,17.85,'translateX(-50%)');pr('p4',T.p4,17.85);
+  pop($('s1'),t,T.small,T.food-.1,'',true);pop($('s2'),t,T.food,19.1);pop($('s3'),t,T.rice,19.1,'translateX(-50%)');pr('p4',T.p4,19.1);
   // kitchen
-  pop($('h1'),t,T.fresh,T.packed-.15);pop($('h2'),t,T.packed,T.here-.15);pop($('h3'),t,T.here,22.86);
+  pop($('h1'),t,T.fresh,T.packed-.15);pop($('h2'),t,T.packed,T.here-.15);pop($('h3'),t,T.here,24.14);
   // groups
-  pop($('g1'),t,T.f5,27.06);pr('p25',T.p25,27.06);pop($('g2'),t,T.t10,30.61);pr('p50',T.p50,30.61);
-  pop($('g3'),t,T.bigger,T.bulk-.1);pop($('c8'),t,T.bulk,35.36,'translateX(-50%)');pop($('c9'),t,T.indoor,35.36,'translateX(-50%)');
-  pop($('g4'),t,T.cater,T.od-.15);pop($('g5'),t,T.od,40.71);
+  pop($('g1'),t,T.f5,28.34);pr('p25',T.p25,28.34);pop($('g2'),t,T.t10,31.89);pr('p50',T.p50,31.89);
+  pop($('g3'),t,T.bigger,T.bulk-.1);pop($('c8'),t,T.bulk,36.64,'translateX(-50%)');pop($('c9'),t,T.indoor,36.64,'translateX(-50%)');
+  pop($('g4'),t,T.cater,T.od-.15);pop($('g5'),t,T.od,41.99);
   // whatsapp
   pop($('wa'),t,T.wa,T.end-.3,'translateX(-50%)');
   [T.n0,T.n1,T.n2].forEach((a,i)=>{const e=$('n'+i);const k=eb(p(t,a,a+.35));e.style.opacity=t<a?0:1-p(t,T.end-.3,T.end);e.style.transform=`scale(${.3+.7*k})`;});
@@ -191,7 +191,7 @@ window.renderAsync=async function(t){t_=t;
   {const ot=t-T.end;const e=$('end');e.style.opacity=p(ot,0,.35);e.style.transform=`scale(${.92+.08*eo(p(ot,0,.5))})`;}
   for(const c of conf){let on=false;for(const ct of CONF){const d=t-ct-c.d*.4;if(d>=0&&d<2.6){const y=-60+c.v*d*1.6,x=c.x+Math.sin(d*3+c.sw)*60;c.c.style.opacity=y<1980?1:0;c.c.style.transform=`translate(${x}px,${y}px) rotate(${c.rot+d*500}deg) rotateY(${d*400}deg)`;on=true;}}if(!on)c.c.style.opacity=0;}
   caps(t);
-  const fls=[[.05,.5],[T.price,.6],[4.4,.35],[17.86,.4],[19.76,.3],[21.26,.3],[23.01,.4],[T.p25,.5],[27.16,.4],[T.p50,.5],[30.71,.4],[32.06,.3],[35.51,.4],[T.od-.05,.35],[40.81,.35],[T.end,.55],[13.8,.45],[T.p4,.55]];
+  const fls=[[.05,.5],[T.price,.6],[4.4,.35],[19.14,.4],[21.04,.3],[22.54,.3],[24.29,.4],[T.p25,.5],[28.44,.4],[T.p50,.5],[31.99,.4],[33.34,.3],[36.79,.4],[T.od-.05,.35],[42.09,.35],[T.end,.55],[13.55,.45],[T.p4,.55]];
   let f=0;for(const [a,s] of fls){const d=t-a;if(d>=-.04&&d<=.3)f=Math.max(f,(d<0?(1+d/.04):(1-d/.3))*s);}$('flash').style.opacity=f;
   $('black').style.opacity=p(t,TOTAL-.4,TOTAL);
 };
